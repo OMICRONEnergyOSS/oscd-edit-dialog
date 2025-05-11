@@ -1,0 +1,139 @@
+{
+  "name": "@openenergytools/scl-text-field",
+  "description": "TextField for SCL related attributes",
+  "license": "Apache-2.0",
+  "version": "2.0.2",
+  "type": "module",
+  "main": "dist/SclTextField.js",
+  "module": "dist/SclTextField.js",
+  "exports": {
+    ".": "./dist/SclTextField.js"
+  },
+  "scripts": {
+    "analyze": "cem analyze",
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\"",
+    "build": "tsc && npm run analyze -- --exclude dist",
+    "lint": "eslint --ext .ts,.html . --ignore-path .gitignore && prettier \"**/*.ts\" --check --ignore-path .gitignore",
+    "format": "eslint --ext .ts,.html . --fix --ignore-path .gitignore && prettier \"**/*.ts\" --write --ignore-path .gitignore"
+  },
+  "dependencies": {
+    "@open-wc/scoped-elements": "^3.0.5",
+    "@scopedelement/material-web": "^3.12.0",
+    "@openenergytools/scl-checkbox": "^2.0.0",
+    "@openenergytools/scl-lib": "^1.4.0",
+    "@openenergytools/scl-select": "^2.0.1",
+    "@openenergytools/scl-text-field": "^2.0.2",
+    "@openenergytools/open-scd-core": "^0.0.5",
+    "@openenergytools/filterable-lists": "^1.1.0",
+    "lit": "^3.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "@custom-elements-manifest/analyzer": "^0.4.17",
+    "@esm-bundle/chai": "^4.3.4-fix.0",
+    "@open-wc/eslint-config": "^8.0.2",
+    "@open-wc/testing": "^4.0.0",
+    "@types/mocha": "^10.0.10",
+    "@typescript-eslint/eslint-plugin": "^8.18.1",
+    "@typescript-eslint/parser": "^8.18.1",
+    "@web/dev-server": "^0.4.6",
+    "@web/dev-server-polyfill": "^1.0.4",
+    "@web/dev-server-storybook": "^0.0.2",
+    "@web/test-runner": "0.19.0",
+    "@web/test-runner-commands": "0.9.0",
+    "@web/test-runner-playwright": "0.11.0",
+    "@web/test-runner-visual-regression": "0.9.0",
+    "@webcomponents/scoped-custom-element-registry": "0.0.9",
+    "cem-plugin-readme": "^0.1.4",
+    "concurrently": "^5.3.0",
+    "eslint": "8.57.0",
+    "eslint-config-prettier": "^8.3.0",
+    "gh-pages": "^5.0.0",
+    "husky": "^4.3.8",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.4.1",
+    "sinon": "^15.2.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "tslib": "^2.3.1",
+    "typescript": "5.5.4"
+  },
+  "customElements": "custom-elements.json",
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "extends": [
+      "@open-wc",
+      "prettier"
+    ],
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-unused-vars": "off",
+      "sort-imports": [
+        "error",
+        {
+          "ignoreCase": true,
+          "allowSeparatedGroups": true
+        }
+      ],
+      "class-methods-use-this": [
+        "error",
+        {
+          "exceptMethods": [
+            "locale"
+          ]
+        }
+      ],
+      "@typescript-eslint/no-explicit-any": [
+        "error",
+        {
+          "ignoreRestArgs": true
+        }
+      ],
+      "import/no-extraneous-dependencies": [
+        "error",
+        {
+          "devDependencies": [
+            "**/*.test.ts",
+            "**/*.spec.ts",
+            "**/*.stories.ts",
+            "**/*.config.js"
+          ]
+        }
+      ],
+      "import/no-unresolved": "off",
+      "import/extensions": [
+        "error",
+        "always",
+        {
+          "ignorePackages": true
+        }
+      ]
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "arrowParens": "avoid"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && npm run analyze",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.29.1"
+  }
+}
