@@ -1,0 +1,3186 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "OscdEditDialog.spec.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "OscdEditDialog.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdEditDialog",
+          "members": [
+            {
+              "kind": "field",
+              "name": "wizardType",
+              "type": {
+                "text": "EditWizard | CreateWizard | null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "dialogClosePromise",
+              "type": {
+                "text": "{\n    resolve: (value: EditV2[]) => void;\n    reject: () => void;\n  } | null"
+              },
+              "privacy": "private",
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "scopedElements",
+              "type": {
+                "text": "object"
+              },
+              "static": true,
+              "default": "{ 'md-dialog': MdDialog, 'md-text-button': MdTextButton, 'scl-checkbox': SclCheckbox, 'scl-text-field': SclTextField, 'scl-select': SclSelect, 'md-filled-textfield': MdFilledTextField, 'md-filled-select': MdFilledSelect, 'md-select-option': MdSelectOption, 'md-icon-button': MdIconButton, 'md-icon': MdIcon, 'selection-list': SelectionList, 'action-list': ActionList, 'md-list': MdList, 'md-list-item': MdListItem, }"
+            },
+            {
+              "kind": "field",
+              "name": "dialog",
+              "type": {
+                "text": "MdDialog"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "inputs",
+              "type": {
+                "text": "WizardInputElement[]"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "checkValidity",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "boolean"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "create",
+              "return": {
+                "type": {
+                  "text": "Promise<EditV2[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "wizardType",
+                  "type": {
+                    "text": "CreateWizard"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "edit",
+              "return": {
+                "type": {
+                  "text": "Promise<EditV2[]>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "wizardType",
+                  "type": {
+                    "text": "EditWizard"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "close",
+              "return": {
+                "type": {
+                  "text": "void"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "act",
+              "privacy": "private",
+              "return": {
+                "type": {
+                  "text": "Promise<boolean>"
+                }
+              },
+              "parameters": [
+                {
+                  "name": "action",
+                  "optional": true,
+                  "type": {
+                    "text": "WizardActor"
+                  }
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render",
+              "return": {
+                "type": {
+                  "text": "TemplateResult"
+                }
+              }
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "default": "css` * { --md-dialog-container-color: var( --wizard-dialog-background-color, #fdf6e3 ); --md-dialog-headline-color: var(--wizard-dialog-text-color, #657b83); --md-dialog-headline-font: var(--wizard-dialog-text-font, 'Roboto'); --md-dialog-supporting-text-color: var( --wizard-dialog-text-color, #657b83 ); --md-dialog-supporting-text-font: var( --wizard-dialog-text-font, 'Roboto' ); --md-sys-color-primary: var(--wizard-dialog-primary, #2aa198); --md-sys-color-secondary: var(--wizard-dialog-secondary, #6c71c4); --md-sys-typescale-body-large-font: var( --wizard-dialog-text-font, 'Roboto' ); --md-sys-color-surface-container-highest: var( --wizard-dailog-input-background-color, #eee8d5 ); --md-outlined-text-field-input-text-color: var( --wizard-dialog-text-color, #657b83 ); --md-sys-color-on-surface: var(--wizard-dialog-text-color, #657b83); --md-sys-color-on-primary: var(--wizard-dialog-background-color, #eee8d5); --md-sys-color-surface: var(--wizard-dialog-surface, #fdf6e3) --md-sys-color-on-surface: var(--wizard-dialog-text-color, #fdf6e3); --md-sys-color-on-surface-variant: var( --wizard-dialog-text-color, #657b83 ); --md-menu-container-color: var(--wizard-dialog-background-color, #fdf6e3); --md-menu-item-selected-container-color: rgb( from var(--wizard-dialog-primary, #2aa198) r g b / 0.38 ); } md-dialog { --md-dialog-container-max-height: 100%; height: 100%; --md-dialog-container-max-width: 100%; } #close-button { --md-sys-color-primary: var(--wizard-dialog-close-button-color, #dc322f); } #wizard-content { display: flex; flex-direction: column; } #wizard-content > * { display: block; margin-top: 16px; } `"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-edit-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "OscdEditDialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "foundation.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getValue",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "input",
+              "type": {
+                "text": "WizardInputElement"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createElement",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "doc",
+              "type": {
+                "text": "Document"
+              }
+            },
+            {
+              "name": "tag",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "attrs",
+              "type": {
+                "text": "Record<string, string | null>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "getChildElementsByTagName",
+          "return": {
+            "type": {
+              "text": "Element[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element | null | undefined"
+              }
+            },
+            {
+              "name": "tag",
+              "type": {
+                "text": "string | null | undefined"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "reservedNames",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "tagName",
+              "optional": true,
+              "type": {
+                "text": "string"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "isSclTextfield",
+          "return": {
+            "type": {
+              "text": "type is SclTextField"
+            }
+          },
+          "parameters": [
+            {
+              "name": "type",
+              "type": {
+                "text": "any"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "getMultiplier",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "input",
+              "type": {
+                "text": "WizardInputElement"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "cloneElement",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "attrs",
+              "type": {
+                "text": "Record<string, string | null>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "crossProduct",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "arrays",
+              "type": {
+                "text": "T[][]"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "variable",
+          "name": "typeNullable",
+          "type": {
+            "text": "Partial<Record<string, boolean>>"
+          },
+          "default": "{ IP: false, 'IP-SUBNET': false, 'IP-GATEWAY': true, 'OSI-TSEL': true, 'OSI-SSEL': true, 'OSI-PSEL': true, 'OSI-AP-Title': true, 'OSI-AP-Invoke': true, 'OSI-AE-Qualifier': true, 'OSI-AE-Invoke': true, 'OSI-NSAP': true, 'MAC-Address': false, APPID: false, 'VLAN-ID': true, 'VLAN-PRIORITY': true, 'SNTP-Port': true, 'MMS-Port': true, DNSName: true, 'UDP-Port': true, 'TCP-Port': true, 'C37-118-IP-Port': true, IPv6: true, 'IPv6-SUBNET': true, 'IPv6-GATEWAY': true, IPv6FlowLabel: true, IPv6ClassOfTraffic: true, 'IPv6-IGMPv3Src': true, 'IP-IGMPv3Sr': true, 'IP-ClassOfTraffic': true, }",
+          "description": "Whether `P` element is required within `Address`"
+        },
+        {
+          "kind": "function",
+          "name": "getTypes",
+          "return": {
+            "type": {
+              "text": "string[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "compareNames",
+          "return": {
+            "type": {
+              "text": "number"
+            }
+          },
+          "parameters": [
+            {
+              "name": "a",
+              "type": {
+                "text": "Element | string"
+              }
+            },
+            {
+              "name": "b",
+              "type": {
+                "text": "Element | string"
+              }
+            }
+          ],
+          "description": "Sorts selected `ListItem`s to the top and disabled ones to the bottom."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "getValue",
+          "declaration": {
+            "name": "getValue",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createElement",
+          "declaration": {
+            "name": "createElement",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getChildElementsByTagName",
+          "declaration": {
+            "name": "getChildElementsByTagName",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "reservedNames",
+          "declaration": {
+            "name": "reservedNames",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isSclTextfield",
+          "declaration": {
+            "name": "isSclTextfield",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getMultiplier",
+          "declaration": {
+            "name": "getMultiplier",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "cloneElement",
+          "declaration": {
+            "name": "cloneElement",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "crossProduct",
+          "declaration": {
+            "name": "crossProduct",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "typeNullable",
+          "declaration": {
+            "name": "typeNullable",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getTypes",
+          "declaration": {
+            "name": "getTypes",
+            "module": "foundation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "compareNames",
+          "declaration": {
+            "name": "compareNames",
+            "module": "foundation.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "oscd-edit-dialog.ts",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-edit-dialog",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "/OscdEditDialog.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdEditDialog",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "oscd-edit-dialog.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "demo/demo-editor-plugin.ts",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TriggerWizard",
+          "members": [
+            {
+              "kind": "field",
+              "name": "doc",
+              "type": {
+                "text": "XMLDocument"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "editor",
+              "type": {
+                "text": "XMLEditor"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "newTagName",
+              "type": {
+                "text": "HTMLSelectElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "parentSelector",
+              "type": {
+                "text": "HTMLInputElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "childinput",
+              "type": {
+                "text": "HTMLInputElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "tagSelector",
+              "type": {
+                "text": "HTMLInputElement"
+              }
+            },
+            {
+              "kind": "field",
+              "name": "editDialog",
+              "type": {
+                "text": "WizardDialog"
+              }
+            },
+            {
+              "kind": "method",
+              "name": "triggerWizardAdd",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "triggerWizardEdit",
+              "return": {
+                "type": {
+                  "text": "Promise<void>"
+                }
+              }
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "styles",
+              "static": true,
+              "default": "css` .card { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; align-items: center; justify-items: center; padding: 2rem; background: #fafbfc; border-radius: 8px; max-width: 500px; margin: 2rem auto; } .card h2, .card p, .card button { grid-column: 1 / -1; text-align: center; } .card label, .card select, .card input, .card > div, .card button { width: 100%; } .card button { text-align: center; } [role='tooltip'], .hide-tooltip.hide-tooltip.hide-tooltip + [role='tooltip'] { visibility: hidden; position: absolute; background: black; color: white; padding: 1rem; border-radius: 8px; } [aria-describedby]:hover, [aria-describedby]:focus { position: relative; } [aria-describedby]:hover + [role='tooltip'], [aria-describedby]:focus + [role='tooltip'] { visibility: visible; } `"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "TriggerWizard",
+            "module": "demo/demo-editor-plugin.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "scripts/update-readme.ts",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/abstractda.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderAbstractDataAttributeContent",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "name",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "desc",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "bType",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "types",
+              "type": {
+                "text": "Element[]"
+              }
+            },
+            {
+              "name": "type",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "sAddr",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "valKind",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "valImport",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "Val",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "data",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "getValAction",
+          "return": {
+            "type": {
+              "text": "EditV2[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "oldVal",
+              "type": {
+                "text": "Element | null"
+              }
+            },
+            {
+              "name": "Val",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "abstractda",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderAbstractDataAttributeContent",
+          "declaration": {
+            "name": "renderAbstractDataAttributeContent",
+            "module": "wizards/abstractda.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getValAction",
+          "declaration": {
+            "name": "getValAction",
+            "module": "wizards/abstractda.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/address.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "existDiff",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          },
+          "parameters": [
+            {
+              "name": "oldAddr",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "newAddr",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createAddressElement",
+          "return": {
+            "type": {
+              "text": "Element"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "inputs",
+              "type": {
+                "text": "Record<string, string | null>"
+              }
+            },
+            {
+              "name": "instType",
+              "type": {
+                "text": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAddress",
+          "return": {
+            "type": {
+              "text": "EditV2[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "inputs",
+              "type": {
+                "text": "Record<string, string | null>"
+              }
+            },
+            {
+              "name": "instType",
+              "type": {
+                "text": "boolean"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "hasTypeRestriction",
+          "return": {
+            "type": {
+              "text": "boolean"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "contentAddress",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "content",
+              "type": {
+                "text": "AddressContentOptions"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "existDiff",
+          "declaration": {
+            "name": "existDiff",
+            "module": "wizards/address.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createAddressElement",
+          "declaration": {
+            "name": "createAddressElement",
+            "module": "wizards/address.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAddress",
+          "declaration": {
+            "name": "updateAddress",
+            "module": "wizards/address.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "hasTypeRestriction",
+          "declaration": {
+            "name": "hasTypeRestriction",
+            "module": "wizards/address.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "contentAddress",
+          "declaration": {
+            "name": "contentAddress",
+            "module": "wizards/address.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/bay.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderBayWizard",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "options",
+              "type": {
+                "text": "RenderOptions"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createBayWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editBayWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderBayWizard",
+          "declaration": {
+            "name": "renderBayWizard",
+            "module": "wizards/bay.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "wizards/bay.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createBayWizard",
+          "declaration": {
+            "name": "createBayWizard",
+            "module": "wizards/bay.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/bay.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editBayWizard",
+          "declaration": {
+            "name": "editBayWizard",
+            "module": "wizards/bay.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/bda.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createBDaWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editBDaWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createBDaWizard",
+          "declaration": {
+            "name": "createBDaWizard",
+            "module": "wizards/bda.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editBDaWizard",
+          "declaration": {
+            "name": "editBDaWizard",
+            "module": "wizards/bda.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/conductingequipment.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createConductingEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editConductingEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createConductingEquipmentWizard",
+          "declaration": {
+            "name": "createConductingEquipmentWizard",
+            "module": "wizards/conductingequipment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editConductingEquipmentWizard",
+          "declaration": {
+            "name": "editConductingEquipmentWizard",
+            "module": "wizards/conductingequipment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/connectedap.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createConnectedApWizard",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editConnectedApWizard",
+          "return": {
+            "type": {
+              "text": ""
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createConnectedApWizard",
+          "declaration": {
+            "name": "createConnectedApWizard",
+            "module": "wizards/connectedap.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editConnectedApWizard",
+          "declaration": {
+            "name": "editConnectedApWizard",
+            "module": "wizards/connectedap.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/da.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderAdditionalDaContent",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "fc",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "dchg",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "qchg",
+              "type": {
+                "text": "string | null"
+              }
+            },
+            {
+              "name": "dupd",
+              "type": {
+                "text": "string | null"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createDaWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editDAWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderAdditionalDaContent",
+          "declaration": {
+            "name": "renderAdditionalDaContent",
+            "module": "wizards/da.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createDaWizard",
+          "declaration": {
+            "name": "createDaWizard",
+            "module": "wizards/da.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editDAWizard",
+          "declaration": {
+            "name": "editDAWizard",
+            "module": "wizards/da.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/datype.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDATypeWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDATypeWizard",
+          "declaration": {
+            "name": "createDATypeWizard",
+            "module": "wizards/datype.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/do.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDoWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editDoWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDoWizard",
+          "declaration": {
+            "name": "createDoWizard",
+            "module": "wizards/do.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editDoWizard",
+          "declaration": {
+            "name": "editDoWizard",
+            "module": "wizards/do.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/dotype.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDOTypeWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDOTypeWizard",
+          "declaration": {
+            "name": "createDOTypeWizard",
+            "module": "wizards/dotype.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/enumtype.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEnumTypeWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEnumTypeWizard",
+          "declaration": {
+            "name": "createEnumTypeWizard",
+            "module": "wizards/enumtype.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/enumval.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEnumValWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEnumValWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEnumValWizard",
+          "declaration": {
+            "name": "createEnumValWizard",
+            "module": "wizards/enumval.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEnumValWizard",
+          "declaration": {
+            "name": "editEnumValWizard",
+            "module": "wizards/enumval.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/eqfunction.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEqFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEqFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEqFunctionWizard",
+          "declaration": {
+            "name": "createEqFunctionWizard",
+            "module": "wizards/eqfunction.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEqFunctionWizard",
+          "declaration": {
+            "name": "editEqFunctionWizard",
+            "module": "wizards/eqfunction.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/eqsubfunction.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEqSubFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEqSubFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEqSubFunctionWizard",
+          "declaration": {
+            "name": "createEqSubFunctionWizard",
+            "module": "wizards/eqsubfunction.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEqSubFunctionWizard",
+          "declaration": {
+            "name": "editEqSubFunctionWizard",
+            "module": "wizards/eqsubfunction.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/function.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "contentFunctionWizard",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "options",
+              "type": {
+                "text": "RenderOptions"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "contentFunctionWizard",
+          "declaration": {
+            "name": "contentFunctionWizard",
+            "module": "wizards/function.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createFunctionWizard",
+          "declaration": {
+            "name": "createFunctionWizard",
+            "module": "wizards/function.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editFunctionWizard",
+          "declaration": {
+            "name": "editFunctionWizard",
+            "module": "wizards/function.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/generalEquipment.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "contentGeneralEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "TemplateResult[]"
+            }
+          },
+          "parameters": [
+            {
+              "name": "options",
+              "type": {
+                "text": "RenderOptions"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createGeneralEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editGeneralEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "contentGeneralEquipmentWizard",
+          "declaration": {
+            "name": "contentGeneralEquipmentWizard",
+            "module": "wizards/generalEquipment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createGeneralEquipmentWizard",
+          "declaration": {
+            "name": "createGeneralEquipmentWizard",
+            "module": "wizards/generalEquipment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editGeneralEquipmentWizard",
+          "declaration": {
+            "name": "editGeneralEquipmentWizard",
+            "module": "wizards/generalEquipment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/gse.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "editGseWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "editGseWizard",
+          "declaration": {
+            "name": "editGseWizard",
+            "module": "wizards/gse.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/ied.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editIEDWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/ied.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editIEDWizard",
+          "declaration": {
+            "name": "editIEDWizard",
+            "module": "wizards/ied.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/ldevice.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editLDeviceWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/ldevice.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editLDeviceWizard",
+          "declaration": {
+            "name": "editLDeviceWizard",
+            "module": "wizards/ldevice.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/line.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLineWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editLineWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLineWizard",
+          "declaration": {
+            "name": "createLineWizard",
+            "module": "wizards/line.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editLineWizard",
+          "declaration": {
+            "name": "editLineWizard",
+            "module": "wizards/line.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/lnode.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLNodeWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLNodeWizard",
+          "declaration": {
+            "name": "createLNodeWizard",
+            "module": "wizards/lnode.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/lnodetype.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLNodeTypeWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLNodeTypeWizard",
+          "declaration": {
+            "name": "createLNodeTypeWizard",
+            "module": "wizards/lnodetype.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/patterns.ts",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "patterns",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ string: '([\\u0009-\\u000A]|[\\u000D]|[\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]' + '|[\\uE000-\\uFFFD])*', normalizedString: '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])*', name, tName: '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])' + '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])*', nmToken, names: `${name}( ${name})*`, nmTokens: `${nmToken}( ${nmToken})*`, decimal: '[+\\\\-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))', unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))', integer: '[+\\\\-]?[0-9]+([0-9]*)', alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*', alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*', alphanumericFirst: '[A-Z,a-z][0-9,A-Z,a-z]*', ldInst: '[A-Za-z0-9][0-9A-Za-z_]*', prefix: '[A-Za-z][0-9A-Za-z_]*', lnClass: '(LLN0)|[A-Z]{4,4}', lnInst: '[0-9]{1,12}', abstractDataAttributeName: '((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)', cdc: '(SPS)|(DPS)|(INS)|(ENS)|(ACT)|(ACD)|(SEC)|(BCR)|(HST)|(VSS)|(MV)|(CMV)|(SAV)|' + '(WYE)|(DEL)|(SEQ)|(HMV)|(HWYE)|(HDEL)|(SPC)|(DPC)|(INC)|(ENC)|(BSC)|(ISC)|(APC)|(BAC)|' + '(SPG)|(ING)|(ENG)|(ORG)|(TSG)|(CUG)|(VSG)|(ASG)|(CURVE)|(CSG)|(DPL)|(LPL)|(CSD)|(CST)|' + '(BTS)|(UTS)|(LTS)|(GTS)|(MTS)|(NTS)|(STS)|(CTS)|(OTS)|(VSD)', uuid: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', id: '\\\\S{1,255}', path: '.+(/.+)*', mappedDoName: '(([A-Za-z][0-9A-Za-z_]{0,63})/([A-Za-z][0-9A-Za-z_]{0,63})/((LLN0|([A-Za-z][0-9A-Za-z_]{0,10})?[A-Z]{4}[0-9]{1,12})).)?([A-Z][0-9A-Za-z]{0,11}(.[a-z][0-9A-Za-z]*(([0-9]+))?)?)', vlanid: '[0-9A-F]{3}', vlanPriority: '[0-7]', ipv4: '([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])', ipv6: '([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}', }"
+        },
+        {
+          "kind": "variable",
+          "name": "maxLength",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ cbName: 32, abstracDaName: 60, ldInst: 64, prefix: 11, lnInst: 12, dosName: 12, }"
+        },
+        {
+          "kind": "variable",
+          "name": "predefinedBasicTypeEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'BOOLEAN', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64', 'INT128', 'INT8U', 'INT16U', 'INT24U', 'INT32U', 'FLOAT32', 'FLOAT64', 'Enum', 'Dbpos', 'Tcmd', 'Quality', 'Timestamp', 'VisString32', 'VisString64', 'VisString65', 'VisString129', 'VisString255', 'Octet64', 'Unicode255', 'Struct', 'EntryTime', 'Check', 'ObjRef', 'Currency', 'PhyComAddr', 'TrgOps', 'OptFlds', 'SvOptFlds', 'LogOptFlds', 'EntryID', 'Octet6', 'Octet16', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "valKindEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "['Spec', 'Conf', 'RO', 'Set']"
+        },
+        {
+          "kind": "variable",
+          "name": "functionalConstraintEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'ST', 'MX', 'SP', 'SV', 'CF', 'DC', 'SG', 'SE', 'SR', 'OR', 'BL', 'EX', 'CO', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "attributeNameEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'T', 'Test', 'Check', 'SIUnit', 'Oper', 'SBO', 'SBOw', 'Cancel', 'Addr', 'PRIORITY', 'VID', 'APPID', 'TransportInUse', 'IPClassOfTraffic', 'IPv6FlowLabel', 'IPAddressLength', 'IPAddress', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "tSpecServiceType",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'Poll', 'Report', 'GOOSE', 'SMV', 'Wired', 'Internal', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "tSCLFileType",
+          "type": {
+            "text": "array"
+          },
+          "default": "['SED', 'SCC']"
+        },
+        {
+          "kind": "variable",
+          "name": "tRightEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "['full', 'fix', 'dataflow']"
+        },
+        {
+          "kind": "variable",
+          "name": "tSmpMod",
+          "type": {
+            "text": "array"
+          },
+          "default": "['SmpPerPeriod', 'SmpPerSec', 'SecPerSmp']"
+        },
+        {
+          "kind": "variable",
+          "name": "typePattern",
+          "type": {
+            "text": "Partial<Record<string, string>>"
+          },
+          "default": "{ IP: typeBase.IP, 'IP-SUBNET': typeBase.IP, 'IP-GATEWAY': typeBase.IP, 'OSI-TSEL': typeBase.OSI, 'OSI-SSEL': typeBase.OSI, 'OSI-PSEL': typeBase.OSI, 'OSI-AP-Title': typeBase.OSIAPi, 'OSI-AP-Invoke': typeBase.OSId, 'OSI-AE-Qualifier': typeBase.OSId, 'OSI-AE-Invoke': typeBase.OSId, 'MAC-Address': typeBase.MAC, APPID: typeBase.APPID, 'VLAN-ID': typeBase.VLANid, 'VLAN-PRIORITY': typeBase.VLANp, 'OSI-NSAP': typeBase.OSI, 'SNTP-Port': typeBase.port, 'MMS-Port': typeBase.port, DNSName: '[^ ]*', 'UDP-Port': typeBase.port, 'TCP-Port': typeBase.port, 'C37-118-IP-Port': '102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]', IPv6: typeBase.IPv6, 'IPv6-SUBNET': typeBase.IPv6sub, 'IPv6-GATEWAY': typeBase.IPv6, IPv6FlowLabel: '[0-9a-fA-F]{1,5}', IPv6ClassOfTraffic: '[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]', 'IPv6-IGMPv3Src': typeBase.IPv6, 'IP-IGMPv3Sr': typeBase.IP, 'IP-ClassOfTraffic': typeBase.OSI, }",
+          "description": "Patterns from IEC 61850-6 for all `P` elements"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "patterns",
+          "declaration": {
+            "name": "patterns",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "maxLength",
+          "declaration": {
+            "name": "maxLength",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "predefinedBasicTypeEnum",
+          "declaration": {
+            "name": "predefinedBasicTypeEnum",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "valKindEnum",
+          "declaration": {
+            "name": "valKindEnum",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "functionalConstraintEnum",
+          "declaration": {
+            "name": "functionalConstraintEnum",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "attributeNameEnum",
+          "declaration": {
+            "name": "attributeNameEnum",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSpecServiceType",
+          "declaration": {
+            "name": "tSpecServiceType",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSCLFileType",
+          "declaration": {
+            "name": "tSCLFileType",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tRightEnum",
+          "declaration": {
+            "name": "tRightEnum",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSmpMod",
+          "declaration": {
+            "name": "tSmpMod",
+            "module": "wizards/patterns.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "typePattern",
+          "declaration": {
+            "name": "typePattern",
+            "module": "wizards/patterns.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/powertransformer.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createPowerTransformerWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editPowerTransformerWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createPowerTransformerWizard",
+          "declaration": {
+            "name": "createPowerTransformerWizard",
+            "module": "wizards/powertransformer.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editPowerTransformerWizard",
+          "declaration": {
+            "name": "editPowerTransformerWizard",
+            "module": "wizards/powertransformer.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/process.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createProcessWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editProcessWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createProcessWizard",
+          "declaration": {
+            "name": "createProcessWizard",
+            "module": "wizards/process.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editProcessWizard",
+          "declaration": {
+            "name": "editProcessWizard",
+            "module": "wizards/process.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/sdo.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSDoWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSDoWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSDoWizard",
+          "declaration": {
+            "name": "createSDoWizard",
+            "module": "wizards/sdo.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSDoWizard",
+          "declaration": {
+            "name": "editSDoWizard",
+            "module": "wizards/sdo.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/smv.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "editSMvWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "editSMvWizard",
+          "declaration": {
+            "name": "editSMvWizard",
+            "module": "wizards/smv.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/subequipment.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSubEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubEquipmentWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSubEquipmentWizard",
+          "declaration": {
+            "name": "createSubEquipmentWizard",
+            "module": "wizards/subequipment.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubEquipmentWizard",
+          "declaration": {
+            "name": "editSubEquipmentWizard",
+            "module": "wizards/subequipment.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/subfunction.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSubFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubFunctionWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSubFunctionWizard",
+          "declaration": {
+            "name": "createSubFunctionWizard",
+            "module": "wizards/subfunction.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubFunctionWizard",
+          "declaration": {
+            "name": "editSubFunctionWizard",
+            "module": "wizards/subfunction.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/subnetwork.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createSubNetworkWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubNetworkWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "wizards/subnetwork.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createSubNetworkWizard",
+          "declaration": {
+            "name": "createSubNetworkWizard",
+            "module": "wizards/subnetwork.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubNetworkWizard",
+          "declaration": {
+            "name": "editSubNetworkWizard",
+            "module": "wizards/subnetwork.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/substation.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createSubstationWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubstationWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "wizards/substation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createSubstationWizard",
+          "declaration": {
+            "name": "createSubstationWizard",
+            "module": "wizards/substation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/substation.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubstationWizard",
+          "declaration": {
+            "name": "editSubstationWizard",
+            "module": "wizards/substation.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/tapchanger.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createTapChangerWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTapChangerWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createTapChangerWizard",
+          "declaration": {
+            "name": "createTapChangerWizard",
+            "module": "wizards/tapchanger.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTapChangerWizard",
+          "declaration": {
+            "name": "editTapChangerWizard",
+            "module": "wizards/tapchanger.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/text.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createTextWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTextWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "wizards/text.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createTextWizard",
+          "declaration": {
+            "name": "createTextWizard",
+            "module": "wizards/text.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/text.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTextWizard",
+          "declaration": {
+            "name": "editTextWizard",
+            "module": "wizards/text.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/transformerWinding.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createTransformerWindingWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTransformerWindingWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createTransformerWindingWizard",
+          "declaration": {
+            "name": "createTransformerWindingWizard",
+            "module": "wizards/transformerWinding.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTransformerWindingWizard",
+          "declaration": {
+            "name": "editTransformerWindingWizard",
+            "module": "wizards/transformerWinding.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/voltagelevel.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createVoltageLevelWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "return": {
+            "type": {
+              "text": "WizardActor"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editVoltageLevelWizard",
+          "return": {
+            "type": {
+              "text": "Wizard"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "wizards/voltagelevel.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createVoltageLevelWizard",
+          "declaration": {
+            "name": "createVoltageLevelWizard",
+            "module": "wizards/voltagelevel.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "wizards/voltagelevel.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editVoltageLevelWizard",
+          "declaration": {
+            "name": "editVoltageLevelWizard",
+            "module": "wizards/voltagelevel.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "wizards/wizards.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "emptyWizard",
+          "return": {
+            "type": {
+              "text": "Wizard | undefined"
+            }
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "wizards",
+          "type": {
+            "text": "Record<\n  string,\n  {\n    edit: SclElementWizard;\n    create: SclElementWizard;\n  }\n>"
+          },
+          "default": "{ AccessControl: { edit: emptyWizard, create: emptyWizard, }, AccessPoint: { edit: emptyWizard, create: emptyWizard, }, Address: { edit: emptyWizard, create: emptyWizard, }, Association: { edit: emptyWizard, create: emptyWizard, }, Authentication: { edit: emptyWizard, create: emptyWizard, }, Bay: { edit: editBayWizard, create: createBayWizard, }, BDA: { edit: editBDaWizard, create: emptyWizard, }, BitRate: { edit: emptyWizard, create: emptyWizard, }, ClientLN: { edit: emptyWizard, create: emptyWizard, }, ClientServices: { edit: emptyWizard, create: emptyWizard, }, CommProt: { edit: emptyWizard, create: emptyWizard, }, Communication: { edit: emptyWizard, create: emptyWizard, }, ConductingEquipment: { edit: editConductingEquipmentWizard, create: createConductingEquipmentWizard, }, ConfDataSet: { edit: emptyWizard, create: emptyWizard, }, ConfLdName: { edit: emptyWizard, create: emptyWizard, }, ConfLNs: { edit: emptyWizard, create: emptyWizard, }, ConfLogControl: { edit: emptyWizard, create: emptyWizard, }, ConfReportControl: { edit: emptyWizard, create: emptyWizard, }, ConfSG: { edit: emptyWizard, create: emptyWizard, }, ConfSigRef: { edit: emptyWizard, create: emptyWizard, }, ConnectedAP: { edit: editConnectedApWizard, create: createConnectedApWizard, }, DA: { edit: editDAWizard, create: createDaWizard, }, DAType: { edit: emptyWizard, create: emptyWizard, }, DO: { edit: editDoWizard, create: createDoWizard, }, DOI: { edit: emptyWizard, create: emptyWizard, }, DOType: { edit: emptyWizard, create: createDOTypeWizard, }, DataObjectDirectory: { edit: emptyWizard, create: emptyWizard, }, DataSet: { edit: emptyWizard, create: emptyWizard, }, DataSetDirectory: { edit: emptyWizard, create: emptyWizard, }, DataTypeTemplates: { edit: emptyWizard, create: emptyWizard, }, DynAssociation: { edit: emptyWizard, create: emptyWizard, }, DynDataSet: { edit: emptyWizard, create: emptyWizard, }, EnumType: { edit: emptyWizard, create: createEnumTypeWizard, }, EnumVal: { edit: editEnumValWizard, create: createEnumValWizard, }, EqFunction: { edit: editEqFunctionWizard, create: createEqFunctionWizard, }, EqSubFunction: { edit: editEqSubFunctionWizard, create: createEqSubFunctionWizard, }, ExtRef: { edit: emptyWizard, create: emptyWizard, }, FileHandling: { edit: emptyWizard, create: emptyWizard, }, Function: { edit: editFunctionWizard, create: createFunctionWizard, }, GeneralEquipment: { edit: editGeneralEquipmentWizard, create: createGeneralEquipmentWizard, }, GetCBValues: { edit: emptyWizard, create: emptyWizard, }, GetDataObjectDefinition: { edit: emptyWizard, create: emptyWizard, }, GetDataSetValue: { edit: emptyWizard, create: emptyWizard, }, GetDirectory: { edit: emptyWizard, create: emptyWizard, }, GOOSE: { edit: emptyWizard, create: emptyWizard, }, GOOSESecurity: { edit: emptyWizard, create: emptyWizard, }, GSE: { edit: editGseWizard, create: emptyWizard, }, GSEDir: { edit: emptyWizard, create: emptyWizard, }, GSESettings: { edit: emptyWizard, create: emptyWizard, }, GSSE: { edit: emptyWizard, create: emptyWizard, }, Header: { edit: emptyWizard, create: emptyWizard, }, History: { edit: emptyWizard, create: emptyWizard, }, Hitem: { edit: emptyWizard, create: emptyWizard, }, IED: { edit: editIEDWizard, create: emptyWizard, }, IEDName: { edit: emptyWizard, create: emptyWizard, }, Inputs: { edit: emptyWizard, create: emptyWizard, }, IssuerName: { edit: emptyWizard, create: emptyWizard, }, KDC: { edit: emptyWizard, create: emptyWizard, }, LDevice: { edit: editLDeviceWizard, create: emptyWizard, }, LN: { edit: emptyWizard, create: emptyWizard, }, LN0: { edit: emptyWizard, create: emptyWizard, }, LNode: { edit: emptyWizard, create: createLNodeWizard, }, LNodeType: { edit: emptyWizard, create: createLNodeTypeWizard, }, Line: { edit: editLineWizard, create: createLineWizard, }, Log: { edit: emptyWizard, create: emptyWizard, }, LogControl: { edit: emptyWizard, create: emptyWizard, }, LogSettings: { edit: emptyWizard, create: emptyWizard, }, MaxTime: { edit: emptyWizard, create: emptyWizard, }, McSecurity: { edit: emptyWizard, create: emptyWizard, }, MinTime: { edit: emptyWizard, create: emptyWizard, }, NeutralPoint: { edit: emptyWizard, create: emptyWizard, }, P: { edit: emptyWizard, create: emptyWizard, }, PhysConn: { edit: emptyWizard, create: emptyWizard, }, PowerTransformer: { edit: editPowerTransformerWizard, create: createPowerTransformerWizard, }, Private: { edit: emptyWizard, create: emptyWizard, }, Process: { edit: editProcessWizard, create: createProcessWizard, }, ProtNs: { edit: emptyWizard, create: emptyWizard, }, Protocol: { edit: emptyWizard, create: emptyWizard, }, ReadWrite: { edit: emptyWizard, create: emptyWizard, }, RedProt: { edit: emptyWizard, create: emptyWizard, }, ReportControl: { edit: emptyWizard, create: emptyWizard, }, ReportSettings: { edit: emptyWizard, create: emptyWizard, }, RptEnabled: { edit: emptyWizard, create: emptyWizard, }, SamplesPerSec: { edit: emptyWizard, create: emptyWizard, }, SecPerSamples: { edit: emptyWizard, create: emptyWizard, }, SCL: { edit: emptyWizard, create: emptyWizard, }, SDI: { edit: emptyWizard, create: emptyWizard, }, SDO: { edit: editSDoWizard, create: createSDoWizard, }, Server: { edit: emptyWizard, create: emptyWizard, }, ServerAt: { edit: emptyWizard, create: emptyWizard, }, Services: { edit: emptyWizard, create: emptyWizard, }, SetDataSetValue: { edit: emptyWizard, create: emptyWizard, }, SettingControl: { edit: emptyWizard, create: emptyWizard, }, SettingGroups: { edit: emptyWizard, create: emptyWizard, }, SGEdit: { edit: emptyWizard, create: emptyWizard, }, SmpRate: { edit: emptyWizard, create: emptyWizard, }, SMV: { edit: editSMvWizard, create: emptyWizard, }, SmvOpts: { edit: emptyWizard, create: emptyWizard, }, SMVsc: { edit: emptyWizard, create: emptyWizard, }, SMVSecurity: { edit: emptyWizard, create: emptyWizard, }, SMVSettings: { edit: emptyWizard, create: emptyWizard, }, SubEquipment: { edit: editSubEquipmentWizard, create: createSubEquipmentWizard, }, SubFunction: { edit: editSubFunctionWizard, create: createSubFunctionWizard, }, SubNetwork: { edit: editSubNetworkWizard, create: createSubNetworkWizard, }, Subject: { edit: emptyWizard, create: emptyWizard, }, Substation: { edit: editSubstationWizard, create: createSubstationWizard, }, SupSubscription: { edit: emptyWizard, create: emptyWizard, }, TapChanger: { edit: editTapChangerWizard, create: createTapChangerWizard, }, Text: { edit: editTextWizard, create: createTextWizard, }, TimerActivatedControl: { edit: emptyWizard, create: emptyWizard, }, TimeSyncProt: { edit: emptyWizard, create: emptyWizard, }, TransformerWinding: { edit: editTransformerWindingWizard, create: createTransformerWindingWizard, }, Val: { edit: emptyWizard, create: emptyWizard, }, ValueHandling: { edit: emptyWizard, create: emptyWizard, }, Voltage: { edit: emptyWizard, create: emptyWizard, }, VoltageLevel: { edit: editVoltageLevelWizard, create: createVoltageLevelWizard, }, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "emptyWizard",
+          "declaration": {
+            "name": "emptyWizard",
+            "module": "wizards/wizards.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "wizards",
+          "declaration": {
+            "name": "wizards",
+            "module": "wizards/wizards.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "coverage/lcov-report/block-navigation.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "coverage/lcov-report/prettify.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "coverage/lcov-report/sorter.js",
+      "declarations": [],
+      "exports": []
+    }
+  ]
+}

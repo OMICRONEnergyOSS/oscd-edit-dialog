@@ -1,6 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -22,7 +21,7 @@ type RenderOptions = {
 };
 
 function contentTransformerWindingWizard(
-  options: RenderOptions
+  options: RenderOptions,
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -51,17 +50,17 @@ function contentTransformerWindingWizard(
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const transformerWindingKeys = ['name', 'desc', 'type', 'virtual'];
-    transformerWindingKeys.forEach(key => {
+    transformerWindingKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
     const transformerWinding = createElement(
       parent.ownerDocument,
       'TransformerWinding',
-      attributes
+      attributes,
     );
 
     return [
@@ -100,19 +99,20 @@ export function createTransformerWindingWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const transformerWindingKeys = ['name', 'desc', 'type', 'virtual'];
-    transformerWindingKeys.forEach(key => {
+    transformerWindingKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
     if (
       transformerWindingKeys.some(
-        key => attributes[key] !== element.getAttribute(key)
+        key => attributes[key] !== element.getAttribute(key),
       )
-    )
+    ) {
       return [{ element, attributes }];
+    }
 
     return [];
   };

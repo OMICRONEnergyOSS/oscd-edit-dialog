@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import {
   getReference,
@@ -89,7 +89,7 @@ function render(option: RenderOptions): TemplateResult[] {
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
@@ -147,8 +147,8 @@ function getVoltageAction(
   oldVoltage: Element | null,
   Voltage: string | null,
   multiplier: string | null,
-  voltageLevel: Element
-): Edit[] {
+  voltageLevel: Element,
+): EditV2[] {
   if (oldVoltage === null) {
     const element = createElement(voltageLevel.ownerDocument, 'Voltage', {
       unit: 'V',
@@ -164,12 +164,13 @@ function getVoltageAction(
     ];
   }
 
-  if (Voltage === null)
+  if (Voltage === null) {
     return [
       {
         node: oldVoltage,
       },
     ];
+  }
 
   const newVoltage = cloneElement(oldVoltage, { multiplier });
   newVoltage.textContent = Voltage;
@@ -185,7 +186,7 @@ function getVoltageAction(
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const nomFreq = getValue(inputs.find(i => i.label === 'nomFreq')!);
@@ -194,7 +195,7 @@ export function updateAction(element: Element): WizardActor {
     const multiplier = getMultiplier(inputs.find(i => i.label === 'Voltage')!);
 
     let voltageLevelAction: OldUpdate | null;
-    let voltageAction: Edit | null;
+    let voltageAction: EditV2 | null;
 
     if (
       name === element.getAttribute('name') &&
@@ -225,16 +226,19 @@ export function updateAction(element: Element): WizardActor {
         element.querySelector('VoltageLevel > Voltage'),
         Voltage,
         multiplier,
-        element
+        element,
       );
     }
 
-    const complexAction: Edit[] = [];
-    if (voltageLevelAction)
+    const complexAction: EditV2[] = [];
+    if (voltageLevelAction) {
       complexAction.push(
-        ...updateVoltageLevel(voltageLevelAction as OldUpdate)
+        ...updateVoltageLevel(voltageLevelAction as OldUpdate),
       );
-    if (voltageAction) complexAction.push(...voltageAction);
+    }
+    if (voltageAction) {
+      complexAction.push(...voltageAction);
+    }
     return complexAction.length ? complexAction : [];
   };
 }

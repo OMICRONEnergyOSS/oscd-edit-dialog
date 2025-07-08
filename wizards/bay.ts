@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference, updateBay } from '@openenergytools/scl-lib';
 
@@ -38,7 +37,7 @@ export function renderBayWizard(options: RenderOptions): TemplateResult[] {
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const node = createElement(parent.ownerDocument, 'Bay', {
@@ -73,15 +72,16 @@ export function createBayWizard(parent: Element): Wizard {
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc')
-    )
+    ) {
       return [];
+    }
 
     return updateBay({ element, attributes: { name, desc } });
   };

@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -13,17 +13,17 @@ import {
 import { patterns } from './patterns.js';
 
 function createEnumTypeAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const enumTypeAttrs: Record<string, string | null> = {};
     const enumTypeKeys = ['id', 'desc'];
-    enumTypeKeys.forEach(key => {
+    enumTypeKeys.forEach((key) => {
       enumTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
     const enumType = createElement(
       parent.ownerDocument,
       'EnumType',
-      enumTypeAttrs
+      enumTypeAttrs,
     );
 
     return [

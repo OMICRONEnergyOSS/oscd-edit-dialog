@@ -1,4 +1,4 @@
-import { html, render, TemplateResult } from 'lit';
+import { html, TemplateResult } from 'lit';
 
 import {
   SelectionList,
@@ -7,7 +7,7 @@ import {
 import { MdList } from '@scopedelement/material-web/list/MdList.js';
 import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 
-import { Edit, Insert } from '@openenergytools/open-scd-core';
+import { EditV2, Insert } from '@omicronenergy/oscd-api';
 
 import { getReference, lnInstGenerator } from '@openenergytools/scl-lib';
 
@@ -31,8 +31,8 @@ let isIedListVisable = true;
 
 function lNodeItems(doc: XMLDocument): SelectItem[] {
   return Array.from(
-    doc.querySelectorAll(':root > DataTypeTemplates > LNodeType')
-  ).map(lNodeType => {
+    doc.querySelectorAll(':root > DataTypeTemplates > LNodeType'),
+  ).map((lNodeType) => {
     const lnClass = lNodeType.getAttribute('lnClass');
     const id = lNodeType.getAttribute('id');
 
@@ -79,12 +79,15 @@ function createSelectedItem(lNode: LNodeCandidate): SelectItem {
 
 function compare(
   a: { anyLn: Element; existOutOfScope: boolean; existInScope: boolean },
-  b: { anyLn: Element; existOutOfScope: boolean; existInScope: boolean }
+  b: { anyLn: Element; existOutOfScope: boolean; existInScope: boolean },
 ): number {
-  if (a.existInScope !== b.existInScope) return a.existInScope ? -1 : 1;
+  if (a.existInScope !== b.existInScope) {
+    return a.existInScope ? -1 : 1;
+  }
 
-  if (a.existOutOfScope !== b.existOutOfScope)
+  if (a.existOutOfScope !== b.existOutOfScope) {
     return b.existOutOfScope ? -1 : 1;
+  }
 
   return 0;
 }
@@ -92,12 +95,14 @@ function compare(
 function lNodeCandidates(parent: Element, anyLn: Element): LNodeCandidate {
   const { iedName, ldInst, prefix, lnClass, inst } = anyLnAttrs(anyLn);
 
-  const title = `${prefix}${lnClass}${inst}`;
+  // const title = `${prefix}${lnClass}${inst}`;
 
   const lNode = Array.from(
-    parent.closest('Substation')?.querySelectorAll('LNode') ?? []
-  ).find(child => {
-    if (child.tagName !== 'LNode') return false;
+    parent.closest('Substation')?.querySelectorAll('LNode') ?? [],
+  ).find((child) => {
+    if (child.tagName !== 'LNode') {
+      return false;
+    }
     return (
       child.getAttribute('iedName') === iedName &&
       child.getAttribute('ldInst') === ldInst &&
@@ -116,9 +121,9 @@ function lNodeCandidates(parent: Element, anyLn: Element): LNodeCandidate {
 function anyLnItems(parent: Element): SelectItem[] {
   const ldSelector = ':scope > AccessPoint > Server > LDevice';
 
-  return selectedIEDs.flatMap(ied => {
+  return selectedIEDs.flatMap((ied) => {
     const anyLns = ied.querySelectorAll(
-      `${ldSelector} > LN0, ${ldSelector} > LN`
+      `${ldSelector} > LN0, ${ldSelector} > LN`,
     )!;
 
     return Array.from(anyLns)
@@ -145,8 +150,11 @@ function showLogicalNodeTypes(evt: Event, parent: Element): void {
 
   const target = evt.target as HTMLElement;
 
-  if (isLogicalNodeInstance) iedContainer(target).classList.remove('hidden');
-  else iedContainer(target).classList.add('hidden');
+  if (isLogicalNodeInstance) {
+    iedContainer(target).classList.remove('hidden');
+  } else {
+    iedContainer(target).classList.add('hidden');
+  }
 
   const items = isLogicalNodeInstance
     ? anyLnItems(parent)
@@ -176,9 +184,9 @@ function addIED(evt: Event, ied: Element, sclParent: Element): void {
 function renderIEDItems(parent: Element): TemplateResult[] {
   const doc = parent.ownerDocument;
 
-  return Array.from(doc.querySelectorAll(':root > IED')).map(ied => {
+  return Array.from(doc.querySelectorAll(':root > IED')).map((ied) => {
     const [iedName, manufacturer] = ['name', 'manufacturer'].map(value =>
-      ied.getAttribute(value)
+      ied.getAttribute(value),
     );
 
     return html`<md-list-item
@@ -203,19 +211,26 @@ function showIEdFilterList(evt: Event): void {
     .closest('#createLNodeWizardContent')
     ?.querySelector('#iedList') as MdList;
 
-  if (!isIedListVisable) ieds.classList.remove('hidden');
-  else ieds.classList.add('hidden');
+  if (!isIedListVisable) {
+    ieds.classList.remove('hidden');
+  } else {
+    ieds.classList.add('hidden');
+  }
 }
 
 function createAction(parent: Element): WizardActor {
   function createSingleLNode(lNode: Element): Insert | null {
     if (lNode.tagName === 'LNodeType') {
       const lnClass = lNode.getAttribute('lnClass');
-      if (!lnClass) return null;
+      if (!lnClass) {
+        return null;
+      }
 
       const lnType = lNode.getAttribute('id');
       const lnInst = lnInstGenerator(parent, 'LNode')(lnClass);
-      if (!lnInst) return null;
+      if (!lnInst) {
+        return null;
+      }
 
       const node = createElement(parent.ownerDocument, 'LNode', {
         iedName: 'None',
@@ -249,7 +264,7 @@ function createAction(parent: Element): WizardActor {
     };
   }
 
-  return (_: WizardInputElement[], wizard: Element): Edit[] => {
+  return (_: WizardInputElement[], wizard: Element): EditV2[] => {
     const list = wizard.querySelector('#lnList') as SelectionList;
 
     const selectedLNs = list.items
@@ -264,9 +279,9 @@ function createAction(parent: Element): WizardActor {
 }
 
 export function createLNodeWizard(parent: Element): Wizard {
-  const iedNames = Array.from(parent.children)
-    .filter(child => child.tagName === 'LNode' && child.getAttribute('iedName'))
-    .map(lNode => lNode.getAttribute('iedName')!);
+  // const iedNames = Array.from(parent.children)
+  //   .filter(child => child.tagName === 'LNode' && child.getAttribute('iedName'))
+  //   .map(lNode => lNode.getAttribute('iedName')!);
 
   return {
     title: 'Add LNode',

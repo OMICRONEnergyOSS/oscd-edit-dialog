@@ -1,8 +1,7 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -18,7 +17,7 @@ interface AddressContentOptions {
 function getPElement(parent: Element, type: string | null): Element | null {
   return (
     Array.from(parent.querySelectorAll(':scope > Address > P')).find(
-      p => p.getAttribute('type') === type
+      p => p.getAttribute('type') === type,
     ) ?? null
   );
 }
@@ -27,29 +26,30 @@ export function existDiff(oldAddr: Element, newAddr: Element): boolean {
   return Array.from(oldAddr.querySelectorAll('P')).some(
     pType =>
       getPElement(newAddr, pType.getAttribute('type'))?.textContent !==
-      pType.textContent
+      pType.textContent,
   );
 }
 
 export function createAddressElement(
   parent: Element,
   inputs: Record<string, string | null>,
-  instType: boolean
+  instType: boolean,
 ): Element {
   const address = createElement(parent.ownerDocument, 'Address', {});
 
   Object.entries(inputs)
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+
     .filter(([_, value]) => value !== null)
     .forEach(([key, value]) => {
       const type = key;
       const child = createElement(parent.ownerDocument, 'P', { type });
-      if (instType)
+      if (instType) {
         child.setAttributeNS(
           'http://www.w3.org/2001/XMLSchema-instance',
           'xsi:type',
-          `tP_${key}`
+          `tP_${key}`,
         );
+      }
       child.textContent = value;
       address.appendChild(child);
     });
@@ -60,9 +60,9 @@ export function createAddressElement(
 export function updateAddress(
   parent: Element,
   inputs: Record<string, string | null>,
-  instType: boolean
-): Edit[] {
-  const actions: Edit[] = [];
+  instType: boolean,
+): EditV2[] {
+  const actions: EditV2[] = [];
 
   const newAddress = createAddressElement(parent, inputs, instType);
   const oldAddress = parent.querySelector('Address');
@@ -76,31 +76,33 @@ export function updateAddress(
       node: newAddress,
       reference: oldAddress.nextSibling,
     });
-  } else if (oldAddress === null)
+  } else if (oldAddress === null) {
     actions.push({
       parent,
       node: newAddress,
       reference: getReference(parent, 'Address'),
     });
+  }
 
   return actions;
 }
 
 export function hasTypeRestriction(element: Element): boolean {
   return Array.from(element.querySelectorAll('Address > P')).some(pType =>
-    pType.getAttribute('xsi:type')
+    pType.getAttribute('xsi:type'),
   );
 }
 
 export function contentAddress(
-  content: AddressContentOptions
+  content: AddressContentOptions,
 ): TemplateResult[] {
   const pChildren: Record<string, string | null> = {};
 
-  content.types.forEach(type => {
-    if (!pChildren[type])
+  content.types.forEach((type) => {
+    if (!pChildren[type]) {
       pChildren[type] =
         getPElement(content.element, type)?.textContent?.trim() ?? null;
+    }
   });
 
   return [
@@ -117,7 +119,7 @@ export function contentAddress(
           .value=${value}
           pattern="${ifDefined(typePattern[key])}"
           required
-        ></scl-text-field>`
+        ></scl-text-field>`,
     )}`,
   ];
 }

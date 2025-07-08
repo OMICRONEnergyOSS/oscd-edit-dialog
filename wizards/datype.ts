@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -13,10 +13,10 @@ import {
 import { patterns } from './patterns.js';
 
 function createDATypeAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const daTypeAttrs: Record<string, string | null> = {};
     const daTypeKeys = ['id', 'desc'];
-    daTypeKeys.forEach(key => {
+    daTypeKeys.forEach((key) => {
       daTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

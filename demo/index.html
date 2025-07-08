@@ -1,0 +1,62 @@
+<title>oscd-edit-dialog Demo</title>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&family=Roboto:wght@300;400;500&display=swap"
+/>
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Material+Icons&display=block"
+/>
+<link
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+  rel="stylesheet"
+/>
+<oscd-shell></oscd-shell>
+
+<script type="module">
+  import '@omicronenergy/oscd-shell/oscd-shell.js';
+
+  const plugins = {
+    menu: [
+      {
+        name: 'Open File',
+        translations: { de: 'Datei öffnen' },
+        icon: 'folder_open',
+        requireDoc: false,
+        src: 'https://openscd.github.io/oscd-open/oscd-open.js',
+      },
+    ],
+    editor: [
+      {
+        name: 'Trigger Wizard',
+        translations: { de: 'Wizard Triggern' },
+        icon: 'folder_open',
+        requireDoc: true,
+        src: '/dist/demo/demo-editor-plugin.js',
+      },
+    ],
+  };
+
+  const editor = document.querySelector('oscd-shell');
+  const params = new URL(document.location).searchParams;
+  for (const [name, value] of params) {
+    editor.setAttribute(name, value);
+  }
+  editor.plugins = plugins;
+
+  const sclDocString = `<?xml version="1.0" encoding="UTF-8"?>
+      <SCL version="2007" revision="B" xmlns="http://www.iec.ch/61850/2003/SCL" xmlns:ens1="http://example.org/somePreexistingExtensionNamespace">
+      <Substation ens1:foo="a" name="A1" desc="test substation"></Substation>
+    </SCL>`;
+  editor.docs['sample.scd'] = new DOMParser().parseFromString(
+    sclDocString,
+    'application/xml',
+  );
+  editor.docName = 'sample.scd';
+</script>
+<style>
+  * {
+    margin: 0px;
+    padding: 0px;
+  }
+</style>

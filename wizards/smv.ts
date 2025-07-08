@@ -1,4 +1,4 @@
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
 
@@ -12,28 +12,30 @@ import {
 import { contentAddress, updateAddress } from './address.js';
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[], wizard: Element): Edit[] => {
-    const action: Edit = [];
+  return (inputs: WizardInputElement[], wizard: Element): EditV2[] => {
+    const action: EditV2 = [];
 
     const instType: boolean =
       (wizard.querySelector('#instType') as SclCheckbox).value === 'true';
 
     const addressContent: Record<string, string | null> = {};
     addressContent['MAC-Address'] = getValue(
-      inputs.find(i => i.label === 'MAC-Address')!
+      inputs.find(i => i.label === 'MAC-Address')!,
     );
     addressContent.APPID = getValue(inputs.find(i => i.label === 'APPID')!);
     addressContent['VLAN-ID'] = getValue(
-      inputs.find(i => i.label === 'VLAN-ID')!
+      inputs.find(i => i.label === 'VLAN-ID')!,
     );
     addressContent['VLAN-PRIORITY'] = getValue(
-      inputs.find(i => i.label === 'VLAN-PRIORITY')!
+      inputs.find(i => i.label === 'VLAN-PRIORITY')!,
     );
 
     const addressActions = updateAddress(element, addressContent, instType);
-    if (!addressActions.length) return [];
+    if (!addressActions.length) {
+      return [];
+    }
 
-    addressActions.forEach(addressAction => {
+    addressActions.forEach((addressAction) => {
       action.push(addressAction);
     });
 

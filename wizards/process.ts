@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -42,10 +42,10 @@ function contentProcessWizard(content: ContentOptions): TemplateResult[] {
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const processKeys = ['name', 'desc', 'type'];
-    processKeys.forEach(key => {
+    processKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
@@ -63,7 +63,7 @@ export function createProcessWizard(parent: Element): Wizard {
   const type = '';
   const reservedNames: string[] = getChildElementsByTagName(
     parent.parentElement!,
-    'Process'
+    'Process',
   )
     .filter(sibling => sibling !== parent)
     .map(sibling => sibling.getAttribute('name')!);
@@ -86,10 +86,10 @@ export function createProcessWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const tapProcessKeys = ['name', 'desc', 'type'];
-    tapProcessKeys.forEach(key => {
+    tapProcessKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
@@ -108,7 +108,7 @@ export function editProcessWizard(element: Element): Wizard {
   const type = element.getAttribute('type');
   const reservedNames: string[] = getChildElementsByTagName(
     element.parentElement!,
-    'Process'
+    'Process',
   )
     .filter(sibling => sibling !== element)
     .map(sibling => sibling.getAttribute('name')!);

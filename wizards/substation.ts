@@ -1,8 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 
-// eslint-disable-next-line import/no-duplicates
-import { Edit, getReference, updateSubstation } from '@openenergytools/scl-lib';
+import { getReference, updateSubstation } from '@openenergytools/scl-lib';
 
 import {
   createElement,
@@ -12,6 +10,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 type RenderOptions = {
   name: string;
@@ -37,7 +36,7 @@ function render(options: RenderOptions): TemplateResult[] {
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
@@ -74,15 +73,16 @@ export function createSubstationWizard(parent: Element): Wizard {
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc')
-    )
+    ) {
       return [];
+    }
 
     return updateSubstation({ element, attributes: { name, desc } });
   };

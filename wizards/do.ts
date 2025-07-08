@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -58,19 +58,19 @@ function renderContent(content: DoContent): TemplateResult[] {
 }
 
 function createDoAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
     const accessControl = getValue(
-      inputs.find(i => i.label === 'accessControl')!
+      inputs.find(i => i.label === 'accessControl')!,
     );
     const transient =
       getValue(inputs.find(i => i.label === 'transient')!) !== ''
         ? getValue(inputs.find(i => i.label === 'transient')!)
         : null;
 
-    const actions: Edit[] = [];
+    const actions: EditV2[] = [];
 
     const element = createElement(parent.ownerDocument, 'DO', {
       name,
@@ -100,7 +100,7 @@ export function createDoWizard(parent: Element): Wizard {
   ];
 
   const doTypes = Array.from(
-    parent.ownerDocument.querySelectorAll('DOType')
+    parent.ownerDocument.querySelectorAll('DOType'),
   ).filter(doType => doType.getAttribute('id'));
 
   return {
@@ -118,12 +118,12 @@ export function createDoWizard(parent: Element): Wizard {
 }
 
 function updateDoAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!)!;
     const accessControl = getValue(
-      inputs.find(i => i.label === 'accessControl')!
+      inputs.find(i => i.label === 'accessControl')!,
     );
     const transient =
       getValue(inputs.find(i => i.label === 'transient')!) !== ''
@@ -156,7 +156,7 @@ export function editDoWizard(element: Element): Wizard {
   ];
 
   const doTypes = Array.from(
-    element.ownerDocument.querySelectorAll('DOType')
+    element.ownerDocument.querySelectorAll('DOType'),
   ).filter(doType => doType.getAttribute('id'));
 
   return {

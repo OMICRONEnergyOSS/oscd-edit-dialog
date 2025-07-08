@@ -1,6 +1,6 @@
 import { TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelect';
 import { MdFilledTextField } from '@scopedelement/material-web/textfield/MdFilledTextField';
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
@@ -16,8 +16,8 @@ export type WizardInputElement =
 
 export type WizardActor = (
   inputs: WizardInputElement[],
-  wizard: Element
-) => Edit[];
+  wizard: Element,
+) => EditV2[];
 
 export interface Wizard {
   title: string;
@@ -43,7 +43,7 @@ export function getValue(input: WizardInputElement): string | null {
 export function createElement(
   doc: Document,
   tag: string,
-  attrs: Record<string, string | null>
+  attrs: Record<string, string | null>,
 ): Element {
   const element = doc.createElementNS(doc.documentElement.namespaceURI, tag);
   Object.entries(attrs)
@@ -54,20 +54,25 @@ export function createElement(
 
 export function getChildElementsByTagName(
   parent: Element | null | undefined,
-  tag: string | null | undefined
+  tag: string | null | undefined,
 ): Element[] {
-  if (!parent || !tag) return [];
+  if (!parent || !tag) {
+    return [];
+  }
   return Array.from(parent.children).filter(element => element.tagName === tag);
 }
 
 /** @returns reserved siblings names attributes */
 export function reservedNames(element: Element, tagName?: string): string[] {
-  if (tagName)
+  if (tagName) {
     return getChildElementsByTagName(element, tagName).map(
-      sibling => sibling.getAttribute('name')!
+      sibling => sibling.getAttribute('name')!,
     );
+  }
 
-  if (!element.parentElement) return [];
+  if (!element.parentElement) {
+    return [];
+  }
   return getChildElementsByTagName(element.parentElement, element.tagName)
     .filter(sibling => sibling !== element)
     .map(sibling => sibling.getAttribute('name')!);
@@ -80,19 +85,24 @@ export function isSclTextfield(type: any): type is SclTextField {
 
 /** @returns the `multiplier` of `input` if available. */
 export function getMultiplier(input: WizardInputElement): string | null {
-  if (isSclTextfield(input)) return input.multiplier;
+  if (isSclTextfield(input)) {
+    return input.multiplier;
+  }
   return null;
 }
 
 /** @returns a clone of `element` with attributes set to values from `attrs`. */
 export function cloneElement(
   element: Element,
-  attrs: Record<string, string | null>
+  attrs: Record<string, string | null>,
 ): Element {
   const newElement = <Element>element.cloneNode(false);
   Object.entries(attrs).forEach(([name, value]) => {
-    if (value === null) newElement.removeAttribute(name);
-    else newElement.setAttribute(name, value);
+    if (value === null) {
+      newElement.removeAttribute(name);
+    } else {
+      newElement.setAttribute(name, value);
+    }
   });
   return newElement;
 }
@@ -101,7 +111,7 @@ export function cloneElement(
 export function crossProduct<T>(...arrays: T[][]): T[][] {
   return arrays.reduce<T[][]>(
     (a, b) => <T[][]>a.flatMap(d => b.map(e => [d, e].flat())),
-    [[]]
+    [[]],
   );
 }
 
@@ -139,7 +149,9 @@ export const typeNullable: Partial<Record<string, boolean>> = {
 };
 
 export function getTypes(element: Element): string[] {
-  if (!element.ownerDocument.documentElement) return [];
+  if (!element.ownerDocument.documentElement) {
+    return [];
+  }
 
   const pTypes2003: string[] = [
     'IP',
@@ -186,27 +198,36 @@ export function getTypes(element: Element): string[] {
     (scl.getAttribute('revision') ?? '') +
     (scl.getAttribute('release') ?? '');
 
-  if (type === '2003') return pTypes2003;
+  if (type === '2003') {
+    return pTypes2003;
+  }
 
-  if (type === '2007B') return pTypes2007B;
+  if (type === '2007B') {
+    return pTypes2007B;
+  }
 
   return pTypes2007B4;
 }
 
 /** Sorts selected `ListItem`s to the top and disabled ones to the bottom. */
 export function compareNames(a: Element | string, b: Element | string): number {
-  if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
+  if (typeof a === 'string' && typeof b === 'string') {
+    return a.localeCompare(b);
+  }
 
-  if (typeof a === 'object' && typeof b === 'string')
+  if (typeof a === 'object' && typeof b === 'string') {
     return (a.getAttribute('name') ?? '').localeCompare(b);
+  }
 
-  if (typeof a === 'string' && typeof b === 'object')
+  if (typeof a === 'string' && typeof b === 'object') {
     return a.localeCompare(b.getAttribute('name')!);
+  }
 
-  if (typeof a === 'object' && typeof b === 'object')
+  if (typeof a === 'object' && typeof b === 'object') {
     return (a.getAttribute('name') ?? '').localeCompare(
-      b.getAttribute('name') ?? ''
+      b.getAttribute('name') ?? '',
     );
+  }
 
   return 0;
 }

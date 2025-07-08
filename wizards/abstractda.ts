@@ -1,9 +1,9 @@
-import { html, render, TemplateResult } from 'lit';
+import { html, TemplateResult } from 'lit';
 
 import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelect.js';
 import { MdSelectOption } from '@scopedelement/material-web/select/MdSelectOption.js';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { SclSelect } from '@openenergytools/scl-select';
 import { SclTextField } from '@openenergytools/scl-text-field';
@@ -22,17 +22,17 @@ import {
 function setSelValue(
   typeInput: MdFilledSelect,
   data: Element,
-  Val: string | null
+  Val: string | null,
 ): void {
   const typeValue = typeInput.value;
 
   const selValInput = typeInput.parentElement!.querySelector(
-    'scl-select[label="Val"]'
+    'scl-select[label="Val"]',
   ) as SclSelect;
 
   // If enum make sure to load select Val
   const enumVals = Array.from(
-    data.querySelectorAll(`EnumType[id="${typeValue}"] > EnumVal`)
+    data.querySelectorAll(`EnumType[id="${typeValue}"] > EnumVal`),
   ).map(enumval => enumval.textContent?.trim() ?? '');
   selValInput.selectOptions = enumVals;
   selValInput.value = Val;
@@ -41,22 +41,28 @@ function setSelValue(
 }
 
 function changeType(e: Event, data: Element, Val: string | null): void {
-  if (!e.target || !(e.target as SclSelect).parentElement) return;
+  if (!e.target || !(e.target as SclSelect).parentElement) {
+    return;
+  }
 
   // Query all needed inputs
   const typeInput = e.target as MdFilledSelect;
   const bTypeInput = typeInput.parentElement!.querySelector(
-    'scl-select[label="bType"]'
+    'scl-select[label="bType"]',
   ) as SclSelect;
-  const selValInput = typeInput.parentElement!.querySelector(
-    'scl-select[label="Val"]'
-  ) as SclSelect;
+
+  //TODO: declared but not used - figure out if it's needed and the implementation is incomplete, or just a copy paste oversight
+  // const selValInput = typeInput.parentElement!.querySelector(
+  //   'scl-select[label="Val"]'
+  // ) as SclSelect;
 
   // Get values
-  const typeValue = typeInput.value;
+  // const typeValue = typeInput.value;
   const bTypeValue = bTypeInput.value;
 
-  if (bTypeValue !== 'Enum') return;
+  if (bTypeValue !== 'Enum') {
+    return;
+  }
 
   setSelValue(typeInput, data, Val);
 }
@@ -65,18 +71,18 @@ function changeBType(
   e: Event,
   bType: string | null,
   type: string | null,
-  data: Element
+  data: Element,
 ): void {
   // Query all needed inputs
   const bTypeInput = e.target as SclSelect;
   const typeInput = bTypeInput.parentElement!.querySelector(
-    '*[label="type"]'
+    '*[label="type"]',
   ) as MdFilledSelect;
   const selValInput = bTypeInput.parentElement!.querySelector(
-    'scl-select[label="Val"]'
+    'scl-select[label="Val"]',
   ) as SclSelect;
   const textValInput = bTypeInput.parentElement!.querySelector(
-    'scl-text-field[label="Val"]'
+    'scl-text-field[label="Val"]',
   ) as SclTextField;
 
   // Get necassary values
@@ -84,32 +90,44 @@ function changeBType(
 
   // Disable/enable inputs based on bType
   typeInput.disabled = !(bTypeValue === 'Enum' || bTypeValue === 'Struct');
-  if (typeInput.disabled) typeInput.value = '';
+  if (typeInput.disabled) {
+    typeInput.value = '';
+  }
 
   // Hide/show EnumType/DAType based on bType selection
   const enabledItems: MdSelectOption[] = [];
-  Array.from(typeInput.children).forEach(child => {
+  Array.from(typeInput.children).forEach((child) => {
     const childItem = child as MdSelectOption;
     childItem.disabled = !child.classList.contains(bTypeValue);
     childItem.style.display = !child.classList.contains(bTypeValue)
       ? 'none'
       : '';
-    if (!childItem.disabled) enabledItems.push(childItem);
+    if (!childItem.disabled) {
+      enabledItems.push(childItem);
+    }
   });
 
   // Set the type input value to the first enabled item or empty if none
-  if (type && bType === bTypeValue) typeInput.value = type;
-  else typeInput.value = enabledItems.length ? enabledItems[0].value : '';
+  if (type && bType === bTypeValue) {
+    typeInput.value = type;
+  } else {
+    typeInput.value = enabledItems.length ? enabledItems[0].value : '';
+  }
 
   // Hide/show Val input based on bType selection
-  if (bTypeValue === 'Enum') selValInput.style.display = '';
-  else selValInput.style.display = 'none';
+  if (bTypeValue === 'Enum') {
+    selValInput.style.display = '';
+  } else {
+    selValInput.style.display = 'none';
+  }
   setSelValue(typeInput, data, null);
 
   // Hide/show Val input based on bType selection
-  if (bTypeValue === 'Enum' || bTypeValue === 'Struct')
+  if (bTypeValue === 'Enum' || bTypeValue === 'Struct') {
     textValInput.style.display = 'none';
-  else textValInput.style.display = '';
+  } else {
+    textValInput.style.display = '';
+  }
 
   // Update inputs
   selValInput.requestUpdate();
@@ -118,9 +136,15 @@ function changeBType(
 }
 
 function filterType(bType: string, tag: string): string {
-  if (bType === 'Enum' || tag === 'EnumType') return '';
-  if (bType === 'Struct' || tag === 'DAType') return '';
-  if (bType === 'Enum' || tag === 'DAType') return 'none';
+  if (bType === 'Enum' || tag === 'EnumType') {
+    return '';
+  }
+  if (bType === 'Struct' || tag === 'DAType') {
+    return '';
+  }
+  if (bType === 'Enum' || tag === 'DAType') {
+    return 'none';
+  }
 
   return 'none';
 }
@@ -135,7 +159,7 @@ export function renderAbstractDataAttributeContent(
   valKind: string | null,
   valImport: string | null,
   Val: string | null,
-  data: Element
+  data: Element,
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -170,7 +194,7 @@ export function renderAbstractDataAttributeContent(
             style="display: ${filterType(bType, dataType.tagName)}"
             value=${dataType.id}
             >${dataType.id}</md-select-option
-          >`
+          >`,
       )}</md-filled-select
     >`,
     html`<scl-text-field
@@ -196,8 +220,8 @@ export function renderAbstractDataAttributeContent(
       label="Val"
       .selectOptions=${Array.from(
         data.querySelectorAll(
-          `:root > DataTypeTemplates > EnumType > EnumVal[id="${type}"]`
-        )
+          `:root > DataTypeTemplates > EnumType > EnumVal[id="${type}"]`,
+        ),
       ).map(enumVal => enumVal.textContent?.trim() ?? '')}
       .value=${Val}
       nullable
@@ -215,8 +239,8 @@ export function renderAbstractDataAttributeContent(
 export function getValAction(
   oldVal: Element | null,
   Val: string | null,
-  abstractda: Element
-): Edit[] {
+  abstractda: Element,
+): EditV2[] {
   if (oldVal === null) {
     const element = createElement(abstractda.ownerDocument, 'Val', {});
     element.textContent = Val;
@@ -229,7 +253,9 @@ export function getValAction(
     ];
   }
 
-  if (Val === null) return [{ node: oldVal }];
+  if (Val === null) {
+    return [{ node: oldVal }];
+  }
 
   const newVal = <Element>oldVal.cloneNode(false);
   newVal.textContent = Val;

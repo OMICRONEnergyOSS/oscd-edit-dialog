@@ -1,25 +1,20 @@
+node_modules
+*.js
+*.map
+*.d.ts
+*.tsbuildinfo
+!commitlint.config.js
+!eslint.config.js
+!web-dev-server.config.js
+!web-test-runner.config.js
+!scripts/*
+
 ## editors
 /.idea
 /.vscode
 
-## system files
-.DS_Store
-
-## npm
-/node_modules/
-/npm-debug.log
-
-## testing
-/coverage/
-
-## temp folders
-/.tmp/
-
-# build
-/_site/
-/dist/
-/out-tsc/
-/demo/
-
-storybook-static
-custom-elements.json
+## build artifacts
+dist
+coverage
+doc
+omicronenergy-oscd-edit-dialog-*

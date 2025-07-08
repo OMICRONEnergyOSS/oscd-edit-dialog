@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Edit } from '@openenergytools/open-scd-core';
+
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -51,17 +51,17 @@ function contentSubEquipmentWizard(options: RenderOptions): TemplateResult[] {
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const subEquipmentAttrs: Record<string, string | null> = {};
     const subEquipmentKeys = ['name', 'desc', 'phase', 'virtual'];
-    subEquipmentKeys.forEach(key => {
+    subEquipmentKeys.forEach((key) => {
       subEquipmentAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
     const subEquipment = createElement(
       parent.ownerDocument,
       'SubEquipment',
-      subEquipmentAttrs
+      subEquipmentAttrs,
     );
 
     return [
@@ -100,17 +100,18 @@ export function createSubEquipmentWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const subFunctionKeys = ['name', 'desc', 'phase', 'virtual'];
-    subFunctionKeys.forEach(key => {
+    subFunctionKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
     if (
       subFunctionKeys.some(key => attributes[key] !== element.getAttribute(key))
-    )
+    ) {
       return [{ element, attributes }];
+    }
 
     return [];
   };

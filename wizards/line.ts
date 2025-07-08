@@ -1,5 +1,5 @@
 import { html, TemplateResult } from 'lit';
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -61,10 +61,10 @@ function renderContent(options: RenderOptions): TemplateResult[] {
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const lineKeys = ['name', 'desc', 'type', 'nomFreq', 'numPhases'];
-    lineKeys.forEach(key => {
+    lineKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
@@ -103,10 +103,10 @@ export function createLineWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const lineKeys = ['name', 'desc', 'type', 'nomFreq', 'numPhases'];
-    lineKeys.forEach(key => {
+    lineKeys.forEach((key) => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

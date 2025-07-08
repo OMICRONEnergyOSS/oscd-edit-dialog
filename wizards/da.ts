@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -21,7 +21,7 @@ export function renderAdditionalDaContent(
   fc: string,
   dchg: string | null,
   qchg: string | null,
-  dupd: string | null
+  dupd: string | null,
 ): TemplateResult[] {
   return [
     html`<scl-select
@@ -37,7 +37,7 @@ export function renderAdditionalDaContent(
 }
 
 function createDaAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -49,7 +49,7 @@ function createDaAction(parent: Element): WizardActor {
     const valKind = getValue(inputs.find(i => i.label === 'valKind')!);
     const valImport = getValue(inputs.find(i => i.label === 'valImport')!);
     const valField = inputs.find(
-      i => i.label === 'Val' && i.style.display !== 'none'
+      i => i.label === 'Val' && i.style.display !== 'none',
     );
     const Val = valField ? getValue(valField) : null;
 
@@ -58,7 +58,7 @@ function createDaAction(parent: Element): WizardActor {
     const qchg = getValue(inputs.find(i => i.label === 'qchg')!);
     const dupd = getValue(inputs.find(i => i.label === 'dupd')!);
 
-    const actions: Edit[] = [];
+    const actions: EditV2[] = [];
 
     const element = createElement(parent.ownerDocument, 'DA', {
       name,
@@ -107,7 +107,7 @@ export function createDaWizard(element: Element): Wizard {
   const dupd = null;
 
   const doTypes = Array.from(doc.querySelectorAll('DAType, EnumType')).filter(
-    doType => doType.getAttribute('id')
+    doType => doType.getAttribute('id'),
   );
 
   const data = element.closest('DataTypeTemplates')!;
@@ -130,7 +130,7 @@ export function createDaWizard(element: Element): Wizard {
         valKind,
         valImport,
         Val,
-        data
+        data,
       ),
       ...renderAdditionalDaContent(fc, dchg, qchg, dupd),
     ],
@@ -138,7 +138,7 @@ export function createDaWizard(element: Element): Wizard {
 }
 
 function updateDaAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const bType = getValue(inputs.find(i => i.label === 'bType')!)!;
@@ -150,7 +150,7 @@ function updateDaAction(element: Element): WizardActor {
     const valKind = getValue(inputs.find(i => i.label === 'valKind')!);
     const valImport = getValue(inputs.find(i => i.label === 'valImport')!);
     const valField = inputs.find(
-      i => i.label === 'Val' && i.style.display !== 'none'
+      i => i.label === 'Val' && i.style.display !== 'none',
     );
     const Val = valField ? getValue(valField) : null;
 
@@ -159,8 +159,8 @@ function updateDaAction(element: Element): WizardActor {
     const qchg = getValue(inputs.find(i => i.label === 'qchg')!);
     const dupd = getValue(inputs.find(i => i.label === 'dupd')!);
 
-    let daAction: Edit | null;
-    const valAction: Edit[] = [];
+    let daAction: EditV2 | null;
+    const valAction: EditV2[] = [];
 
     if (
       name === element.getAttribute('name') &&
@@ -200,14 +200,18 @@ function updateDaAction(element: Element): WizardActor {
         getValAction(
           element.querySelector('Val'),
           Val,
-          daAction?.element ?? element
-        )
+          daAction?.element ?? element,
+        ),
       );
     }
 
-    const actions: Edit[] = [];
-    if (daAction) actions.push(daAction);
-    if (valAction) actions.push(...valAction);
+    const actions: EditV2[] = [];
+    if (daAction) {
+      actions.push(daAction);
+    }
+    if (valAction) {
+      actions.push(...valAction);
+    }
     return actions;
   };
 }
@@ -229,7 +233,7 @@ export function editDAWizard(element: Element): Wizard {
   const dupd = element.getAttribute('dupd');
 
   const doTypes = Array.from(doc.querySelectorAll('DAType, EnumType')).filter(
-    doType => doType.getAttribute('id')
+    doType => doType.getAttribute('id'),
   );
 
   const data = element.closest('DataTypeTemplates')!;
@@ -252,7 +256,7 @@ export function editDAWizard(element: Element): Wizard {
         valKind,
         valImport,
         Val,
-        data
+        data,
       ),
       ...renderAdditionalDaContent(fc, dchg, qchg, dupd),
     ],

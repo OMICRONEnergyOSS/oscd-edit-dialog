@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
 
@@ -22,8 +22,8 @@ function mxxTimeUpdateAction(
   newTimeValue: string | null,
   option: {
     minOrMax: 'MinTime' | 'MaxTime';
-  }
-): Edit[] {
+  },
+): EditV2[] {
   if (oldMxxTime === null) {
     const newMxxTime = createElement(gse.ownerDocument, option.minOrMax, {
       unit: 's',
@@ -39,12 +39,13 @@ function mxxTimeUpdateAction(
     ];
   }
 
-  if (newTimeValue === null)
+  if (newTimeValue === null) {
     return [
       {
         node: oldMxxTime,
       },
     ];
+  }
 
   const newMxxTime = <Element>oldMxxTime.cloneNode(false);
   newMxxTime.textContent = newTimeValue;
@@ -59,27 +60,27 @@ function mxxTimeUpdateAction(
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[], wizard: Element): Edit[] => {
-    const action: Edit = [];
+  return (inputs: WizardInputElement[], wizard: Element): EditV2[] => {
+    const action: EditV2 = [];
 
     const instType: boolean =
       (wizard.querySelector('#instType') as SclCheckbox).value === 'true';
 
     const addressContent: Record<string, string | null> = {};
     addressContent['MAC-Address'] = getValue(
-      inputs.find(i => i.label === 'MAC-Address')!
+      inputs.find(i => i.label === 'MAC-Address')!,
     );
     addressContent.APPID = getValue(inputs.find(i => i.label === 'APPID')!);
     addressContent['VLAN-ID'] = getValue(
-      inputs.find(i => i.label === 'VLAN-ID')!
+      inputs.find(i => i.label === 'VLAN-ID')!,
     );
     addressContent['VLAN-PRIORITY'] = getValue(
-      inputs.find(i => i.label === 'VLAN-PRIORITY')!
+      inputs.find(i => i.label === 'VLAN-PRIORITY')!,
     );
 
     const addressActions = updateAddress(element, addressContent, instType);
 
-    addressActions.forEach(addressAction => {
+    addressActions.forEach((addressAction) => {
       action.push(addressAction);
     });
 
@@ -94,8 +95,8 @@ function updateAction(element: Element): WizardActor {
           element,
           element.querySelector('MinTime'),
           minTime,
-          { minOrMax: 'MinTime' }
-        )
+          { minOrMax: 'MinTime' },
+        ),
       );
     }
     if (
@@ -107,8 +108,8 @@ function updateAction(element: Element): WizardActor {
           element,
           element.querySelector('MaxTime'),
           minTime,
-          { minOrMax: 'MaxTime' }
-        )
+          { minOrMax: 'MaxTime' },
+        ),
       );
     }
 
@@ -132,12 +133,12 @@ export function editGseWizard(element: Element): Wizard {
     content: [
       ...contentAddress({ element, types }),
       html`<scl-text-field
-          label="MinTime"
-          .value=${minTime}
-          nullable
-          suffix="ms"
-          type="number"
-        ></scl-wizarding-textfield>`,
+        label="MinTime"
+        .value=${minTime}
+        nullable
+        suffix="ms"
+        type="number"
+      ></scl-text-field>`,
       html`<scl-text-field
         label="MaxTime"
         .value=${maxTime}

@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -64,7 +64,7 @@ function renderContent(options: RenderOptions): TemplateResult[] {
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
@@ -119,15 +119,19 @@ function getBitRateAction(
   oldBitRate: Element | null,
   BitRate: string | null,
   multiplier: string | null,
-  SubNetwork: Element
-): Edit {
+  SubNetwork: Element,
+): EditV2 {
   if (oldBitRate === null) {
     const bitRateElement = createElement(SubNetwork.ownerDocument, 'BitRate', {
       unit: 'b/s',
     });
 
-    if (multiplier) bitRateElement.setAttribute('multiplier', multiplier);
-    if (BitRate) bitRateElement.textContent = BitRate;
+    if (multiplier) {
+      bitRateElement.setAttribute('multiplier', multiplier);
+    }
+    if (BitRate) {
+      bitRateElement.textContent = BitRate;
+    }
 
     return {
       parent: SubNetwork,
@@ -136,12 +140,13 @@ function getBitRateAction(
     };
   }
 
-  if (BitRate === null)
+  if (BitRate === null) {
     return {
       parent: SubNetwork,
       node: oldBitRate,
       reference: oldBitRate.nextSibling,
     };
+  }
 
   const newBitRate = cloneElement(oldBitRate, { multiplier });
   newBitRate.textContent = BitRate;
@@ -157,15 +162,15 @@ function getBitRateAction(
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
     const BitRate = getValue(inputs.find(i => i.label === 'BitRate')!);
     const multiplier = getMultiplier(inputs.find(i => i.label === 'BitRate')!);
 
-    let subNetworkAction: Edit | null;
-    let bitRateAction: Edit | null;
+    let subNetworkAction: EditV2 | null;
+    let bitRateAction: EditV2 | null;
 
     if (
       name === element.getAttribute('name') &&
@@ -173,7 +178,9 @@ function updateAction(element: Element): WizardActor {
       type === element.getAttribute('type')
     ) {
       subNetworkAction = null;
-    } else subNetworkAction = { element, attributes: { name, desc, type } };
+    } else {
+      subNetworkAction = { element, attributes: { name, desc, type } };
+    }
 
     if (
       BitRate ===
@@ -190,13 +197,17 @@ function updateAction(element: Element): WizardActor {
         element.querySelector('SubNetwork > BitRate'),
         BitRate,
         multiplier,
-        subNetworkAction?.element ?? element
+        subNetworkAction?.element ?? element,
       );
     }
 
-    const actions: Edit[] = [];
-    if (subNetworkAction) actions.push(subNetworkAction);
-    if (bitRateAction) actions.push(bitRateAction);
+    const actions: EditV2[] = [];
+    if (subNetworkAction) {
+      actions.push(subNetworkAction);
+    }
+    if (bitRateAction) {
+      actions.push(bitRateAction);
+    }
     return actions;
   };
 }
