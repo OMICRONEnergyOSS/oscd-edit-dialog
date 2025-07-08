@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -24,12 +23,12 @@ function render({ content }: RenderOptions): TemplateResult[] {
       rows="10"
       cols="80"
       dialogInitialFocus
-    ></md-filled-text-field>`,
+    ></md-filled-textfield>`,
   ];
 }
 
 export function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const content = getValue(inputs.find(i => i.label === 'content')!);
 
     parent.ownerDocument.createElement('Text');
@@ -61,22 +60,26 @@ export function createTextWizard(parent: Element): Wizard {
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const content = inputs.find(i => i.label === 'content')!.value!;
 
-    if (content === element.textContent) return [];
+    if (content === element.textContent) {
+      return [];
+    }
 
     const node = element.cloneNode() as Element;
     node.textContent = content;
 
     Array.from(element.querySelectorAll('Private')).forEach(priv =>
-      node.prepend(priv.cloneNode(true))
+      node.prepend(priv.cloneNode(true)),
     );
 
     const reference = element.nextElementSibling;
     const parent = element.parentElement;
 
-    if (!parent) return [];
+    if (!parent) {
+      return [];
+    }
 
     return [{ node: element }, { parent, node, reference }];
   };

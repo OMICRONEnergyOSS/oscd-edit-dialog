@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -49,7 +48,9 @@ const types: Partial<Record<string, string>> = {
 };
 
 function getLogicalNodeInstance(lNode: Element | null): Element | null {
-  if (!lNode) return null;
+  if (!lNode) {
+    return null;
+  }
   const [lnInst, lnClass, iedName, ldInst, prefix] = [
     'lnInst',
     'lnClass',
@@ -73,11 +74,11 @@ function getLogicalNodeInstance(lNode: Element | null): Element | null {
       lDevicePath,
       [' > '],
       lNSelector,
-      lNPrefixSelector
+      lNPrefixSelector,
     )
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       .map((strings: any[]) => strings.join(''))
-      .join(',')
+      .join(','),
   );
 }
 
@@ -86,13 +87,13 @@ function getSwitchTypeValueFromDTT(lNorlNode: Element): string | undefined {
   const lNodeType = lNorlNode.getAttribute('lnType');
   const lnClass = lNorlNode.getAttribute('lnClass');
   const dObj = rootNode.querySelector(
-    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="SwTyp"]`
+    `DataTypeTemplates > LNodeType[id="${lNodeType}"][lnClass="${lnClass}"] > DO[name="SwTyp"]`,
   );
   if (dObj) {
     const dORef = dObj.getAttribute('type');
     return rootNode
       .querySelector(
-        `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="stVal"] > Val`
+        `DataTypeTemplates > DOType[id="${dORef}"] > DA[name="stVal"] > Val`,
       )
       ?.innerHTML.trim();
   }
@@ -102,18 +103,19 @@ function getSwitchTypeValueFromDTT(lNorlNode: Element): string | undefined {
 
 function getSwitchTypeValue(lN: Element): string | undefined {
   const daInstantiated = lN.querySelector(
-    'DOI[name="SwTyp"] > DAI[name="stVal"]'
+    'DOI[name="SwTyp"] > DAI[name="stVal"]',
   );
 
-  if (daInstantiated)
+  if (daInstantiated) {
     return daInstantiated.querySelector('Val')?.innerHTML.trim();
+  }
 
   return getSwitchTypeValueFromDTT(lN);
 }
 
 function containsGroundedTerminal(condEq: Element): boolean {
   return Array.from(condEq.querySelectorAll('Terminal')).some(
-    t => t.getAttribute('cNodeName') === 'grounded'
+    t => t.getAttribute('cNodeName') === 'grounded',
   );
 }
 
@@ -148,7 +150,7 @@ function typeName(condEq: Element): string {
 
 function renderTypeSelector(
   option: 'edit' | 'create',
-  type: string
+  type: string,
 ): TemplateResult {
   return option === 'create'
     ? html`<scl-select
@@ -174,7 +176,7 @@ type RenderOptions = {
 };
 
 function renderConductingEquipmentWizard(
-  options: RenderOptions
+  options: RenderOptions,
 ): TemplateResult[] {
   return [
     renderTypeSelector(options.option, options.type),
@@ -194,12 +196,12 @@ function renderConductingEquipmentWizard(
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const hrType = getValue(inputs.find(i => i.label === 'type')!);
     const proxyType = Object.entries(types).find(
-      ([_, value]) => value === hrType
+      ([_, value]) => value === hrType,
     )![0];
     const type = proxyType === 'ERS' ? 'DIS' : proxyType;
 
@@ -214,21 +216,23 @@ function createAction(parent: Element): WizardActor {
       reference: getReference(parent, 'ConductingEquipment'),
     };
 
-    if (hrType !== 'ERS') return [action];
+    if (hrType !== 'ERS') {
+      return [action];
+    }
 
     const groundNode = parent
       .closest('VoltageLevel')
       ?.querySelector('ConnectivityNode[name="grounded"]');
 
     const substationName = groundNode
-      ? groundNode.closest('Substation')?.getAttribute('name') ?? null
-      : parent.closest('Substation')?.getAttribute('name') ?? null;
+      ? (groundNode.closest('Substation')?.getAttribute('name') ?? null)
+      : (parent.closest('Substation')?.getAttribute('name') ?? null);
     const voltageLevelName = groundNode
-      ? groundNode.closest('VoltageLevel')?.getAttribute('name') ?? null
-      : parent.closest('VoltageLevel')?.getAttribute('name') ?? null;
+      ? (groundNode.closest('VoltageLevel')?.getAttribute('name') ?? null)
+      : (parent.closest('VoltageLevel')?.getAttribute('name') ?? null);
     const bayName = groundNode
-      ? groundNode.closest('Bay')?.getAttribute('name') ?? null
-      : parent.closest('Bay')?.getAttribute('name') ?? null;
+      ? (groundNode.closest('Bay')?.getAttribute('name') ?? null)
+      : (parent.closest('Bay')?.getAttribute('name') ?? null);
     const connectivityNode =
       bayName && voltageLevelName && substationName
         ? `${substationName}/${voltageLevelName}/${bayName}/grounded`
@@ -248,7 +252,9 @@ function createAction(parent: Element): WizardActor {
       node: groundTerminal,
       reference: getReference(element, 'Terminal'),
     };
-    if (groundNode) return [action, terminalAction];
+    if (groundNode) {
+      return [action, terminalAction];
+    }
 
     const cNodeElement = createElement(
       parent.ownerDocument,
@@ -256,7 +262,7 @@ function createAction(parent: Element): WizardActor {
       {
         name: 'grounded',
         pathName: connectivityNode,
-      }
+      },
     );
 
     const cNodeAction = {
@@ -287,7 +293,7 @@ export function createConductingEquipmentWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 

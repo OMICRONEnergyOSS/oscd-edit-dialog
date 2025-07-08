@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import {
   SelectionList,
@@ -39,12 +39,12 @@ function initSMVElements(
     macGeneratorSmv: () => string | null;
     appidGeneratorSmv: () => string | null;
     unconnectedSampledValueControl: Set<string>;
-  }
-): Edit[] {
-  const actions: Edit[] = [];
+  },
+): EditV2[] {
+  const actions: EditV2[] = [];
 
   const ied = doc.querySelector(
-    `IED[name="${connectedAp.getAttribute('iedName')}"]`
+    `IED[name="${connectedAp.getAttribute('iedName')}"]`,
   );
 
   Array.from(ied?.querySelectorAll('SampledValueControl') ?? [])
@@ -131,12 +131,12 @@ function initGSeElements(
     macGeneratorGse: () => string | null;
     appidGeneratorGse: () => string | null;
     unconnectedGseControl: Set<string>;
-  }
-): Edit[] {
-  const actions: Edit[] = [];
+  },
+): EditV2[] {
+  const actions: EditV2[] = [];
 
   const ied = doc.querySelector(
-    `IED[name="${connectedAp.getAttribute('iedName')}"]`
+    `IED[name="${connectedAp.getAttribute('iedName')}"]`,
   );
 
   Array.from(ied?.querySelectorAll('GSEControl') ?? [])
@@ -249,7 +249,7 @@ function unconnectedGseControls(doc: XMLDocument): Set<string> {
 
       return !doc.querySelector(
         `ConnectedAP[iedName="${iedName}"] ` +
-          `> GSE[ldInst="${ldInst}"][cbName="${cbName}"]`
+          `> GSE[ldInst="${ldInst}"][cbName="${cbName}"]`,
       );
     })
     .map(gseControl => identity(gseControl) as string);
@@ -269,7 +269,7 @@ function unconnectedSampledValueControls(doc: XMLDocument): Set<string> {
 
       return !doc.querySelector(
         `ConnectedAP[iedName="${iedName}"] ` +
-          `> SMV[ldInst="${ldInst}"][cbName="${cbName}"]`
+          `> SMV[ldInst="${ldInst}"][cbName="${cbName}"]`,
       );
     })
     .map(gseControl => identity(gseControl) as string);
@@ -279,7 +279,7 @@ function unconnectedSampledValueControls(doc: XMLDocument): Set<string> {
 }
 
 function createConnectedApAction(parent: Element): WizardActor {
-  return (_: WizardInputElement[], wizard: Element): Edit[] => {
+  return (_: WizardInputElement[], wizard: Element): EditV2[] => {
     const doc = parent.ownerDocument;
 
     // generators ensure unique MAC-Address and APPID across the project
@@ -293,12 +293,14 @@ function createConnectedApAction(parent: Element): WizardActor {
     const unconnectedSampledValueControl = unconnectedSampledValueControls(doc);
 
     const list = wizard.querySelector('#apList') as SelectionList;
-    if (!list) return [];
+    if (!list) {
+      return [];
+    }
 
     const actions = list.selectedElements.map(accP => {
       const id = `${identity(accP)}`;
       const [iedName, apName] = id.split('>');
-      const connAPactions: Edit[] = [];
+      const connAPactions: EditV2[] = [];
 
       const connectedAp = createElement(parent.ownerDocument, 'ConnectedAP', {
         iedName,
@@ -314,14 +316,14 @@ function createConnectedApAction(parent: Element): WizardActor {
           macGeneratorSmv,
           appidGeneratorSmv,
           unconnectedSampledValueControl,
-        })
+        }),
       );
       connAPactions.push(
         ...initGSeElements(doc, connectedAp, {
           macGeneratorGse,
           appidGeneratorGse,
           unconnectedGseControl,
-        })
+        }),
       );
 
       return connAPactions;
@@ -334,9 +336,11 @@ function createConnectedApAction(parent: Element): WizardActor {
 /** Sorts connected `AccessPoint`s to the bottom. */
 function compareAccessPointConnection(
   a: AccessPointDescription,
-  b: AccessPointDescription
+  b: AccessPointDescription,
 ): number {
-  if (a.connected !== b.connected) return b.connected ? -1 : 1;
+  if (a.connected !== b.connected) {
+    return b.connected ? -1 : 1;
+  }
   return 0;
 }
 
@@ -345,7 +349,7 @@ function existConnectedAp(accessPoint: Element): boolean {
   const apName = accessPoint.getAttribute('name');
 
   const connAp = accessPoint.ownerDocument.querySelector(
-    `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`
+    `ConnectedAP[iedName="${iedName}"][apName="${apName}"]`,
   );
 
   return !!connAp;
@@ -358,7 +362,7 @@ export function createConnectedApWizard(element: Element): Wizard {
   const accessPoints = Array.from(doc.querySelectorAll(':root > IED'))
     .sort(compareNames)
     .flatMap(ied =>
-      Array.from(ied.querySelectorAll(':root > IED > AccessPoint'))
+      Array.from(ied.querySelectorAll(':root > IED > AccessPoint')),
     )
     .map(accesspoint => ({
       element: accesspoint,
@@ -393,7 +397,7 @@ export function createConnectedApWizard(element: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[], wizard: Element): Edit[] => {
+  return (inputs: WizardInputElement[], wizard: Element): EditV2[] => {
     const instType: boolean =
       (wizard.querySelector('#instType') as SclCheckbox).value === 'true';
 

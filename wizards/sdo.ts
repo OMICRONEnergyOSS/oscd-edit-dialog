@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -47,12 +47,12 @@ function renderContent(content: DoContent): TemplateResult[] {
 }
 
 function createSDoAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!);
 
-    const actions: Edit[] = [];
+    const actions: EditV2 = [];
 
     const element = createElement(parent.ownerDocument, 'SDO', {
       name,
@@ -74,7 +74,7 @@ export function createSDoWizard(parent: Element): Wizard {
   const [type, name, desc] = [null, '', null];
 
   const doTypes = Array.from(
-    parent.ownerDocument.querySelectorAll('DOType')
+    parent.ownerDocument.querySelectorAll('DOType'),
   ).filter(doType => doType.getAttribute('id'));
 
   return {
@@ -90,7 +90,7 @@ export function createSDoWizard(parent: Element): Wizard {
 }
 
 function updateSDoAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!)!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const type = getValue(inputs.find(i => i.label === 'type')!)!;
@@ -115,7 +115,7 @@ export function editSDoWizard(element: Element): Wizard {
   ];
 
   const doTypes = Array.from(
-    element.ownerDocument.querySelectorAll('DOType')
+    element.ownerDocument.querySelectorAll('DOType'),
   ).filter(doType => doType.getAttribute('id'));
 
   return {

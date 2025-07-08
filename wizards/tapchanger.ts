@@ -1,6 +1,5 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { getReference } from '@openenergytools/scl-lib';
 
@@ -49,7 +48,7 @@ function contentTapChangerWizard(options: RenderOptions): TemplateResult[] {
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const tapChangerAttrs: Record<string, string | null> = {};
     const tapChangerKeys = ['name', 'desc', 'type', 'virtual'];
     tapChangerKeys.forEach(key => {
@@ -59,7 +58,7 @@ function createAction(parent: Element): WizardActor {
     const tapChanger = createElement(
       parent.ownerDocument,
       'TapChanger',
-      tapChangerAttrs
+      tapChangerAttrs,
     );
 
     return [
@@ -98,7 +97,7 @@ export function createTapChangerWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const tapChangerKeys = ['name', 'desc', 'type', 'virtual'];
     tapChangerKeys.forEach(key => {
@@ -107,8 +106,9 @@ function updateAction(element: Element): WizardActor {
 
     if (
       tapChangerKeys.some(key => attributes[key] !== element.getAttribute(key))
-    )
+    ) {
       return [{ element, attributes }];
+    }
 
     return [];
   };

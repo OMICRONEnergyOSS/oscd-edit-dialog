@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -26,7 +26,7 @@ function renderContent(content: EnumValContent): TemplateResult[] {
       .value=${content.ord}
       required
       type="number"
-    ></scl-textfield>`,
+    ></scl-text-field>`,
     html`<scl-text-field
       label="value"
       .value=${content.value}
@@ -46,15 +46,15 @@ function renderContent(content: EnumValContent): TemplateResult[] {
 function nextOrd(parent: Element): string {
   const maxOrd = Math.max(
     ...Array.from(parent.children).map(child =>
-      parseInt(child.getAttribute('ord') ?? '-2', 10)
-    )
+      parseInt(child.getAttribute('ord') ?? '-2', 10),
+    ),
   );
-  // eslint-disable-next-line no-restricted-globals
+
   return isFinite(maxOrd) ? (maxOrd + 1).toString(10) : '0';
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const value = getValue(inputs.find(i => i.label === 'value')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const ord =
@@ -94,7 +94,7 @@ export function createEnumValWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const value = getValue(inputs.find(i => i.label === 'value')!) ?? '';
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const ord =
@@ -106,8 +106,9 @@ function updateAction(element: Element): WizardActor {
       value === element.textContent &&
       desc === element.getAttribute('desc') &&
       ord === element.getAttribute('ord')
-    )
+    ) {
       return [];
+    }
 
     const newElement = cloneElement(element, { desc, ord });
     newElement.textContent = value;

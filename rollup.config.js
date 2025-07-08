@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import-x/no-extraneous-dependencies */
 import copy from 'rollup-plugin-copy';
 import { importMetaAssets } from '@web/rollup-plugin-import-meta-assets';
 import nodeResolve from '@rollup/plugin-node-resolve';
@@ -7,9 +7,9 @@ import typescript from '@rollup/plugin-typescript';
 export default {
   input: './dist.ts',
   output: {
-    sourcemap: true,        // Add source map to build output
-    format: 'es',            // ES module type export
-    dir: 'dist',            // The build output folder
+    sourcemap: true, // Add source map to build output
+    format: 'es', // ES module type export
+    dir: 'dist', // The build output folder
     // preserveModules: true,  // Keep directory structure and files
   },
   preserveEntrySignatures: 'strict', // leaves export of the plugin entry point
@@ -20,9 +20,7 @@ export default {
     typescript(),
     importMetaAssets(),
     copy({
-      targets: [
-        { src: 'ace', dest: 'dist' },
-      ]
-    })
+      targets: [{ src: 'ace', dest: 'dist' }],
+    }),
   ],
 };

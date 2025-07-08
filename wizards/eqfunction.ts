@@ -1,4 +1,4 @@
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -12,7 +12,7 @@ import {
 import { contentFunctionWizard } from './function.js';
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const eqFunctionKeys = ['name', 'desc', 'type'];
     eqFunctionKeys.forEach(key => {
@@ -22,7 +22,7 @@ function createAction(parent: Element): WizardActor {
     const eqFunction = createElement(
       parent.ownerDocument,
       'EqFunction',
-      attributes
+      attributes,
     );
 
     return [
@@ -59,7 +59,7 @@ export function createEqFunctionWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const functionKeys = ['name', 'desc', 'type'];
     functionKeys.forEach(key => {

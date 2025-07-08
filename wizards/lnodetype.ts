@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -14,7 +13,7 @@ import {
 import { patterns } from './patterns.js';
 
 function createLNodeTypeAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const lNodeTypeAttrs: Record<string, string | null> = {};
     const lNodeTypeKeys = ['id', 'desc', 'lnClass'];
     lNodeTypeKeys.forEach(key => {
@@ -24,7 +23,7 @@ function createLNodeTypeAction(parent: Element): WizardActor {
     const lNodeType = createElement(
       parent.ownerDocument,
       'LNodeType',
-      lNodeTypeAttrs
+      lNodeTypeAttrs,
     );
 
     return [
@@ -50,12 +49,12 @@ export function createLNodeTypeWizard(parent: Element): Wizard {
         minlength="1"
         pattern="${patterns.nmToken}"
       ></scl-text-field>`,
-      html`<scl-wizarding-textfield
-          label="desc"
-          .value=${null}
-          nullable
-          pattern="${patterns.normalizedString}"
-        ></scl-text-field>`,
+      html`<scl-text-field
+        label="desc"
+        .value=${null}
+        nullable
+        pattern="${patterns.normalizedString}"
+      ></scl-text-field>`,
       html`<scl-text-field
         label="lnClass"
         .value=${'LLN0'}

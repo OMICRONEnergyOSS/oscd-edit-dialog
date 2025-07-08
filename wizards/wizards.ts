@@ -64,7 +64,7 @@ import { editBDaWizard } from './bda.js';
 type SclElementWizard = (
   element: Element,
   subWizard?: boolean,
-  instanceElement?: Element
+  instanceElement?: Element,
 ) => Wizard | undefined;
 
 export function emptyWizard(): Wizard | undefined {

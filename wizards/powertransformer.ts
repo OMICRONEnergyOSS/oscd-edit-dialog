@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -22,7 +22,7 @@ type RenderOptions = {
 };
 
 function renderPowerTransformerWizard(
-  options: RenderOptions
+  options: RenderOptions,
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -46,7 +46,7 @@ function renderPowerTransformerWizard(
 }
 
 function createAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = getValue(inputs.find(i => i.label === 'name')!);
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
     const powerTransformer = createElement(
@@ -56,7 +56,7 @@ function createAction(parent: Element): WizardActor {
         name,
         desc,
         type: defaultPowerTransformerType,
-      }
+      },
     );
 
     return [
@@ -87,15 +87,16 @@ export function createPowerTransformerWizard(parent: Element): Wizard {
 }
 
 function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc')
-    )
+    ) {
       return [];
+    }
 
     return [{ element, attributes: { name, desc } }];
   };

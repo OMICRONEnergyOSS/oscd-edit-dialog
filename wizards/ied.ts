@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { updateIED } from '@openenergytools/scl-lib';
 
 import {
@@ -16,7 +16,7 @@ function render(
   desc: string | null,
   type: string | null,
   manufacturer: string | null,
-  owner: string | null
+  owner: string | null,
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -50,15 +50,16 @@ function render(
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
     const desc = getValue(inputs.find(i => i.label === 'desc')!);
 
     if (
       name === element.getAttribute('name') &&
       desc === element.getAttribute('desc')
-    )
+    ) {
       return [];
+    }
 
     return updateIED({
       element,
@@ -69,7 +70,7 @@ export function updateAction(element: Element): WizardActor {
 
 export function editIEDWizard(element: Element): Wizard {
   const iedNames: string[] = Array.from(
-    element.ownerDocument.querySelectorAll(':root > IED')
+    element.ownerDocument.querySelectorAll(':root > IED'),
   )
     .map(ied => ied.getAttribute('name')!)
     .filter(ied => ied !== element.getAttribute('name'));
@@ -87,7 +88,7 @@ export function editIEDWizard(element: Element): Wizard {
       element.getAttribute('desc'),
       element.getAttribute('type'),
       element.getAttribute('manufacturer'),
-      element.getAttribute('owner')
+      element.getAttribute('owner'),
     ),
   };
 }

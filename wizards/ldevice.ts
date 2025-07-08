@@ -1,13 +1,13 @@
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 
 import { Wizard, WizardActor, WizardInputElement } from '../foundation.js';
 
 function render(
   inst: string,
   name: string | null,
-  ldNames: string[]
+  ldNames: string[],
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -25,10 +25,12 @@ function render(
 }
 
 export function updateAction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const name = inputs.find(i => i.label === 'name')!.value!;
 
-    if (name === element.getAttribute('name')) return [];
+    if (name === element.getAttribute('name')) {
+      return [];
+    }
 
     return [
       {
@@ -42,8 +44,8 @@ export function updateAction(element: Element): WizardActor {
 export function editLDeviceWizard(element: Element): Wizard {
   const ldNames: string[] = Array.from(
     element.ownerDocument.querySelectorAll(
-      ':root > IED > AccessPoint > Server > LDevice'
-    )
+      ':root > IED > AccessPoint > Server > LDevice',
+    ),
   ).map(ied => ied.getAttribute('name')!);
 
   return {
@@ -56,7 +58,7 @@ export function editLDeviceWizard(element: Element): Wizard {
     content: render(
       element.getAttribute('inst') ?? '',
       element.getAttribute('name'),
-      ldNames
+      ldNames,
     ),
   };
 }

@@ -1,7 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { html, TemplateResult } from 'lit';
 
-import { Edit } from '@openenergytools/open-scd-core';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { getReference } from '@openenergytools/scl-lib';
 
 import {
@@ -21,7 +20,7 @@ type RenderOptions = {
 };
 
 export function contentFunctionWizard(
-  options: RenderOptions
+  options: RenderOptions,
 ): TemplateResult[] {
   return [
     html`<scl-text-field
@@ -45,7 +44,7 @@ export function contentFunctionWizard(
 }
 
 function createFunctionAction(parent: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const functionAttrs: Record<string, string | null> = {};
     const functionKeys = ['name', 'desc', 'type'];
     functionKeys.forEach(key => {
@@ -55,7 +54,7 @@ function createFunctionAction(parent: Element): WizardActor {
     const fUnction = createElement(
       parent.ownerDocument,
       'Function',
-      functionAttrs
+      functionAttrs,
     );
 
     return [
@@ -88,7 +87,7 @@ export function createFunctionWizard(parent: Element): Wizard {
 }
 
 function updateFunction(element: Element): WizardActor {
-  return (inputs: WizardInputElement[]): Edit[] => {
+  return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const functionKeys = ['name', 'desc', 'type'];
     functionKeys.forEach(key => {
