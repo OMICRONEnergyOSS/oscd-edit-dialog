@@ -7,7 +7,7 @@ import {
 import { MdList } from '@scopedelement/material-web/list/MdList.js';
 import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 
-import { EditV2, Insert } from '@openenergytools/open-scd-core';
+import { EditV2, Insert } from '@omicronenergy/oscd-api';
 
 import { getReference, lnInstGenerator } from '@openenergytools/scl-lib';
 
@@ -32,7 +32,7 @@ let isIedListVisable = true;
 function lNodeItems(doc: XMLDocument): SelectItem[] {
   return Array.from(
     doc.querySelectorAll(':root > DataTypeTemplates > LNodeType'),
-  ).map(lNodeType => {
+  ).map((lNodeType) => {
     const lnClass = lNodeType.getAttribute('lnClass');
     const id = lNodeType.getAttribute('id');
 
@@ -99,7 +99,7 @@ function lNodeCandidates(parent: Element, anyLn: Element): LNodeCandidate {
 
   const lNode = Array.from(
     parent.closest('Substation')?.querySelectorAll('LNode') ?? [],
-  ).find(child => {
+  ).find((child) => {
     if (child.tagName !== 'LNode') {
       return false;
     }
@@ -121,7 +121,7 @@ function lNodeCandidates(parent: Element, anyLn: Element): LNodeCandidate {
 function anyLnItems(parent: Element): SelectItem[] {
   const ldSelector = ':scope > AccessPoint > Server > LDevice';
 
-  return selectedIEDs.flatMap(ied => {
+  return selectedIEDs.flatMap((ied) => {
     const anyLns = ied.querySelectorAll(
       `${ldSelector} > LN0, ${ldSelector} > LN`,
     )!;
@@ -184,7 +184,7 @@ function addIED(evt: Event, ied: Element, sclParent: Element): void {
 function renderIEDItems(parent: Element): TemplateResult[] {
   const doc = parent.ownerDocument;
 
-  return Array.from(doc.querySelectorAll(':root > IED')).map(ied => {
+  return Array.from(doc.querySelectorAll(':root > IED')).map((ied) => {
     const [iedName, manufacturer] = ['name', 'manufacturer'].map(value =>
       ied.getAttribute(value),
     );

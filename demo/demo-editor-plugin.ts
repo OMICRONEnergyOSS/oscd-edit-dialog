@@ -17,7 +17,7 @@ function prettyPrintXml(xml: XMLDocument | Element): string {
   let formatted = '';
   let pad = 0;
 
-  xmlString.split('\n').forEach((node) => {
+  xmlString.split('\n').forEach(node => {
     if (node.match(/^<\/[^>]+>/)) {
       pad -= 2;
     } // Closing tag
@@ -34,12 +34,12 @@ function prettyPrintXml(xml: XMLDocument | Element): string {
 }
 
 const supportedCreateTagNames = Object.entries(wizards)
-                .filter(([, value]) => value.create !== emptyWizard)
-                .map(([key]) => key);
+  .filter(([, value]) => value.create !== emptyWizard)
+  .map(([key]) => key);
 
 const supportedEditTagNames = Object.entries(wizards)
-                .filter(([, value]) => value.edit !== emptyWizard)
-                .map(([key]) => key);
+  .filter(([, value]) => value.edit !== emptyWizard)
+  .map(([key]) => key);
 
 export default class TriggerWizard extends LitElement {
   @property()
@@ -47,6 +47,9 @@ export default class TriggerWizard extends LitElement {
 
   @property()
   editor!: XMLEditor;
+
+  @property()
+  docsState!: unknown;
 
   @query('#newTagName') newTagName!: HTMLSelectElement;
 
@@ -58,12 +61,13 @@ export default class TriggerWizard extends LitElement {
 
   @query('oscd-edit-dialog') editDialog!: WizardDialog;
 
-  async triggerWizardAdd(): Promise<void> {
+  async triggerWizardCreate(): Promise<void> {
     const parent = this.doc.querySelector(this.parentSelector.value);
     const tagName = this.newTagName.value;
     if (!parent || !tagName) {
       return;
     }
+
     const wizardType = {
       parent,
       tagName,
@@ -81,7 +85,9 @@ export default class TriggerWizard extends LitElement {
       this.tagSelector.reportValidity();
       return;
     } else if (!supportedEditTagNames.includes(element.tagName)) {
-      this.tagSelector.setCustomValidity('This tag name is not currently supported.');
+      this.tagSelector.setCustomValidity(
+        'This tag name is not currently supported.',
+      );
       this.tagSelector.reportValidity();
       return;
     } else {
@@ -107,14 +113,15 @@ export default class TriggerWizard extends LitElement {
         ><input id="parentSelector" value="Substation" />
         <label for="newTagName">Tag Name:</label
         ><select id="newTagName">
-          ${supportedCreateTagNames
-            .map(tagName => html`<option value=${tagName}>${tagName}</option>`)}
+          ${supportedCreateTagNames.map(
+            tagName => html`<option value=${tagName}>${tagName}</option>`,
+          )}
         </select>
-        <button @click="${this.triggerWizardAdd}">Add</button>
+        <button @click="${this.triggerWizardCreate}">Add</button>
       </div>
 
       <div class="card">
-        <h2>Edit existin Element</h2>
+        <h2>Edit existing Element</h2>
         <p>
           Use this section to trigger the oscd-edit-dialog to Edit the specified
           existing Element
@@ -133,8 +140,7 @@ export default class TriggerWizard extends LitElement {
           >
             <h3>Supported Elements for Editing</h3>
             <ul>
-              ${supportedEditTagNames
-                .map(tagName => html`<li>${tagName}</li>`)}
+              ${supportedEditTagNames.map(tagName => html`<li>${tagName}</li>`)}
             </ul>
           </div>
         </div>
@@ -168,6 +174,7 @@ export default class TriggerWizard extends LitElement {
     .card button {
       grid-column: 1 / -1;
       text-align: center;
+      margin-block: 0;
     }
 
     .card label,

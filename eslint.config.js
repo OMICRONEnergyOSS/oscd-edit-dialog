@@ -6,7 +6,8 @@ import js from '@eslint/js';
 import { FlatCompat } from '@eslint/eslintrc';
 import openWcConfig from '@open-wc/eslint-config';
 import typescriptEslint from '@typescript-eslint/eslint-plugin';
-import eslintPluginPrettier from 'eslint-plugin-prettier';
+import eslintPluginTSDoc from 'eslint-plugin-tsdoc';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -30,7 +31,7 @@ export default [
   {
     plugins: {
       '@typescript-eslint': typescriptEslint,
-      'eslint-plugin-prettier': eslintPluginPrettier,
+      'eslint-plugin-tsdoc': eslintPluginTSDoc,
     },
 
     languageOptions: {
@@ -89,4 +90,5 @@ export default [
       ],
     },
   },
+  eslintPluginPrettierRecommended,
 ];

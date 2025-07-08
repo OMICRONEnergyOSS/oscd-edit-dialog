@@ -3,7 +3,7 @@ import { property, query, queryAll } from 'lit/decorators.js';
 
 import { ScopedElementsMixin } from '@open-wc/scoped-elements/lit-element.js';
 
-import { EditV2, SetAttributes } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@omicronenergy/oscd-api';
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
 import { SclSelect } from '@openenergytools/scl-select';
 import { SclTextField } from '@openenergytools/scl-text-field';
@@ -128,28 +128,26 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
     });
   }
 
-  create(wizardType: CreateWizard): Promise<EditV2[]> {
+  async create(wizardType: CreateWizard): Promise<EditV2[]> {
     this.wizardType = wizardType;
-    return new Promise<EditV2[]>((resolve, reject) => {
+    const edits = await new Promise<EditV2[]>((resolve, reject) => {
       this.dialogClosePromise = { resolve, reject };
 
       this.dialog.show();
-    }).then((edits) => {
-      this.close();
-      return edits;
     });
+    this.close();
+    return edits;
   }
 
   async edit(wizardType: EditWizard): Promise<EditV2[]> {
     this.wizardType = wizardType;
-    return new Promise<EditV2[]>((resolve, reject) => {
+    const edits = await new Promise<EditV2[]>((resolve, reject) => {
       this.dialogClosePromise = { resolve, reject };
 
       this.dialog.show();
-    }).then((edits) => {
-      this.close();
-      return edits;
     });
+    this.close();
+    return edits;
   }
 
   close(): void {
@@ -168,20 +166,7 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
     }
 
     const edits = action(Array.from(this.inputs), this.dialog);
-    //Currently the oscd-api isSetAttribute only returns true if both attributes and attributesNS are present, so as a quick fix, we
-    const patchedEdits = edits.map((edit) => {
-      if (
-        (edit as SetAttributes).attributes &&
-        !(edit as SetAttributes).attributesNS
-      ) {
-        return {
-          ...edit,
-          attributesNS: {},
-        };
-      }
-      return edit;
-    });
-    this.dialogClosePromise?.resolve(patchedEdits);
+    this.dialogClosePromise?.resolve(edits);
     return true;
   }
 
