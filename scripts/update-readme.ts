@@ -1,6 +1,11 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { emptyWizard, wizards } from '../wizards/wizards.js';
 
+/*
+ * This sadly doesn't work because wizards/wizartds.js references scl-lib which wasn't built to run in Node.js.
+ * References to DomParser would need to be replaced with a Node.js compatible library.
+ */
+
 const supported = '✅';
 const notSupported = '❌';
 
