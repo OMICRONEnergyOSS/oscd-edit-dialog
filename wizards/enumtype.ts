@@ -16,7 +16,7 @@ function createEnumTypeAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const enumTypeAttrs: Record<string, string | null> = {};
     const enumTypeKeys = ['id', 'desc'];
-    enumTypeKeys.forEach((key) => {
+    enumTypeKeys.forEach(key => {
       enumTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

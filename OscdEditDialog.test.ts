@@ -2,11 +2,10 @@
 import { OpenSCD } from '@omicronenergy/oscd-shell/oscd-shell.js';
 import { expect } from '@open-wc/testing';
 
-
 const factor = window.process && process.env.CI ? 4 : 2;
 
 function timeout(ms: number) {
-  return new Promise((res) => {
+  return new Promise(res => {
     setTimeout(res, ms * factor);
   });
 }
@@ -27,7 +26,7 @@ beforeEach(async () => {
     menu: [],
     editor: [],
   };
-  editor.docs = {"testdoc": doc};
+  editor.docs = { testdoc: doc };
   await editor.updateComplete;
 });
 
@@ -37,5 +36,5 @@ afterEach(() => {
 
 it(`placeholder until real VRT's are implemented`, async () => {
   await timeout(0);
-  expect("change").to.be.ok;
+  expect('change').to.be.ok;
 });

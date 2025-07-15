@@ -54,7 +54,7 @@ function createAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const subEquipmentAttrs: Record<string, string | null> = {};
     const subEquipmentKeys = ['name', 'desc', 'phase', 'virtual'];
-    subEquipmentKeys.forEach((key) => {
+    subEquipmentKeys.forEach(key => {
       subEquipmentAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
@@ -103,7 +103,7 @@ function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const subFunctionKeys = ['name', 'desc', 'phase', 'virtual'];
-    subFunctionKeys.forEach((key) => {
+    subFunctionKeys.forEach(key => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

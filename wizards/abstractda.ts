@@ -96,7 +96,7 @@ function changeBType(
 
   // Hide/show EnumType/DAType based on bType selection
   const enabledItems: MdSelectOption[] = [];
-  Array.from(typeInput.children).forEach((child) => {
+  Array.from(typeInput.children).forEach(child => {
     const childItem = child as MdSelectOption;
     childItem.disabled = !child.classList.contains(bTypeValue);
     childItem.style.display = !child.classList.contains(bTypeValue)

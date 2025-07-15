@@ -98,7 +98,7 @@ export function contentAddress(
 ): TemplateResult[] {
   const pChildren: Record<string, string | null> = {};
 
-  content.types.forEach((type) => {
+  content.types.forEach(type => {
     if (!pChildren[type]) {
       pChildren[type] =
         getPElement(content.element, type)?.textContent?.trim() ?? null;

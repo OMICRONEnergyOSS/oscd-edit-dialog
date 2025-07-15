@@ -16,7 +16,7 @@ function createLNodeTypeAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const lNodeTypeAttrs: Record<string, string | null> = {};
     const lNodeTypeKeys = ['id', 'desc', 'lnClass'];
-    lNodeTypeKeys.forEach((key) => {
+    lNodeTypeKeys.forEach(key => {
       lNodeTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

@@ -16,7 +16,7 @@ function createDATypeAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const daTypeAttrs: Record<string, string | null> = {};
     const daTypeKeys = ['id', 'desc'];
-    daTypeKeys.forEach((key) => {
+    daTypeKeys.forEach(key => {
       daTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

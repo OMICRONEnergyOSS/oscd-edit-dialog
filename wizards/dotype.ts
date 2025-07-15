@@ -16,7 +16,7 @@ function createDOTypeAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const doTypeAttrs: Record<string, string | null> = {};
     const doTypeKeys = ['id', 'desc', 'cdc'];
-    doTypeKeys.forEach((key) => {
+    doTypeKeys.forEach(key => {
       doTypeAttrs[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

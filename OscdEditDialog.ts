@@ -123,7 +123,7 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
   }
 
   private reportValidity(): void {
-    this.inputs.forEach((input) => {
+    this.inputs.forEach(input => {
       input.reportValidity();
     });
   }
@@ -172,7 +172,6 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
 
   render(): TemplateResult {
     return html`<div>
-
       <md-dialog>
         <div slot="headline">${wizardTitle(this.wizardType)}</div>
         <form slot="content" method="dialog">

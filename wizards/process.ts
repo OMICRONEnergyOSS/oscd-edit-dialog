@@ -45,7 +45,7 @@ function createAction(parent: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const processKeys = ['name', 'desc', 'type'];
-    processKeys.forEach((key) => {
+    processKeys.forEach(key => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 
@@ -89,7 +89,7 @@ function updateAction(element: Element): WizardActor {
   return (inputs: WizardInputElement[]): EditV2[] => {
     const attributes: Record<string, string | null> = {};
     const tapProcessKeys = ['name', 'desc', 'type'];
-    tapProcessKeys.forEach((key) => {
+    tapProcessKeys.forEach(key => {
       attributes[key] = getValue(inputs.find(i => i.label === key)!);
     });
 

@@ -541,6 +541,13 @@
             },
             {
               "kind": "field",
+              "name": "docsState",
+              "type": {
+                "text": "unknown"
+              }
+            },
+            {
+              "kind": "field",
               "name": "newTagName",
               "type": {
                 "text": "HTMLSelectElement"
@@ -576,7 +583,7 @@
             },
             {
               "kind": "method",
-              "name": "triggerWizardAdd",
+              "name": "triggerWizardCreate",
               "return": {
                 "type": {
                   "text": "Promise<void>"
@@ -600,7 +607,7 @@
               "kind": "field",
               "name": "styles",
               "static": true,
-              "default": "css` .card { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; align-items: center; justify-items: center; padding: 2rem; background: #fafbfc; border-radius: 8px; max-width: 500px; margin: 2rem auto; } .card h2, .card p, .card button { grid-column: 1 / -1; text-align: center; } .card label, .card select, .card input, .card > div, .card button { width: 100%; } .card button { text-align: center; } [role='tooltip'], .hide-tooltip.hide-tooltip.hide-tooltip + [role='tooltip'] { visibility: hidden; position: absolute; background: black; color: white; padding: 1rem; border-radius: 8px; } [aria-describedby]:hover, [aria-describedby]:focus { position: relative; } [aria-describedby]:hover + [role='tooltip'], [aria-describedby]:focus + [role='tooltip'] { visibility: visible; } `"
+              "default": "css` .card { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 2rem; align-items: center; justify-items: center; padding: 2rem; background: #fafbfc; border-radius: 8px; max-width: 500px; margin: 2rem auto; } .card h2, .card p, .card button { grid-column: 1 / -1; text-align: center; margin-block: 0; } .card label, .card select, .card input, .card > div, .card button { width: 100%; } .card button { text-align: center; } [role='tooltip'], .hide-tooltip.hide-tooltip.hide-tooltip + [role='tooltip'] { visibility: hidden; position: absolute; background: black; color: white; padding: 1rem; border-radius: 8px; } [aria-describedby]:hover, [aria-describedby]:focus { position: relative; } [aria-describedby]:hover + [role='tooltip'], [aria-describedby]:focus + [role='tooltip'] { visibility: visible; } `"
             }
           ],
           "superclass": {
@@ -3181,6 +3188,2288 @@
       "path": "coverage/lcov-report/sorter.js",
       "declarations": [],
       "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/OscdEditDialog.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "OscdEditDialog",
+          "members": [
+            {
+              "kind": "method",
+              "name": "checkValidity"
+            },
+            {
+              "kind": "method",
+              "name": "reportValidity"
+            },
+            {
+              "kind": "method",
+              "name": "create",
+              "parameters": [
+                {
+                  "name": "wizardType"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "edit",
+              "parameters": [
+                {
+                  "name": "wizardType"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "close"
+            },
+            {
+              "kind": "method",
+              "name": "act",
+              "parameters": [
+                {
+                  "name": "action"
+                }
+              ]
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            },
+            {
+              "kind": "field",
+              "name": "wizardType",
+              "type": {
+                "text": "null"
+              },
+              "default": "null"
+            },
+            {
+              "kind": "field",
+              "name": "dialogClosePromise",
+              "type": {
+                "text": "null"
+              },
+              "default": "null"
+            }
+          ],
+          "mixins": [
+            {
+              "name": "ScopedElementsMixin",
+              "package": "@open-wc/scoped-elements/lit-element.js"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "tagName": "oscd-edit-dialog",
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/OscdEditDialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/OscdEditDialog.spec.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "getValue",
+          "parameters": [
+            {
+              "name": "input"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "createElement",
+          "parameters": [
+            {
+              "name": "doc"
+            },
+            {
+              "name": "tag"
+            },
+            {
+              "name": "attrs"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "getChildElementsByTagName",
+          "parameters": [
+            {
+              "name": "parent"
+            },
+            {
+              "name": "tag"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "reservedNames",
+          "parameters": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "tagName"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "isSclTextfield",
+          "parameters": [
+            {
+              "name": "type"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "getMultiplier",
+          "parameters": [
+            {
+              "name": "input"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "cloneElement",
+          "parameters": [
+            {
+              "name": "element"
+            },
+            {
+              "name": "attrs"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "crossProduct",
+          "parameters": [
+            {
+              "name": "arrays"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "variable",
+          "name": "typeNullable",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ IP: false, 'IP-SUBNET': false, 'IP-GATEWAY': true, 'OSI-TSEL': true, 'OSI-SSEL': true, 'OSI-PSEL': true, 'OSI-AP-Title': true, 'OSI-AP-Invoke': true, 'OSI-AE-Qualifier': true, 'OSI-AE-Invoke': true, 'OSI-NSAP': true, 'MAC-Address': false, APPID: false, 'VLAN-ID': true, 'VLAN-PRIORITY': true, 'SNTP-Port': true, 'MMS-Port': true, DNSName: true, 'UDP-Port': true, 'TCP-Port': true, 'C37-118-IP-Port': true, IPv6: true, 'IPv6-SUBNET': true, 'IPv6-GATEWAY': true, IPv6FlowLabel: true, IPv6ClassOfTraffic: true, 'IPv6-IGMPv3Src': true, 'IP-IGMPv3Sr': true, 'IP-ClassOfTraffic': true, }",
+          "description": "Whether `P` element is required within `Address`"
+        },
+        {
+          "kind": "function",
+          "name": "getTypes",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "compareNames",
+          "parameters": [
+            {
+              "name": "a"
+            },
+            {
+              "name": "b"
+            }
+          ],
+          "description": "Sorts selected `ListItem`s to the top and disabled ones to the bottom."
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "getValue",
+          "declaration": {
+            "name": "getValue",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createElement",
+          "declaration": {
+            "name": "createElement",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getChildElementsByTagName",
+          "declaration": {
+            "name": "getChildElementsByTagName",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "reservedNames",
+          "declaration": {
+            "name": "reservedNames",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "isSclTextfield",
+          "declaration": {
+            "name": "isSclTextfield",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getMultiplier",
+          "declaration": {
+            "name": "getMultiplier",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "cloneElement",
+          "declaration": {
+            "name": "cloneElement",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "crossProduct",
+          "declaration": {
+            "name": "crossProduct",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "typeNullable",
+          "declaration": {
+            "name": "typeNullable",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getTypes",
+          "declaration": {
+            "name": "getTypes",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "compareNames",
+          "declaration": {
+            "name": "compareNames",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/foundation.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/oscd-edit-dialog.js",
+      "declarations": [],
+      "exports": [
+        {
+          "kind": "custom-element-definition",
+          "name": "oscd-edit-dialog",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "/omicronenergy-oscd-edit-dialog-0.0.0/package/dist/OscdEditDialog.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "OscdEditDialog",
+          "declaration": {
+            "name": "OscdEditDialog",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/oscd-edit-dialog.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/demo/demo-editor-plugin.js",
+      "declarations": [
+        {
+          "kind": "class",
+          "description": "",
+          "name": "TriggerWizard",
+          "members": [
+            {
+              "kind": "method",
+              "name": "triggerWizardAdd"
+            },
+            {
+              "kind": "method",
+              "name": "triggerWizardEdit"
+            },
+            {
+              "kind": "method",
+              "name": "render"
+            }
+          ],
+          "superclass": {
+            "name": "LitElement",
+            "package": "lit"
+          },
+          "customElement": true
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "default",
+          "declaration": {
+            "name": "TriggerWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/demo/demo-editor-plugin.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/scripts/update-readme.js",
+      "declarations": [],
+      "exports": []
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/abstractda.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderAbstractDataAttributeContent",
+          "parameters": [
+            {
+              "name": "name"
+            },
+            {
+              "name": "desc"
+            },
+            {
+              "name": "bType"
+            },
+            {
+              "name": "types"
+            },
+            {
+              "name": "type"
+            },
+            {
+              "name": "sAddr"
+            },
+            {
+              "name": "valKind"
+            },
+            {
+              "name": "valImport"
+            },
+            {
+              "name": "Val"
+            },
+            {
+              "name": "data"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "getValAction",
+          "parameters": [
+            {
+              "name": "oldVal"
+            },
+            {
+              "name": "Val"
+            },
+            {
+              "name": "abstractda"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderAbstractDataAttributeContent",
+          "declaration": {
+            "name": "renderAbstractDataAttributeContent",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/abstractda.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "getValAction",
+          "declaration": {
+            "name": "getValAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/abstractda.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "existDiff",
+          "parameters": [
+            {
+              "name": "oldAddr"
+            },
+            {
+              "name": "newAddr"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createAddressElement",
+          "parameters": [
+            {
+              "name": "parent"
+            },
+            {
+              "name": "inputs"
+            },
+            {
+              "name": "instType"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAddress",
+          "parameters": [
+            {
+              "name": "parent"
+            },
+            {
+              "name": "inputs"
+            },
+            {
+              "name": "instType"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "hasTypeRestriction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "contentAddress",
+          "parameters": [
+            {
+              "name": "content"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "existDiff",
+          "declaration": {
+            "name": "existDiff",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createAddressElement",
+          "declaration": {
+            "name": "createAddressElement",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAddress",
+          "declaration": {
+            "name": "updateAddress",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "hasTypeRestriction",
+          "declaration": {
+            "name": "hasTypeRestriction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "contentAddress",
+          "declaration": {
+            "name": "contentAddress",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/address.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderBayWizard",
+          "parameters": [
+            {
+              "name": "options"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createAction",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createBayWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editBayWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderBayWizard",
+          "declaration": {
+            "name": "renderBayWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createBayWizard",
+          "declaration": {
+            "name": "createBayWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editBayWizard",
+          "declaration": {
+            "name": "editBayWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bay.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bda.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createBDaWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editBDaWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createBDaWizard",
+          "declaration": {
+            "name": "createBDaWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bda.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editBDaWizard",
+          "declaration": {
+            "name": "editBDaWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/bda.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/conductingequipment.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createConductingEquipmentWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editConductingEquipmentWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createConductingEquipmentWizard",
+          "declaration": {
+            "name": "createConductingEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/conductingequipment.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editConductingEquipmentWizard",
+          "declaration": {
+            "name": "editConductingEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/conductingequipment.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/connectedap.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createConnectedApWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        },
+        {
+          "kind": "function",
+          "name": "editConnectedApWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ],
+          "return": {
+            "type": {
+              "text": ""
+            }
+          }
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createConnectedApWizard",
+          "declaration": {
+            "name": "createConnectedApWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/connectedap.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editConnectedApWizard",
+          "declaration": {
+            "name": "editConnectedApWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/connectedap.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/da.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "renderAdditionalDaContent",
+          "parameters": [
+            {
+              "name": "fc"
+            },
+            {
+              "name": "dchg"
+            },
+            {
+              "name": "qchg"
+            },
+            {
+              "name": "dupd"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createDaWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editDAWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "renderAdditionalDaContent",
+          "declaration": {
+            "name": "renderAdditionalDaContent",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/da.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createDaWizard",
+          "declaration": {
+            "name": "createDaWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/da.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editDAWizard",
+          "declaration": {
+            "name": "editDAWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/da.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/datype.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDATypeWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDATypeWizard",
+          "declaration": {
+            "name": "createDATypeWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/datype.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/do.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDoWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editDoWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDoWizard",
+          "declaration": {
+            "name": "createDoWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/do.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editDoWizard",
+          "declaration": {
+            "name": "editDoWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/do.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/dotype.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createDOTypeWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createDOTypeWizard",
+          "declaration": {
+            "name": "createDOTypeWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/dotype.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/enumtype.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEnumTypeWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEnumTypeWizard",
+          "declaration": {
+            "name": "createEnumTypeWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/enumtype.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/enumval.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEnumValWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEnumValWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEnumValWizard",
+          "declaration": {
+            "name": "createEnumValWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/enumval.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEnumValWizard",
+          "declaration": {
+            "name": "editEnumValWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/enumval.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqfunction.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEqFunctionWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEqFunctionWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEqFunctionWizard",
+          "declaration": {
+            "name": "createEqFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqfunction.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEqFunctionWizard",
+          "declaration": {
+            "name": "editEqFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqfunction.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqsubfunction.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createEqSubFunctionWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editEqSubFunctionWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createEqSubFunctionWizard",
+          "declaration": {
+            "name": "createEqSubFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqsubfunction.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editEqSubFunctionWizard",
+          "declaration": {
+            "name": "editEqSubFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/eqsubfunction.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/function.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "contentFunctionWizard",
+          "parameters": [
+            {
+              "name": "options"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createFunctionWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editFunctionWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "contentFunctionWizard",
+          "declaration": {
+            "name": "contentFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/function.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createFunctionWizard",
+          "declaration": {
+            "name": "createFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/function.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editFunctionWizard",
+          "declaration": {
+            "name": "editFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/function.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/generalEquipment.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "contentGeneralEquipmentWizard",
+          "parameters": [
+            {
+              "name": "options"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createGeneralEquipmentWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editGeneralEquipmentWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "contentGeneralEquipmentWizard",
+          "declaration": {
+            "name": "contentGeneralEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/generalEquipment.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createGeneralEquipmentWizard",
+          "declaration": {
+            "name": "createGeneralEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/generalEquipment.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editGeneralEquipmentWizard",
+          "declaration": {
+            "name": "editGeneralEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/generalEquipment.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/gse.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "editGseWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "editGseWizard",
+          "declaration": {
+            "name": "editGseWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/gse.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ied.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editIEDWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ied.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editIEDWizard",
+          "declaration": {
+            "name": "editIEDWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ied.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ldevice.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editLDeviceWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ldevice.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editLDeviceWizard",
+          "declaration": {
+            "name": "editLDeviceWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/ldevice.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/line.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLineWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editLineWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLineWizard",
+          "declaration": {
+            "name": "createLineWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/line.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editLineWizard",
+          "declaration": {
+            "name": "editLineWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/line.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/lnode.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLNodeWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLNodeWizard",
+          "declaration": {
+            "name": "createLNodeWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/lnode.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/lnodetype.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createLNodeTypeWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createLNodeTypeWizard",
+          "declaration": {
+            "name": "createLNodeTypeWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/lnodetype.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js",
+      "declarations": [
+        {
+          "kind": "variable",
+          "name": "patterns",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ string: '([\\u0009-\\u000A]|[\\u000D]|[\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]' + '|[\\uE000-\\uFFFD])*', normalizedString: '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])*', name, tName: '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])' + '([\\u0020-\\u007E]|[\\u0085]|[\\u00A0-\\uD7FF]|[\\uE000-\\uFFFD])*', nmToken, names: `${name}( ${name})*`, nmTokens: `${nmToken}( ${nmToken})*`, decimal: '[+\\\\-]?[0-9]+(([.][0-9]*)?|([.][0-9]+))', unsigned: '[+]?[0-9]+(([.][0-9]*)?|([.][0-9]+))', integer: '[+\\\\-]?[0-9]+([0-9]*)', alphanumericFirstUpperCase: '[A-Z][0-9,A-Z,a-z]*', alphanumericFirstLowerCase: '[a-z][0-9,A-Z,a-z]*', alphanumericFirst: '[A-Z,a-z][0-9,A-Z,a-z]*', ldInst: '[A-Za-z0-9][0-9A-Za-z_]*', prefix: '[A-Za-z][0-9A-Za-z_]*', lnClass: '(LLN0)|[A-Z]{4,4}', lnInst: '[0-9]{1,12}', abstractDataAttributeName: '((T)|(Test)|(Check)|(SIUnit)|(Oper)|(SBO)|(SBOw)|(Cancel)|[a-z][0-9A-Za-z]*)', cdc: '(SPS)|(DPS)|(INS)|(ENS)|(ACT)|(ACD)|(SEC)|(BCR)|(HST)|(VSS)|(MV)|(CMV)|(SAV)|' + '(WYE)|(DEL)|(SEQ)|(HMV)|(HWYE)|(HDEL)|(SPC)|(DPC)|(INC)|(ENC)|(BSC)|(ISC)|(APC)|(BAC)|' + '(SPG)|(ING)|(ENG)|(ORG)|(TSG)|(CUG)|(VSG)|(ASG)|(CURVE)|(CSG)|(DPL)|(LPL)|(CSD)|(CST)|' + '(BTS)|(UTS)|(LTS)|(GTS)|(MTS)|(NTS)|(STS)|(CTS)|(OTS)|(VSD)', uuid: '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}', id: '\\\\S{1,255}', path: '.+(/.+)*', mappedDoName: '(([A-Za-z][0-9A-Za-z_]{0,63})/([A-Za-z][0-9A-Za-z_]{0,63})/((LLN0|([A-Za-z][0-9A-Za-z_]{0,10})?[A-Z]{4}[0-9]{1,12})).)?([A-Z][0-9A-Za-z]{0,11}(.[a-z][0-9A-Za-z]*(([0-9]+))?)?)', vlanid: '[0-9A-F]{3}', vlanPriority: '[0-7]', ipv4: '([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5]).([0-9]{1,2}|1[0-9]{2}|2[0-4][0-9]|25[0-5])', ipv6: '([0-9a-f]{1,4}:){7}[0-9a-f]{1,4}', }"
+        },
+        {
+          "kind": "variable",
+          "name": "maxLength",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ cbName: 32, abstracDaName: 60, ldInst: 64, prefix: 11, lnInst: 12, dosName: 12, }"
+        },
+        {
+          "kind": "variable",
+          "name": "predefinedBasicTypeEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'BOOLEAN', 'INT8', 'INT16', 'INT24', 'INT32', 'INT64', 'INT128', 'INT8U', 'INT16U', 'INT24U', 'INT32U', 'FLOAT32', 'FLOAT64', 'Enum', 'Dbpos', 'Tcmd', 'Quality', 'Timestamp', 'VisString32', 'VisString64', 'VisString65', 'VisString129', 'VisString255', 'Octet64', 'Unicode255', 'Struct', 'EntryTime', 'Check', 'ObjRef', 'Currency', 'PhyComAddr', 'TrgOps', 'OptFlds', 'SvOptFlds', 'LogOptFlds', 'EntryID', 'Octet6', 'Octet16', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "valKindEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "['Spec', 'Conf', 'RO', 'Set']"
+        },
+        {
+          "kind": "variable",
+          "name": "functionalConstraintEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'ST', 'MX', 'SP', 'SV', 'CF', 'DC', 'SG', 'SE', 'SR', 'OR', 'BL', 'EX', 'CO', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "attributeNameEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'T', 'Test', 'Check', 'SIUnit', 'Oper', 'SBO', 'SBOw', 'Cancel', 'Addr', 'PRIORITY', 'VID', 'APPID', 'TransportInUse', 'IPClassOfTraffic', 'IPv6FlowLabel', 'IPAddressLength', 'IPAddress', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "tSpecServiceType",
+          "type": {
+            "text": "array"
+          },
+          "default": "[ 'Poll', 'Report', 'GOOSE', 'SMV', 'Wired', 'Internal', ]"
+        },
+        {
+          "kind": "variable",
+          "name": "tSCLFileType",
+          "type": {
+            "text": "array"
+          },
+          "default": "['SED', 'SCC']"
+        },
+        {
+          "kind": "variable",
+          "name": "tRightEnum",
+          "type": {
+            "text": "array"
+          },
+          "default": "['full', 'fix', 'dataflow']"
+        },
+        {
+          "kind": "variable",
+          "name": "tSmpMod",
+          "type": {
+            "text": "array"
+          },
+          "default": "['SmpPerPeriod', 'SmpPerSec', 'SecPerSmp']"
+        },
+        {
+          "kind": "variable",
+          "name": "typePattern",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ IP: typeBase.IP, 'IP-SUBNET': typeBase.IP, 'IP-GATEWAY': typeBase.IP, 'OSI-TSEL': typeBase.OSI, 'OSI-SSEL': typeBase.OSI, 'OSI-PSEL': typeBase.OSI, 'OSI-AP-Title': typeBase.OSIAPi, 'OSI-AP-Invoke': typeBase.OSId, 'OSI-AE-Qualifier': typeBase.OSId, 'OSI-AE-Invoke': typeBase.OSId, 'MAC-Address': typeBase.MAC, APPID: typeBase.APPID, 'VLAN-ID': typeBase.VLANid, 'VLAN-PRIORITY': typeBase.VLANp, 'OSI-NSAP': typeBase.OSI, 'SNTP-Port': typeBase.port, 'MMS-Port': typeBase.port, DNSName: '[^ ]*', 'UDP-Port': typeBase.port, 'TCP-Port': typeBase.port, 'C37-118-IP-Port': '102[5-9]|10[3-9][0-9]|1[1-9][0-9][0-9]|[2-9][0-9]{3}|[1-5][0-9]{4}|6[0-4][0-9]{3}|65[0-4][0-9]{2}|655[0-2][0-9]|6553[0-5]', IPv6: typeBase.IPv6, 'IPv6-SUBNET': typeBase.IPv6sub, 'IPv6-GATEWAY': typeBase.IPv6, IPv6FlowLabel: '[0-9a-fA-F]{1,5}', IPv6ClassOfTraffic: '[0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]', 'IPv6-IGMPv3Src': typeBase.IPv6, 'IP-IGMPv3Sr': typeBase.IP, 'IP-ClassOfTraffic': typeBase.OSI, }",
+          "description": "Patterns from IEC 61850-6 for all `P` elements"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "patterns",
+          "declaration": {
+            "name": "patterns",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "maxLength",
+          "declaration": {
+            "name": "maxLength",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "predefinedBasicTypeEnum",
+          "declaration": {
+            "name": "predefinedBasicTypeEnum",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "valKindEnum",
+          "declaration": {
+            "name": "valKindEnum",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "functionalConstraintEnum",
+          "declaration": {
+            "name": "functionalConstraintEnum",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "attributeNameEnum",
+          "declaration": {
+            "name": "attributeNameEnum",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSpecServiceType",
+          "declaration": {
+            "name": "tSpecServiceType",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSCLFileType",
+          "declaration": {
+            "name": "tSCLFileType",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tRightEnum",
+          "declaration": {
+            "name": "tRightEnum",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "tSmpMod",
+          "declaration": {
+            "name": "tSmpMod",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "typePattern",
+          "declaration": {
+            "name": "typePattern",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/patterns.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/powertransformer.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createPowerTransformerWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editPowerTransformerWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createPowerTransformerWizard",
+          "declaration": {
+            "name": "createPowerTransformerWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/powertransformer.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editPowerTransformerWizard",
+          "declaration": {
+            "name": "editPowerTransformerWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/powertransformer.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/process.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createProcessWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editProcessWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createProcessWizard",
+          "declaration": {
+            "name": "createProcessWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/process.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editProcessWizard",
+          "declaration": {
+            "name": "editProcessWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/process.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/sdo.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSDoWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSDoWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSDoWizard",
+          "declaration": {
+            "name": "createSDoWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/sdo.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSDoWizard",
+          "declaration": {
+            "name": "editSDoWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/sdo.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/smv.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "editSMvWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "editSMvWizard",
+          "declaration": {
+            "name": "editSMvWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/smv.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subequipment.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSubEquipmentWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubEquipmentWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSubEquipmentWizard",
+          "declaration": {
+            "name": "createSubEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subequipment.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubEquipmentWizard",
+          "declaration": {
+            "name": "editSubEquipmentWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subequipment.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subfunction.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createSubFunctionWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubFunctionWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createSubFunctionWizard",
+          "declaration": {
+            "name": "createSubFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subfunction.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubFunctionWizard",
+          "declaration": {
+            "name": "editSubFunctionWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subfunction.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subnetwork.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createSubNetworkWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubNetworkWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subnetwork.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createSubNetworkWizard",
+          "declaration": {
+            "name": "createSubNetworkWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subnetwork.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubNetworkWizard",
+          "declaration": {
+            "name": "editSubNetworkWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/subnetwork.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/substation.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createSubstationWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editSubstationWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/substation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createSubstationWizard",
+          "declaration": {
+            "name": "createSubstationWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/substation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/substation.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editSubstationWizard",
+          "declaration": {
+            "name": "editSubstationWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/substation.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/tapchanger.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createTapChangerWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTapChangerWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createTapChangerWizard",
+          "declaration": {
+            "name": "createTapChangerWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/tapchanger.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTapChangerWizard",
+          "declaration": {
+            "name": "editTapChangerWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/tapchanger.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/text.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createTextWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTextWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/text.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createTextWizard",
+          "declaration": {
+            "name": "createTextWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/text.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/text.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTextWizard",
+          "declaration": {
+            "name": "editTextWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/text.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/transformerWinding.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createTransformerWindingWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editTransformerWindingWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createTransformerWindingWizard",
+          "declaration": {
+            "name": "createTransformerWindingWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/transformerWinding.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editTransformerWindingWizard",
+          "declaration": {
+            "name": "editTransformerWindingWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/transformerWinding.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/voltagelevel.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "createAction",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "createVoltageLevelWizard",
+          "parameters": [
+            {
+              "name": "parent"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "updateAction",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "editVoltageLevelWizard",
+          "parameters": [
+            {
+              "name": "element"
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "createAction",
+          "declaration": {
+            "name": "createAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/voltagelevel.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "createVoltageLevelWizard",
+          "declaration": {
+            "name": "createVoltageLevelWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/voltagelevel.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "updateAction",
+          "declaration": {
+            "name": "updateAction",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/voltagelevel.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "editVoltageLevelWizard",
+          "declaration": {
+            "name": "editVoltageLevelWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/voltagelevel.js"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
+      "path": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/wizards.js",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "emptyWizard"
+        },
+        {
+          "kind": "variable",
+          "name": "wizards",
+          "type": {
+            "text": "object"
+          },
+          "default": "{ AccessControl: { edit: emptyWizard, create: emptyWizard, }, AccessPoint: { edit: emptyWizard, create: emptyWizard, }, Address: { edit: emptyWizard, create: emptyWizard, }, Association: { edit: emptyWizard, create: emptyWizard, }, Authentication: { edit: emptyWizard, create: emptyWizard, }, Bay: { edit: editBayWizard, create: createBayWizard, }, BDA: { edit: editBDaWizard, create: emptyWizard, }, BitRate: { edit: emptyWizard, create: emptyWizard, }, ClientLN: { edit: emptyWizard, create: emptyWizard, }, ClientServices: { edit: emptyWizard, create: emptyWizard, }, CommProt: { edit: emptyWizard, create: emptyWizard, }, Communication: { edit: emptyWizard, create: emptyWizard, }, ConductingEquipment: { edit: editConductingEquipmentWizard, create: createConductingEquipmentWizard, }, ConfDataSet: { edit: emptyWizard, create: emptyWizard, }, ConfLdName: { edit: emptyWizard, create: emptyWizard, }, ConfLNs: { edit: emptyWizard, create: emptyWizard, }, ConfLogControl: { edit: emptyWizard, create: emptyWizard, }, ConfReportControl: { edit: emptyWizard, create: emptyWizard, }, ConfSG: { edit: emptyWizard, create: emptyWizard, }, ConfSigRef: { edit: emptyWizard, create: emptyWizard, }, ConnectedAP: { edit: editConnectedApWizard, create: createConnectedApWizard, }, DA: { edit: editDAWizard, create: createDaWizard, }, DAType: { edit: emptyWizard, create: emptyWizard, }, DO: { edit: editDoWizard, create: createDoWizard, }, DOI: { edit: emptyWizard, create: emptyWizard, }, DOType: { edit: emptyWizard, create: createDOTypeWizard, }, DataObjectDirectory: { edit: emptyWizard, create: emptyWizard, }, DataSet: { edit: emptyWizard, create: emptyWizard, }, DataSetDirectory: { edit: emptyWizard, create: emptyWizard, }, DataTypeTemplates: { edit: emptyWizard, create: emptyWizard, }, DynAssociation: { edit: emptyWizard, create: emptyWizard, }, DynDataSet: { edit: emptyWizard, create: emptyWizard, }, EnumType: { edit: emptyWizard, create: createEnumTypeWizard, }, EnumVal: { edit: editEnumValWizard, create: createEnumValWizard, }, EqFunction: { edit: editEqFunctionWizard, create: createEqFunctionWizard, }, EqSubFunction: { edit: editEqSubFunctionWizard, create: createEqSubFunctionWizard, }, ExtRef: { edit: emptyWizard, create: emptyWizard, }, FileHandling: { edit: emptyWizard, create: emptyWizard, }, Function: { edit: editFunctionWizard, create: createFunctionWizard, }, GeneralEquipment: { edit: editGeneralEquipmentWizard, create: createGeneralEquipmentWizard, }, GetCBValues: { edit: emptyWizard, create: emptyWizard, }, GetDataObjectDefinition: { edit: emptyWizard, create: emptyWizard, }, GetDataSetValue: { edit: emptyWizard, create: emptyWizard, }, GetDirectory: { edit: emptyWizard, create: emptyWizard, }, GOOSE: { edit: emptyWizard, create: emptyWizard, }, GOOSESecurity: { edit: emptyWizard, create: emptyWizard, }, GSE: { edit: editGseWizard, create: emptyWizard, }, GSEDir: { edit: emptyWizard, create: emptyWizard, }, GSESettings: { edit: emptyWizard, create: emptyWizard, }, GSSE: { edit: emptyWizard, create: emptyWizard, }, Header: { edit: emptyWizard, create: emptyWizard, }, History: { edit: emptyWizard, create: emptyWizard, }, Hitem: { edit: emptyWizard, create: emptyWizard, }, IED: { edit: editIEDWizard, create: emptyWizard, }, IEDName: { edit: emptyWizard, create: emptyWizard, }, Inputs: { edit: emptyWizard, create: emptyWizard, }, IssuerName: { edit: emptyWizard, create: emptyWizard, }, KDC: { edit: emptyWizard, create: emptyWizard, }, LDevice: { edit: editLDeviceWizard, create: emptyWizard, }, LN: { edit: emptyWizard, create: emptyWizard, }, LN0: { edit: emptyWizard, create: emptyWizard, }, LNode: { edit: emptyWizard, create: createLNodeWizard, }, LNodeType: { edit: emptyWizard, create: createLNodeTypeWizard, }, Line: { edit: editLineWizard, create: createLineWizard, }, Log: { edit: emptyWizard, create: emptyWizard, }, LogControl: { edit: emptyWizard, create: emptyWizard, }, LogSettings: { edit: emptyWizard, create: emptyWizard, }, MaxTime: { edit: emptyWizard, create: emptyWizard, }, McSecurity: { edit: emptyWizard, create: emptyWizard, }, MinTime: { edit: emptyWizard, create: emptyWizard, }, NeutralPoint: { edit: emptyWizard, create: emptyWizard, }, P: { edit: emptyWizard, create: emptyWizard, }, PhysConn: { edit: emptyWizard, create: emptyWizard, }, PowerTransformer: { edit: editPowerTransformerWizard, create: createPowerTransformerWizard, }, Private: { edit: emptyWizard, create: emptyWizard, }, Process: { edit: editProcessWizard, create: createProcessWizard, }, ProtNs: { edit: emptyWizard, create: emptyWizard, }, Protocol: { edit: emptyWizard, create: emptyWizard, }, ReadWrite: { edit: emptyWizard, create: emptyWizard, }, RedProt: { edit: emptyWizard, create: emptyWizard, }, ReportControl: { edit: emptyWizard, create: emptyWizard, }, ReportSettings: { edit: emptyWizard, create: emptyWizard, }, RptEnabled: { edit: emptyWizard, create: emptyWizard, }, SamplesPerSec: { edit: emptyWizard, create: emptyWizard, }, SecPerSamples: { edit: emptyWizard, create: emptyWizard, }, SCL: { edit: emptyWizard, create: emptyWizard, }, SDI: { edit: emptyWizard, create: emptyWizard, }, SDO: { edit: editSDoWizard, create: createSDoWizard, }, Server: { edit: emptyWizard, create: emptyWizard, }, ServerAt: { edit: emptyWizard, create: emptyWizard, }, Services: { edit: emptyWizard, create: emptyWizard, }, SetDataSetValue: { edit: emptyWizard, create: emptyWizard, }, SettingControl: { edit: emptyWizard, create: emptyWizard, }, SettingGroups: { edit: emptyWizard, create: emptyWizard, }, SGEdit: { edit: emptyWizard, create: emptyWizard, }, SmpRate: { edit: emptyWizard, create: emptyWizard, }, SMV: { edit: editSMvWizard, create: emptyWizard, }, SmvOpts: { edit: emptyWizard, create: emptyWizard, }, SMVsc: { edit: emptyWizard, create: emptyWizard, }, SMVSecurity: { edit: emptyWizard, create: emptyWizard, }, SMVSettings: { edit: emptyWizard, create: emptyWizard, }, SubEquipment: { edit: editSubEquipmentWizard, create: createSubEquipmentWizard, }, SubFunction: { edit: editSubFunctionWizard, create: createSubFunctionWizard, }, SubNetwork: { edit: editSubNetworkWizard, create: createSubNetworkWizard, }, Subject: { edit: emptyWizard, create: emptyWizard, }, Substation: { edit: editSubstationWizard, create: createSubstationWizard, }, SupSubscription: { edit: emptyWizard, create: emptyWizard, }, TapChanger: { edit: editTapChangerWizard, create: createTapChangerWizard, }, Text: { edit: editTextWizard, create: createTextWizard, }, TimerActivatedControl: { edit: emptyWizard, create: emptyWizard, }, TimeSyncProt: { edit: emptyWizard, create: emptyWizard, }, TransformerWinding: { edit: editTransformerWindingWizard, create: createTransformerWindingWizard, }, Val: { edit: emptyWizard, create: emptyWizard, }, ValueHandling: { edit: emptyWizard, create: emptyWizard, }, Voltage: { edit: emptyWizard, create: emptyWizard, }, VoltageLevel: { edit: editVoltageLevelWizard, create: createVoltageLevelWizard, }, }"
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "emptyWizard",
+          "declaration": {
+            "name": "emptyWizard",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/wizards.js"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "wizards",
+          "declaration": {
+            "name": "wizards",
+            "module": "omicronenergy-oscd-edit-dialog-0.0.0/package/dist/wizards/wizards.js"
+          }
+        }
+      ]
     }
   ]
 }

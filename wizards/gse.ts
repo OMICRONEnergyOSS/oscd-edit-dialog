@@ -80,7 +80,7 @@ function updateAction(element: Element): WizardActor {
 
     const addressActions = updateAddress(element, addressContent, instType);
 
-    addressActions.forEach((addressAction) => {
+    addressActions.forEach(addressAction => {
       action.push(addressAction);
     });
 

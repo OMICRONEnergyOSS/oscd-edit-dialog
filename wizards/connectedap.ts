@@ -48,7 +48,7 @@ function initSMVElements(
   );
 
   Array.from(ied?.querySelectorAll('SampledValueControl') ?? [])
-    .filter((sampledValueControl) => {
+    .filter(sampledValueControl => {
       const id = identity(sampledValueControl) as string;
 
       if (options.unconnectedSampledValueControl.has(id)) {
@@ -58,7 +58,7 @@ function initSMVElements(
 
       return false;
     })
-    .forEach((sampledValueControl) => {
+    .forEach(sampledValueControl => {
       const cbName = sampledValueControl.getAttribute('name');
       const ldInst =
         sampledValueControl.closest('LDevice')?.getAttribute('inst') ?? null;
@@ -140,7 +140,7 @@ function initGSeElements(
   );
 
   Array.from(ied?.querySelectorAll('GSEControl') ?? [])
-    .filter((gseControl) => {
+    .filter(gseControl => {
       const id = identity(gseControl) as string;
 
       if (options.unconnectedGseControl.has(id)) {
@@ -150,7 +150,7 @@ function initGSeElements(
 
       return false;
     })
-    .forEach((gseControl) => {
+    .forEach(gseControl => {
       const cbName = gseControl.getAttribute('name');
       const ldInst =
         gseControl.closest('LDevice')?.getAttribute('inst') ?? null;
@@ -242,7 +242,7 @@ function unconnectedGseControls(doc: XMLDocument): Set<string> {
   const allGseControl = Array.from(doc.querySelectorAll('GSEControl'));
 
   const unconnectedGseControl = allGseControl
-    .filter((gseControl) => {
+    .filter(gseControl => {
       const iedName = gseControl.closest('IED')?.getAttribute('name');
       const ldInst = gseControl.closest('LDevice')?.getAttribute('inst');
       const cbName = gseControl.getAttribute('name');
@@ -262,7 +262,7 @@ function unconnectedSampledValueControls(doc: XMLDocument): Set<string> {
   const allSmvControl = Array.from(doc.querySelectorAll('SampledValueControl'));
 
   const unconnectedSmvControl = allSmvControl
-    .filter((gseControl) => {
+    .filter(gseControl => {
       const iedName = gseControl.closest('IED')?.getAttribute('name');
       const ldInst = gseControl.closest('LDevice')?.getAttribute('inst');
       const cbName = gseControl.getAttribute('name');
@@ -297,7 +297,7 @@ function createConnectedApAction(parent: Element): WizardActor {
       return [];
     }
 
-    const actions = list.selectedElements.map((accP) => {
+    const actions = list.selectedElements.map(accP => {
       const id = `${identity(accP)}`;
       const [iedName, apName] = id.split('>');
       const connAPactions: EditV2[] = [];
@@ -402,7 +402,7 @@ function updateAction(element: Element): WizardActor {
       (wizard.querySelector('#instType') as SclCheckbox).value === 'true';
 
     const addressContent: Record<string, string | null> = {};
-    inputs.forEach((input) => {
+    inputs.forEach(input => {
       const key = input.label;
       const value = getValue(input);
       addressContent[key] = value;

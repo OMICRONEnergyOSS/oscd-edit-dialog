@@ -35,7 +35,7 @@ function updateAction(element: Element): WizardActor {
       return [];
     }
 
-    addressActions.forEach((addressAction) => {
+    addressActions.forEach(addressAction => {
       action.push(addressAction);
     });
 
