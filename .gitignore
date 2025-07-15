@@ -1,13 +1,5 @@
 node_modules
-*.js
-*.map
-*.d.ts
 *.tsbuildinfo
-!commitlint.config.js
-!eslint.config.js
-!web-dev-server.config.js
-!web-test-runner.config.js
-!scripts/*
 
 ## editors
 /.idea
@@ -17,4 +9,5 @@ node_modules
 dist
 coverage
 doc
-omicronenergy-oscd-edit-dialog-*
+
+
