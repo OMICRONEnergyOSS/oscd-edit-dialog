@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.3](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.2...oscd-edit-dialog-v0.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* expose WizardType(s) ([7b05145](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/7b051450712644c64999edf85180290f409bb3de))
+
 ## [0.0.2](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.1...oscd-edit-dialog-v0.0.2) (2025-07-15)
 
 
