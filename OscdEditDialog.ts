@@ -25,16 +25,16 @@ import { wizards } from './wizards/wizards.js';
 
 import { Wizard, WizardActor, WizardInputElement } from './foundation.js';
 
-type EditWizard = {
+export type EditWizard = {
   element: Element;
 };
 
-type CreateWizard = {
+export type CreateWizard = {
   parent: Element;
   tagName: string;
 };
 
-type WizardType = EditWizard | CreateWizard;
+export type WizardType = EditWizard | CreateWizard;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isCreateWizard(wizardType: any): wizardType is CreateWizard {
