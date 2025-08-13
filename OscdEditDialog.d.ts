@@ -15,13 +15,14 @@ import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 import { MdSelectOption } from '@scopedelement/material-web/select/MdSelectOption.js';
 import { MdTextButton } from '@scopedelement/material-web/button/MdTextButton.js';
 import { WizardInputElement } from './foundation.js';
-type EditWizard = {
+export type EditWizard = {
     element: Element;
 };
-type CreateWizard = {
+export type CreateWizard = {
     parent: Element;
     tagName: string;
 };
+export type WizardType = EditWizard | CreateWizard;
 declare const OscdEditDialog_base: typeof LitElement & import("@open-wc/scoped-elements/lit-element.js").ScopedElementsHostConstructor;
 export default class OscdEditDialog extends OscdEditDialog_base {
     wizardType: EditWizard | CreateWizard | null;
