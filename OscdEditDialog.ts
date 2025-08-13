@@ -36,14 +36,18 @@ export type CreateWizard = {
 
 export type WizardType = EditWizard | CreateWizard;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isCreateWizard(wizardType: any): wizardType is CreateWizard {
-  return 'parent' in wizardType && 'tagName' in wizardType;
+function isCreateWizard(wizardType: unknown): wizardType is CreateWizard {
+  return (
+    'parent' in (wizardType as CreateWizard) &&
+    'tagName' in (wizardType as CreateWizard)
+  );
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isEditWizard(wizardType: any): wizardType is CreateWizard {
-  return 'element' in wizardType;
+function isEditWizard(wizardType: unknown): wizardType is EditWizard {
+  return (
+    'element' in (wizardType as EditWizard) &&
+    (wizardType as EditWizard).element instanceof Element
+  );
 }
 
 function getWizard(wizardType: WizardType): Wizard | undefined {
