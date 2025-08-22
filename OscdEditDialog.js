@@ -39141,13 +39141,13 @@ const wizards = {
     },
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isCreateWizard(wizardType) {
-    return 'parent' in wizardType && 'tagName' in wizardType;
+    return ('parent' in wizardType &&
+        'tagName' in wizardType);
 }
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isEditWizard(wizardType) {
-    return 'element' in wizardType;
+    return ('element' in wizardType &&
+        wizardType.element instanceof Element);
 }
 function getWizard(wizardType) {
     if (isCreateWizard(wizardType)) {
