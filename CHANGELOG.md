@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.5](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.4...oscd-edit-dialog-v0.0.5) (2025-08-22)
+
+
+### Bug Fixes
+
+* types defined in events helper should align with  types passed to dialog ([75240a6](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/75240a66c1e753fa360de2b9ebb30c7cc4eb99c5))
+
 ## [0.0.4](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.3...oscd-edit-dialog-v0.0.4) (2025-08-22)
 
 
