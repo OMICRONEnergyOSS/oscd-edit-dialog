@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.4](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.3...oscd-edit-dialog-v0.0.4) (2025-08-22)
+
+
+### Features
+
+* add event handling utils ([ee55f08](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/ee55f08e8d45217761b2b1ca591ab511ba0ae826))
+
 ## [0.0.3](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.2...oscd-edit-dialog-v0.0.3) (2025-08-13)
 
 
