@@ -1,30 +1,16 @@
+import { CreateWizard, EditWizard } from './OscdEditDialog.js';
+
 export enum OscdEditDialogEvents {
   CREATE_EVENT = 'oscd-edit-dialog-create',
   EDIT_EVENT = 'oscd-edit-dialog-edit',
   CLOSE_EVENT = 'oscd-edit-dialog-close',
 }
 
-export interface EditEventDetails {
-  element: Element;
-}
-
-export interface CreateEventDetails {
-  parent: Element;
-  tagName: string;
-}
-
-export type EditDialogEventDetails = EditEventDetails | CreateEventDetails;
-export type EditDialogEditEvent = CustomEvent<EditEventDetails>;
-export type EditDialogCreateEvent = CustomEvent<CreateEventDetails>;
-export type EditDialogEvent = EditDialogEditEvent | EditDialogCreateEvent;
-
-type EditDialogCloseEvent = CustomEvent<EditDialogEventDetails>;
-
 export function newEditDialogEditEvent(
   element: Element,
-  eventInitDict?: CustomEventInit<Partial<EditEventDetails>>,
-): EditDialogEditEvent {
-  return new CustomEvent<EditEventDetails>(OscdEditDialogEvents.EDIT_EVENT, {
+  eventInitDict?: CustomEventInit<Partial<EditWizard>>,
+): CustomEvent<EditWizard> {
+  return new CustomEvent<EditWizard>(OscdEditDialogEvents.EDIT_EVENT, {
     bubbles: true,
     composed: true,
     ...eventInitDict,
@@ -35,41 +21,35 @@ export function newEditDialogEditEvent(
 export function newEditDialogCreateEvent(
   parent: Element,
   tagName: string,
-  eventInitDict?: CustomEventInit<Partial<CreateEventDetails>>,
-): EditDialogCreateEvent {
-  return new CustomEvent<CreateEventDetails>(
-    OscdEditDialogEvents.CREATE_EVENT,
-    {
-      bubbles: true,
-      composed: true,
-      ...eventInitDict,
-      detail: {
-        parent,
-        tagName,
-      },
+  eventInitDict?: CustomEventInit<Partial<CreateWizard>>,
+): CustomEvent<CreateWizard> {
+  return new CustomEvent<CreateWizard>(OscdEditDialogEvents.CREATE_EVENT, {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail: {
+      parent,
+      tagName,
     },
-  );
+  });
 }
 
 export function newEditDialogCloseEvent(
-  detail: EditDialogEventDetails,
-  eventInitDict?: CustomEventInit<Partial<EditDialogEventDetails>>,
-): EditDialogCloseEvent {
-  return new CustomEvent<EditDialogEventDetails>(
-    OscdEditDialogEvents.CLOSE_EVENT,
-    {
-      bubbles: true,
-      composed: true,
-      ...eventInitDict,
-      detail,
-    },
-  );
+  detail: EditWizard,
+  eventInitDict?: CustomEventInit<Partial<EditWizard>>,
+): CustomEvent<EditWizard> {
+  return new CustomEvent<EditWizard>(OscdEditDialogEvents.CLOSE_EVENT, {
+    bubbles: true,
+    composed: true,
+    ...eventInitDict,
+    detail,
+  });
 }
 
 declare global {
   interface ElementEventMap {
-    [OscdEditDialogEvents.EDIT_EVENT]: EditEventDetails;
-    [OscdEditDialogEvents.CREATE_EVENT]: CreateEventDetails;
-    [OscdEditDialogEvents.CLOSE_EVENT]: EditDialogEvent;
+    [OscdEditDialogEvents.EDIT_EVENT]: CustomEvent<EditWizard>;
+    [OscdEditDialogEvents.CREATE_EVENT]: CustomEvent<CreateWizard>;
+    [OscdEditDialogEvents.CLOSE_EVENT]: CustomEvent<EditWizard>;
   }
 }
