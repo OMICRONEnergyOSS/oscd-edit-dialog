@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.6](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.5...oscd-edit-dialog-v0.0.6) (2025-08-26)
+
+
+### Bug Fixes
+
+* update module deps (scl-lib issue) ([30754c0](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/30754c0d5ee6b0b89199a689987a5e4f2199b9b4))
+
 ## [0.0.5](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.4...oscd-edit-dialog-v0.0.5) (2025-08-22)
 
 
