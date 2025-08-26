@@ -182,12 +182,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "foundation.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "foundation.ts",
       "declarations": [
         {
@@ -501,6 +495,116 @@
     },
     {
       "kind": "javascript-module",
+      "path": "oscd-edit-dialog-events.ts",
+      "declarations": [
+        {
+          "kind": "function",
+          "name": "newEditDialogEditEvent",
+          "return": {
+            "type": {
+              "text": "CustomEvent<EditWizard>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "element",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "eventInitDict",
+              "optional": true,
+              "type": {
+                "text": "CustomEventInit<Partial<EditWizard>>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "newEditDialogCreateEvent",
+          "return": {
+            "type": {
+              "text": "CustomEvent<CreateWizard>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "parent",
+              "type": {
+                "text": "Element"
+              }
+            },
+            {
+              "name": "tagName",
+              "type": {
+                "text": "string"
+              }
+            },
+            {
+              "name": "eventInitDict",
+              "optional": true,
+              "type": {
+                "text": "CustomEventInit<Partial<CreateWizard>>"
+              }
+            }
+          ]
+        },
+        {
+          "kind": "function",
+          "name": "newEditDialogCloseEvent",
+          "return": {
+            "type": {
+              "text": "CustomEvent<EditWizard>"
+            }
+          },
+          "parameters": [
+            {
+              "name": "detail",
+              "type": {
+                "text": "EditWizard"
+              }
+            },
+            {
+              "name": "eventInitDict",
+              "optional": true,
+              "type": {
+                "text": "CustomEventInit<Partial<EditWizard>>"
+              }
+            }
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "kind": "js",
+          "name": "newEditDialogEditEvent",
+          "declaration": {
+            "name": "newEditDialogEditEvent",
+            "module": "oscd-edit-dialog-events.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "newEditDialogCreateEvent",
+          "declaration": {
+            "name": "newEditDialogCreateEvent",
+            "module": "oscd-edit-dialog-events.ts"
+          }
+        },
+        {
+          "kind": "js",
+          "name": "newEditDialogCloseEvent",
+          "declaration": {
+            "name": "newEditDialogCloseEvent",
+            "module": "oscd-edit-dialog-events.ts"
+          }
+        }
+      ]
+    },
+    {
+      "kind": "javascript-module",
       "path": "oscd-edit-dialog.ts",
       "declarations": [],
       "exports": [
@@ -642,12 +746,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/abstractda.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/abstractda.ts",
       "declarations": [
         {
@@ -769,12 +867,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/address.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -941,12 +1033,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/bay.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/bay.ts",
       "declarations": [
         {
@@ -1080,12 +1166,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/bda.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/bda.ts",
       "declarations": [
         {
@@ -1141,12 +1221,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/conductingequipment.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -1208,12 +1282,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/connectedap.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/connectedap.ts",
       "declarations": [
         {
@@ -1269,12 +1337,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/da.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -1412,12 +1474,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/do.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/do.ts",
       "declarations": [
         {
@@ -1476,12 +1532,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/dotype.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/dotype.ts",
       "declarations": [
         {
@@ -1515,12 +1565,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/enumtype.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/enumtype.ts",
       "declarations": [
         {
@@ -1551,12 +1595,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/enumval.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -1618,12 +1656,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/eqfunction.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/eqfunction.ts",
       "declarations": [
         {
@@ -1682,12 +1714,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/eqsubfunction.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/eqsubfunction.ts",
       "declarations": [
         {
@@ -1743,12 +1769,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/function.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -1835,12 +1855,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/generalEquipment.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/generalEquipment.ts",
       "declarations": [
         {
@@ -1924,12 +1938,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/gse.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/gse.ts",
       "declarations": [
         {
@@ -1960,12 +1968,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/ied.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2027,12 +2029,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/ldevice.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/ldevice.ts",
       "declarations": [
         {
@@ -2088,12 +2084,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/line.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2155,12 +2145,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/lnode.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/lnode.ts",
       "declarations": [
         {
@@ -2194,12 +2178,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/lnodetype.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/lnodetype.ts",
       "declarations": [
         {
@@ -2230,12 +2208,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/patterns.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2424,12 +2396,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/powertransformer.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/powertransformer.ts",
       "declarations": [
         {
@@ -2485,12 +2451,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/process.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2552,12 +2512,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/sdo.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/sdo.ts",
       "declarations": [
         {
@@ -2616,12 +2570,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/smv.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/smv.ts",
       "declarations": [
         {
@@ -2652,12 +2600,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/subequipment.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2719,12 +2661,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/subfunction.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/subfunction.ts",
       "declarations": [
         {
@@ -2780,12 +2716,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/subnetwork.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2869,12 +2799,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/substation.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -2986,12 +2910,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/tapchanger.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/tapchanger.ts",
       "declarations": [
         {
@@ -3047,12 +2965,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/text.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -3164,12 +3076,6 @@
     },
     {
       "kind": "javascript-module",
-      "path": "wizards/transformerWinding.js",
-      "declarations": [],
-      "exports": []
-    },
-    {
-      "kind": "javascript-module",
       "path": "wizards/transformerWinding.ts",
       "declarations": [
         {
@@ -3225,12 +3131,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/voltagelevel.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
@@ -3339,12 +3239,6 @@
           }
         }
       ]
-    },
-    {
-      "kind": "javascript-module",
-      "path": "wizards/wizards.js",
-      "declarations": [],
-      "exports": []
     },
     {
       "kind": "javascript-module",
