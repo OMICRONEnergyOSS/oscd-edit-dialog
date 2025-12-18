@@ -27,7 +27,8 @@
     "./OscdEditDialog.js": "./dist/OscdEditDialog.js",
     "./oscd-edit-dialog.js": "./dist/oscd-edit-dialog.js",
     "./oscd-edit-dialog-events.js": "./dist/oscd-edit-dialog-events.js",
-    "./wizards.js": "./dist/wizards/wizards.js"
+    "./wizards.js": "./dist/wizards/wizards.js",
+    "./patterns.js": "./dist/wizards/patterns.js"
   },
   "files": [
     "dist",
