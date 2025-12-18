@@ -23,6 +23,12 @@ function getPElement(parent: Element, type: string | null): Element | null {
 }
 
 export function existDiff(oldAddr: Element, newAddr: Element): boolean {
+  if (
+    oldAddr.querySelectorAll('P').length !==
+    newAddr.querySelectorAll('P').length
+  ) {
+    return true;
+  }
   return Array.from(oldAddr.querySelectorAll('P')).some(
     pType =>
       getPElement(newAddr, pType.getAttribute('type'))?.textContent !==
