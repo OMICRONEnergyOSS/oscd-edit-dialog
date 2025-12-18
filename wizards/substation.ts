@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { getReference, updateSubstation } from '@openenergytools/scl-lib';
+import { getReference, updateSubstation } from '@openscd/scl-lib';
 
 import {
   createElement,
@@ -10,7 +10,7 @@ import {
   WizardActor,
   WizardInputElement,
 } from '../foundation.js';
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
 type RenderOptions = {
   name: string;

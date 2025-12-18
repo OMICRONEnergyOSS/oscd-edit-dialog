@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
-import { getReference } from '@openenergytools/scl-lib';
+import { getReference } from '@openscd/scl-lib';
 
 import {
   createElement,

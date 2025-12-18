@@ -1,12 +1,8 @@
 import { html, TemplateResult } from 'lit';
 
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2, SetAttributes } from '@openscd/oscd-api';
 
-import {
-  getReference,
-  Update as OldUpdate,
-  updateVoltageLevel,
-} from '@openenergytools/scl-lib';
+import { getReference, updateVoltageLevel } from '@openscd/scl-lib';
 
 import {
   cloneElement,
@@ -194,7 +190,7 @@ export function updateAction(element: Element): WizardActor {
     const Voltage = getValue(inputs.find(i => i.label === 'Voltage')!);
     const multiplier = getMultiplier(inputs.find(i => i.label === 'Voltage')!);
 
-    let voltageLevelAction: OldUpdate | null;
+    let voltageLevelAction: SetAttributes | null;
     let voltageAction: EditV2 | null;
 
     if (
@@ -233,7 +229,7 @@ export function updateAction(element: Element): WizardActor {
     const complexAction: EditV2[] = [];
     if (voltageLevelAction) {
       complexAction.push(
-        ...updateVoltageLevel(voltageLevelAction as OldUpdate),
+        ...updateVoltageLevel(voltageLevelAction as SetAttributes),
       );
     }
     if (voltageAction) {

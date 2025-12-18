@@ -1,4 +1,4 @@
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
 

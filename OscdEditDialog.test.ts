@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-expressions */
-import { OpenSCD } from '@omicronenergy/oscd-shell/oscd-shell.js';
+import { OscdShell } from '@omicronenergy/oscd-shell/oscd-shell.js';
 import { expect } from '@open-wc/testing';
 
 const factor = window.process && process.env.CI ? 4 : 2;
@@ -17,7 +17,7 @@ const doc = new DOMParser().parseFromString(
   'application/xml',
 );
 
-let editor: OpenSCD;
+let editor: OscdShell;
 
 beforeEach(async () => {
   editor = document.createElement('oscd-shell');

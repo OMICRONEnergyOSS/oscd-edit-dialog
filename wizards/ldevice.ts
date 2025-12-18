@@ -1,6 +1,6 @@
 import { html, TemplateResult } from 'lit';
 
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
 import { Wizard, WizardActor, WizardInputElement } from '../foundation.js';
 

@@ -1,6 +1,6 @@
 import { html } from 'lit';
 
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
 import {
   SelectionList,
@@ -13,7 +13,7 @@ import {
   getReference,
   identity,
   macAddressGenerator,
-} from '@openenergytools/scl-lib';
+} from '@openscd/scl-lib';
 
 import {
   compareNames,

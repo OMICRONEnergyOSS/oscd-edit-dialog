@@ -3,12 +3,12 @@ import { html, TemplateResult } from 'lit';
 import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelect.js';
 import { MdSelectOption } from '@scopedelement/material-web/select/MdSelectOption.js';
 
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 
 import { SclSelect } from '@openenergytools/scl-select';
 import { SclTextField } from '@openenergytools/scl-text-field';
 
-import { getReference } from '@openenergytools/scl-lib';
+import { getReference } from '@openscd/scl-lib';
 
 import { createElement } from '../foundation.js';
 

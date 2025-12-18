@@ -7,9 +7,9 @@ import {
 import { MdList } from '@scopedelement/material-web/list/MdList.js';
 import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 
-import { EditV2, Insert } from '@omicronenergy/oscd-api';
+import { EditV2, Insert } from '@openscd/oscd-api';
 
-import { getReference, lnInstGenerator } from '@openenergytools/scl-lib';
+import { getReference, lnInstGenerator } from '@openscd/scl-lib';
 
 import {
   createElement,

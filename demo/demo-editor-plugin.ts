@@ -3,9 +3,9 @@ import { property, query } from 'lit/decorators.js';
 import type WizardDialog from '../OscdEditDialog.js';
 
 import '../oscd-edit-dialog.js';
-import { XMLEditor } from '@omicronenergy/oscd-editor';
-import { convertEdit } from '@omicronenergy/oscd-api/utils.js';
-import { Edit } from '@omicronenergy/oscd-api';
+import { XMLEditor } from '@openscd/oscd-editor';
+import { convertEdit } from '@openscd/oscd-api/utils.js';
+import { Edit } from '@openscd/oscd-api';
 import { emptyWizard, wizards } from '../wizards/wizards.js';
 
 function prettyPrintXml(xml: XMLDocument | Element): string {

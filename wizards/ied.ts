@@ -1,7 +1,7 @@
 import { html, TemplateResult } from 'lit';
 
-import { EditV2 } from '@omicronenergy/oscd-api';
-import { updateIED } from '@openenergytools/scl-lib';
+import { EditV2 } from '@openscd/oscd-api';
+import { updateIED } from '@openscd/scl-lib';
 
 import {
   getValue,
