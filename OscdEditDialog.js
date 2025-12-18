@@ -10551,7 +10551,7 @@ MdTextButton.styles = [styles$1, styles];
 
 function updateSourceRef$2(element, { oldSubstation, oldVoltageLevel, oldBay, newBay, }) {
     const sourceRefs = Array.from(element.ownerDocument.querySelectorAll('Private[type="eIEC61850-6-100"]>LNodeInputs>SourceRef'));
-    const updates = [];
+    const setAttributes = [];
     sourceRefs.forEach((srcRef) => {
         const source = srcRef.getAttribute("source");
         if (!source)
@@ -10560,12 +10560,12 @@ function updateSourceRef$2(element, { oldSubstation, oldVoltageLevel, oldBay, ne
         if (!source.startsWith(oldPath))
             return;
         const newPath = `${oldSubstation}/${oldVoltageLevel}/${newBay}`;
-        updates.push({
+        setAttributes.push({
             element: srcRef,
             attributes: { source: source.replace(oldPath, newPath) },
         });
     });
-    return updates.filter((update) => update);
+    return setAttributes.filter((update) => update);
 }
 function updateConnectivityNodes$2(element, { substation, voltageLevel, bayName, }) {
     const cNodes = Array.from(element.getElementsByTagName("ConnectivityNode"));
@@ -10593,32 +10593,32 @@ function updateConnectivityNodes$2(element, { substation, voltageLevel, bayName,
 function updateTerminals$2(element, { oldConnectivityNode, connectivityNode, bayName, }) {
     const terminals = Array.from(element.closest("Substation").querySelectorAll(`Terminal[connectivityNode="${oldConnectivityNode}"],
        NeutralPoint[connectivityNode="${oldConnectivityNode}"]`));
-    const updates = terminals.map((terminal) => ({
+    const setAttributes = terminals.map((terminal) => ({
         element: terminal,
         attributes: {
             connectivityNode,
             bayName,
         },
     }));
-    return updates;
+    return setAttributes;
 }
 /** Updates `Bay` attributes and cross-referenced elements
- * @param update - update edit on `Bay` attributes
+ * @param setAttributes - setAttributes edit on `Bay` attributes
  * @returns Completed update edit array */
-function updateBay(update) {
-    if (update.element.tagName !== "Bay")
-        return [update];
-    const bay = update.element;
-    const attributes = update.attributes;
-    if (!attributes.name)
-        return [update];
+function updateBay(setAttributes) {
+    if (setAttributes.element.tagName !== "Bay")
+        return [setAttributes];
+    const bay = setAttributes.element;
+    const attributes = setAttributes.attributes;
+    if (!attributes || !attributes.name)
+        return [setAttributes];
     const oldName = bay.getAttribute("name");
     const substationName = bay.closest("Substation")?.getAttribute("name");
     const voltageLevelName = bay.closest("VoltageLevel")?.getAttribute("name");
     const newName = attributes.name;
     if (!substationName || !voltageLevelName || !oldName || oldName === newName)
-        return [update];
-    return [update].concat(...updateConnectivityNodes$2(bay, {
+        return [setAttributes];
+    return [setAttributes].concat(...updateConnectivityNodes$2(bay, {
         substation: substationName,
         voltageLevel: voltageLevelName,
         bayName: newName,
@@ -10687,23 +10687,23 @@ function updateTerminals$1(element, { oldConnectivityNode, connectivityNode, vol
     return updates;
 }
 /** Updates `VoltageLevel` attributes and cross-referenced elements
- * @param update - update edit on `VoltageLevel` attributes
+ * @param setAttributes - update edit on `VoltageLevel` attributes
  * @returns Completed update edit array */
-function updateVoltageLevel(update) {
-    if (update.element.tagName !== "VoltageLevel")
-        return [update];
-    const voltageLevel = update.element;
-    const attributes = update.attributes;
-    if (!attributes.name)
-        return [update];
+function updateVoltageLevel(setAttributes) {
+    if (setAttributes.element.tagName !== "VoltageLevel")
+        return [setAttributes];
+    const voltageLevel = setAttributes.element;
+    const attributes = setAttributes.attributes;
+    if (!attributes?.name)
+        return [setAttributes];
     const oldName = voltageLevel.getAttribute("name");
     const substationName = voltageLevel
         .closest("Substation")
         ?.getAttribute("name");
     const newName = attributes.name;
     if (!substationName || !oldName || oldName === newName)
-        return [update];
-    return [update].concat(...updateConnectivityNodes$1(voltageLevel, {
+        return [setAttributes];
+    return [setAttributes].concat(...updateConnectivityNodes$1(voltageLevel, {
         substation: substationName,
         voltageLevelName: newName,
     }), ...updateSourceRef$1(voltageLevel, {
@@ -10776,7 +10776,7 @@ function updateSubstation(update) {
         return [update];
     const substation = update.element;
     const attributes = update.attributes;
-    if (!attributes.name)
+    if (!attributes?.name)
         return [update];
     const oldName = substation.getAttribute("name");
     const newName = attributes.name;
@@ -11808,23 +11808,23 @@ function updateObjectReferences(ied, oldIedName, newIedName, checkPermission = f
  * 2. Update all control block object references pointing to the IED
  * 3. Updates IEDName elements text content
  * ```
- * @param update - IED element and attributes to be changed in the IED element
+ * @param setAttributes - IED element and attributes to be changed in the IED element
  * @param checkPermission - Check permission before changing object references
  * (other than supervision node GoCBRef values).
  * @returns - Set of addition edits updating all references SCL elements
  */
-function updateIED(update, checkPermission = false) {
-    if (update.element.tagName !== "IED")
+function updateIED(setAttributes, checkPermission = false) {
+    if (setAttributes.element.tagName !== "IED")
         return [];
-    if (!update.attributes.name)
-        return [update];
-    const ied = update.element;
+    if (!setAttributes.attributes?.name)
+        return [setAttributes];
+    const ied = setAttributes.element;
     const oldIedName = ied.getAttribute("name");
-    const newIedName = update.attributes.name;
+    const newIedName = setAttributes.attributes.name;
     if (!oldIedName)
         return [];
     return [
-        update,
+        setAttributes,
         ...updateIedNameAttributes(ied, oldIedName, newIedName),
         ...updateSubscriptionSupervision(ied, oldIedName, newIedName),
         ...updateIEDNameTextContent(ied, oldIedName, newIedName),
@@ -35462,6 +35462,10 @@ function getPElement(parent, type) {
     return (Array.from(parent.querySelectorAll(':scope > Address > P')).find(p => p.getAttribute('type') === type) ?? null);
 }
 function existDiff(oldAddr, newAddr) {
+    if (oldAddr.querySelectorAll('P').length !==
+        newAddr.querySelectorAll('P').length) {
+        return true;
+    }
     return Array.from(oldAddr.querySelectorAll('P')).some(pType => getPElement(newAddr, pType.getAttribute('type'))?.textContent !==
         pType.textContent);
 }

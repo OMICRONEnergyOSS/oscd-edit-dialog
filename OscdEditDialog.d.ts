@@ -1,5 +1,5 @@
 import { LitElement, TemplateResult } from 'lit';
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 import { SclCheckbox } from '@openenergytools/scl-checkbox';
 import { SclSelect } from '@openenergytools/scl-select';
 import { SclTextField } from '@openenergytools/scl-text-field';

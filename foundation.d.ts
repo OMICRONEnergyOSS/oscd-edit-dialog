@@ -1,5 +1,5 @@
 import { TemplateResult } from 'lit';
-import { EditV2 } from '@omicronenergy/oscd-api';
+import { EditV2 } from '@openscd/oscd-api';
 import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelect';
 import { MdFilledTextField } from '@scopedelement/material-web/textfield/MdFilledTextField';
 import { SclCheckbox } from '@openenergytools/scl-checkbox';

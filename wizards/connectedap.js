@@ -1,15 +1,15 @@
 import '../node_modules/@lit/reactive-element/reactive-element.js';
 import { html as x } from '../node_modules/lit-html/lit-html.js';
 import '../node_modules/lit-element/lit-element.js';
-import { getReference } from '../node_modules/@openenergytools/scl-lib/dist/tBaseElement/getReference.js';
-import '../node_modules/@openenergytools/scl-lib/dist/generator/lnInstGenerator.js';
-import { macAddressGenerator } from '../node_modules/@openenergytools/scl-lib/dist/generator/macAddressGenerator.js';
-import { appIdGenerator } from '../node_modules/@openenergytools/scl-lib/dist/generator/appIdGenerator.js';
-import '../node_modules/@openenergytools/scl-lib/dist/tExtRef/extRefTypeRestrictions.js';
-import '../node_modules/@openenergytools/scl-lib/dist/tDataTypeTemplates/nsdToJson.js';
-import '../node_modules/@openenergytools/scl-lib/dist/tBaseElement/find.js';
-import '../node_modules/@openenergytools/scl-lib/dist/tBaseElement/tags.js';
-import { identity } from '../node_modules/@openenergytools/scl-lib/dist/tBaseElement/identity.js';
+import { getReference } from '../node_modules/@openscd/scl-lib/dist/tBaseElement/getReference.js';
+import '../node_modules/@openscd/scl-lib/dist/generator/lnInstGenerator.js';
+import { macAddressGenerator } from '../node_modules/@openscd/scl-lib/dist/generator/macAddressGenerator.js';
+import { appIdGenerator } from '../node_modules/@openscd/scl-lib/dist/generator/appIdGenerator.js';
+import '../node_modules/@openscd/scl-lib/dist/tExtRef/extRefTypeRestrictions.js';
+import '../node_modules/@openscd/scl-lib/dist/tDataTypeTemplates/nsdToJson.js';
+import '../node_modules/@openscd/scl-lib/dist/tBaseElement/find.js';
+import '../node_modules/@openscd/scl-lib/dist/tBaseElement/tags.js';
+import { identity } from '../node_modules/@openscd/scl-lib/dist/tBaseElement/identity.js';
 import { compareNames, getTypes, createElement, getValue } from '../foundation.js';
 import { contentAddress, updateAddress } from './address.js';
 
