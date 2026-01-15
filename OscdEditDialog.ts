@@ -16,6 +16,7 @@ import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelec
 import { MdFilledTextField } from '@scopedelement/material-web/textfield/MdFilledTextField.js';
 import { MdIcon } from '@scopedelement/material-web/icon/MdIcon.js';
 import { MdIconButton } from '@scopedelement/material-web/iconbutton/MdIconButton.js';
+import { MdFilledButton } from '@scopedelement/material-web/button/MdFilledButton.js';
 import { MdList } from '@scopedelement/material-web/list/MdList.js';
 import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 import { MdSelectOption } from '@scopedelement/material-web/select/MdSelectOption.js';
@@ -101,6 +102,7 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
   static scopedElements = {
     'md-dialog': MdDialog,
     'md-text-button': MdTextButton,
+    'md-filled-button': MdFilledButton,
     'scl-checkbox': SclCheckbox,
     'scl-text-field': SclTextField,
     'scl-select': SclSelect,
@@ -186,12 +188,12 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
             id="close-button"
             form="add-data-object"
             @click="${() => this.close()}"
-            >Close</md-text-button
+            >Cancel</md-text-button
           >
-          <md-text-button
+          <md-filled-button
             form="add-data-object"
             @click=${() => this.act(wizardAction(this.wizardType!))}
-            >Save</md-text-button
+            >Save</md-filled-button
           >
         </div>
       </md-dialog>
@@ -199,63 +201,75 @@ export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
   }
 
   static styles = css`
-    * {
+    *,
+    md-filled-button * {
       --md-dialog-container-color: var(
         --wizard-dialog-background-color,
-        #fdf6e3
+        var(--oscd-base3)
       );
-      --md-dialog-headline-color: var(--wizard-dialog-text-color, #657b83);
-      --md-dialog-headline-font: var(--wizard-dialog-text-font, 'Roboto');
+      --md-dialog-headline-color: var(
+        --wizard-dialog-text-color,
+        var(--oscd-base00)
+      );
+      --md-dialog-headline-font: var(
+        --wizard-dialog-text-font,
+        var(--oscd-text-font)
+      );
       --md-dialog-supporting-text-color: var(
         --wizard-dialog-text-color,
-        #657b83
+        var(--oscd-base00)
       );
       --md-dialog-supporting-text-font: var(
         --wizard-dialog-text-font,
-        'Roboto'
+        var(--oscd-text-font)
       );
 
-      --md-sys-color-primary: var(--wizard-dialog-primary, #2aa198);
-      --md-sys-color-secondary: var(--wizard-dialog-secondary, #6c71c4);
+      --md-sys-color-primary: var(--wizard-dialog-primary, var(--oscd-primary));
+      --md-sys-color-secondary: var(
+        --wizard-dialog-secondary,
+        var(--oscd-secondary)
+      );
       --md-sys-typescale-body-large-font: var(
         --wizard-dialog-text-font,
-        'Roboto'
+        var(--oscd-text-font)
       );
 
       --md-sys-color-surface-container-highest: var(
         --wizard-dailog-input-background-color,
-        #eee8d5
+        var(--oscd-base3)
       );
       --md-outlined-text-field-input-text-color: var(
         --wizard-dialog-text-color,
-        #657b83
+        var(--oscd-base00)
       );
-      --md-sys-color-on-surface: var(--wizard-dialog-text-color, #657b83);
-      --md-sys-color-on-primary: var(--wizard-dialog-background-color, #eee8d5);
+      --md-sys-color-on-surface: var(
+        --wizard-dialog-text-color,
+        var(--oscd-base00)
+      );
+      --md-sys-color-on-primary: var(
+        --wizard-dialog-background-color,
+        var(--oscd-base3)
+      );
 
-      --md-sys-color-surface: var(--wizard-dialog-surface, #fdf6e3)
-        --md-sys-color-on-surface: var(--wizard-dialog-text-color, #fdf6e3);
-
+      --md-sys-color-surface: var(--wizard-dialog-surface, var(--oscd-base3));
       --md-sys-color-on-surface-variant: var(
         --wizard-dialog-text-color,
-        #657b83
+        var(--oscd-base00)
       );
 
-      --md-menu-container-color: var(--wizard-dialog-background-color, #fdf6e3);
+      --md-menu-container-color: var(
+        --wizard-dialog-background-color,
+        var(--oscd-base3)
+      );
 
       --md-menu-item-selected-container-color: rgb(
-        from var(--wizard-dialog-primary, #2aa198) r g b / 0.38
+        from var(--wizard-dialog-primary, var(--oscd-primary)) r g b / 0.38
       );
     }
 
     md-dialog {
       --md-dialog-container-max-height: 100%;
-      height: 100%;
       --md-dialog-container-max-width: 100%;
-    }
-
-    #close-button {
-      --md-sys-color-primary: var(--wizard-dialog-close-button-color, #dc322f);
     }
 
     #wizard-content {
