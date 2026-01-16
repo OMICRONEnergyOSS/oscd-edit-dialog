@@ -6,7 +6,7 @@ import typescript from '@rollup/plugin-typescript';
 
 export default [
   {
-    input: ['./foundation.ts', './OscdEditDialog.ts', './oscd-edit-dialog.ts'],
+    input: ['./foundation.ts', './OscdSclDialogs.ts', './oscd-scl-dialogs.ts'],
     output: {
       sourcemap: true, // Add source map to build output
       format: 'es', // ES module type export

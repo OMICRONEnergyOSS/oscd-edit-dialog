@@ -4,18 +4,18 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "OscdEditDialog.spec.ts",
+      "path": "OscdSclDialogs.spec.ts",
       "declarations": [],
       "exports": []
     },
     {
       "kind": "javascript-module",
-      "path": "OscdEditDialog.ts",
+      "path": "OscdSclDialogs.ts",
       "declarations": [
         {
           "kind": "class",
           "description": "",
-          "name": "OscdEditDialog",
+          "name": "OscdSclDialogs",
           "members": [
             {
               "kind": "field",
@@ -165,7 +165,7 @@
             "name": "LitElement",
             "package": "lit"
           },
-          "tagName": "oscd-edit-dialog",
+          "tagName": "oscd-scl-dialogs",
           "customElement": true
         }
       ],
@@ -174,8 +174,8 @@
           "kind": "js",
           "name": "default",
           "declaration": {
-            "name": "OscdEditDialog",
-            "module": "OscdEditDialog.ts"
+            "name": "OscdSclDialogs",
+            "module": "OscdSclDialogs.ts"
           }
         }
       ]
@@ -495,7 +495,7 @@
     },
     {
       "kind": "javascript-module",
-      "path": "oscd-edit-dialog-events.ts",
+      "path": "oscd-scl-dialogs-events.ts",
       "declarations": [
         {
           "kind": "function",
@@ -582,7 +582,7 @@
           "name": "newEditDialogEditEvent",
           "declaration": {
             "name": "newEditDialogEditEvent",
-            "module": "oscd-edit-dialog-events.ts"
+            "module": "oscd-scl-dialogs-events.ts"
           }
         },
         {
@@ -590,7 +590,7 @@
           "name": "newEditDialogCreateEvent",
           "declaration": {
             "name": "newEditDialogCreateEvent",
-            "module": "oscd-edit-dialog-events.ts"
+            "module": "oscd-scl-dialogs-events.ts"
           }
         },
         {
@@ -598,30 +598,30 @@
           "name": "newEditDialogCloseEvent",
           "declaration": {
             "name": "newEditDialogCloseEvent",
-            "module": "oscd-edit-dialog-events.ts"
+            "module": "oscd-scl-dialogs-events.ts"
           }
         }
       ]
     },
     {
       "kind": "javascript-module",
-      "path": "oscd-edit-dialog.ts",
+      "path": "oscd-scl-dialogs.ts",
       "declarations": [],
       "exports": [
         {
           "kind": "custom-element-definition",
-          "name": "oscd-edit-dialog",
+          "name": "oscd-scl-dialogs",
           "declaration": {
-            "name": "OscdEditDialog",
-            "module": "/OscdEditDialog.js"
+            "name": "OscdSclDialogs",
+            "module": "/OscdSclDialogs.js"
           }
         },
         {
           "kind": "js",
-          "name": "OscdEditDialog",
+          "name": "OscdSclDialogs",
           "declaration": {
-            "name": "OscdEditDialog",
-            "module": "oscd-edit-dialog.ts"
+            "name": "OscdSclDialogs",
+            "module": "oscd-scl-dialogs.ts"
           }
         }
       ]

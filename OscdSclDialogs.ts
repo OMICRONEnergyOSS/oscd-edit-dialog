@@ -90,7 +90,7 @@ function wizardAction(wizardType: WizardType): WizardActor | undefined {
   return getWizard(wizardType)?.primary?.action;
 }
 
-export default class OscdEditDialog extends ScopedElementsMixin(LitElement) {
+export default class OscdSclDialogs extends ScopedElementsMixin(LitElement) {
   @property({ type: Object })
   wizardType: EditWizard | CreateWizard | null = null;
 

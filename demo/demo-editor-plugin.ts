@@ -1,8 +1,8 @@
 import { css, html, LitElement } from 'lit';
 import { property, query } from 'lit/decorators.js';
-import type WizardDialog from '../OscdEditDialog.js';
+import type WizardDialog from '../OscdSclDialogs.js';
 
-import '../oscd-edit-dialog.js';
+import '../oscd-scl-dialogs.js';
 import { XMLEditor } from '@openscd/oscd-editor';
 import { convertEdit } from '@openscd/oscd-api/utils.js';
 import { Edit } from '@openscd/oscd-api';
@@ -59,7 +59,7 @@ export default class TriggerWizard extends LitElement {
 
   @query('#tagSelector') tagSelector!: HTMLInputElement;
 
-  @query('oscd-edit-dialog') editDialog!: WizardDialog;
+  @query('oscd-scl-dialogs') editDialog!: WizardDialog;
 
   async triggerWizardCreate(): Promise<void> {
     const parent = this.doc.querySelector(this.parentSelector.value);
@@ -106,7 +106,7 @@ export default class TriggerWizard extends LitElement {
     return html` <div class="card">
         <h2>Add Element</h2>
         <p>
-          Use this section to trigger the oscd-edit-dialog to Add/Inert the
+          Use this section to trigger the oscd-scl-dialogs to Add/Inert the
           specified Element to the specified Parent
         </p>
         <label>Parent Selector:</label
@@ -123,7 +123,7 @@ export default class TriggerWizard extends LitElement {
       <div class="card">
         <h2>Edit existing Element</h2>
         <p>
-          Use this section to trigger the oscd-edit-dialog to Edit the specified
+          Use this section to trigger the oscd-scl-dialogs to Edit the specified
           existing Element
         </p>
         <label>Tag Selector</label>
@@ -152,7 +152,7 @@ export default class TriggerWizard extends LitElement {
         <pre style="white-space: break-spaces">${prettyPrintXml(this.doc)}</pre>
       </div>
 
-      <oscd-edit-dialog></oscd-edit-dialog>`;
+      <oscd-scl-dialogs></oscd-scl-dialogs>`;
   }
 
   static styles = css`

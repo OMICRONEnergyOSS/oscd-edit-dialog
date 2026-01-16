@@ -1,9 +1,9 @@
-import { CreateWizard, EditWizard } from './OscdEditDialog.js';
+import { CreateWizard, EditWizard } from './OscdSclDialogs.js';
 
 export enum OscdEditDialogEvents {
-  CREATE_EVENT = 'oscd-edit-dialog-create',
-  EDIT_EVENT = 'oscd-edit-dialog-edit',
-  CLOSE_EVENT = 'oscd-edit-dialog-close',
+  CREATE_EVENT = 'oscd-scl-dialogs-create',
+  EDIT_EVENT = 'oscd-scl-dialogs-edit',
+  CLOSE_EVENT = 'oscd-scl-dialogs-close',
 }
 
 export function newEditDialogEditEvent(

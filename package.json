@@ -1,11 +1,11 @@
 {
-  "name": "@omicronenergy/oscd-edit-dialog",
+  "name": "@omicronenergy/oscd-scl-dialogs",
   "description": "Provides a resuable dialog for adding and editing SCL elements in OpenSCD.",
   "displayName": "OpenSCD Edit Dialog",
   "version": "0.0.6",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/OMICRONEnergyOSS/oscd-edit-dialog.git"
+    "url": "git+https://github.com/OMICRONEnergyOSS/oscd-scl-dialogs.git"
   },
   "keywords": [
     "scl",
@@ -18,15 +18,15 @@
   ],
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/issues"
+    "url": "https://github.com/OMICRONEnergyOSS/oscd-scl-dialogs/issues"
   },
-  "homepage": "https://github.com/OMICRONEnergyOSS/oscd-edit-dialog#readme",
+  "homepage": "https://github.com/OMICRONEnergyOSS/oscd-scl-dialogs#readme",
   "type": "module",
   "exports": {
     ".": "./dist/foundation.js",
-    "./OscdEditDialog.js": "./dist/OscdEditDialog.js",
-    "./oscd-edit-dialog.js": "./dist/oscd-edit-dialog.js",
-    "./oscd-edit-dialog-events.js": "./dist/oscd-edit-dialog-events.js",
+    "./OscdSclDialogs.js": "./dist/OscdSclDialogs.js",
+    "./oscd-scl-dialogs.js": "./dist/oscd-scl-dialogs.js",
+    "./oscd-scl-dialogs-events.js": "./dist/oscd-scl-dialogs-events.js",
     "./wizards.js": "./dist/wizards/wizards.js",
     "./patterns.js": "./dist/wizards/patterns.js"
   },
