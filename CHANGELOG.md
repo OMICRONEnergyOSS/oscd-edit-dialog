@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.0.7](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.6...oscd-edit-dialog-v0.0.7) (2026-01-16)
+
+
+### Features
+
+* update theming ([a3aad28](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/a3aad28b20267ead92c3af70079b5cc61fe9a321))
+
+
+### Bug Fixes
+
+* expose patterns.js ([c26596a](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/c26596ac86b518a9868c39dc7fb17c6d715136eb))
+* unset address rejecting edits to address ([4f0dcb1](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/commit/4f0dcb11713ddc4eb02a09ca997cf6d8e5619fa6))
+
 ## [0.0.6](https://github.com/OMICRONEnergyOSS/oscd-edit-dialog/compare/oscd-edit-dialog-v0.0.5...oscd-edit-dialog-v0.0.6) (2025-08-26)
 
 
