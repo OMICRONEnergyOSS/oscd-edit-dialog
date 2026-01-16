@@ -1,6 +1,6 @@
 import { LitElement } from 'lit';
-import type WizardDialog from '../OscdEditDialog.js';
-import '../oscd-edit-dialog.js';
+import type WizardDialog from '../OscdSclDialogs.js';
+import '../oscd-scl-dialogs.js';
 import { XMLEditor } from '@openscd/oscd-editor';
 export default class TriggerWizard extends LitElement {
     doc: XMLDocument;

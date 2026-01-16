@@ -39329,7 +39329,7 @@ function wizardAction(wizardType) {
     }
     return getWizard(wizardType)?.primary?.action;
 }
-class OscdEditDialog extends ScopedElementsMixin(i$3) {
+class OscdSclDialogs extends ScopedElementsMixin(i$3) {
     constructor() {
         super(...arguments);
         this.wizardType = null;
@@ -39401,7 +39401,7 @@ class OscdEditDialog extends ScopedElementsMixin(i$3) {
     </div>`;
     }
 }
-OscdEditDialog.scopedElements = {
+OscdSclDialogs.scopedElements = {
     'md-dialog': MdDialog,
     'md-text-button': MdTextButton,
     'md-filled-button': MdFilledButton,
@@ -39418,7 +39418,7 @@ OscdEditDialog.scopedElements = {
     'md-list': MdList,
     'md-list-item': MdListItem,
 };
-OscdEditDialog.styles = i$6 `
+OscdSclDialogs.styles = i$6 `
     *,
     md-filled-button * {
       --md-dialog-container-color: var(
@@ -39502,13 +39502,13 @@ OscdEditDialog.styles = i$6 `
   `;
 __decorate([
     n$3({ type: Object })
-], OscdEditDialog.prototype, "wizardType", void 0);
+], OscdSclDialogs.prototype, "wizardType", void 0);
 __decorate([
     e$3('md-dialog')
-], OscdEditDialog.prototype, "dialog", void 0);
+], OscdSclDialogs.prototype, "dialog", void 0);
 __decorate([
     r('scl-text-field, scl-select, scl-checkbox, md-filled-textfield, md-filled-select')
-], OscdEditDialog.prototype, "inputs", void 0);
+], OscdSclDialogs.prototype, "inputs", void 0);
 
-export { OscdEditDialog as default };
-//# sourceMappingURL=OscdEditDialog.js.map
+export { OscdSclDialogs as default };
+//# sourceMappingURL=OscdSclDialogs.js.map

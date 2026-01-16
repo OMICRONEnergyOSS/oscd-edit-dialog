@@ -24,8 +24,8 @@ export type CreateWizard = {
     tagName: string;
 };
 export type WizardType = EditWizard | CreateWizard;
-declare const OscdEditDialog_base: typeof LitElement & import("@open-wc/scoped-elements/lit-element.js").ScopedElementsHostConstructor;
-export default class OscdEditDialog extends OscdEditDialog_base {
+declare const OscdSclDialogs_base: typeof LitElement & import("@open-wc/scoped-elements/lit-element.js").ScopedElementsHostConstructor;
+export default class OscdSclDialogs extends OscdSclDialogs_base {
     wizardType: EditWizard | CreateWizard | null;
     private dialogClosePromise;
     static scopedElements: {
