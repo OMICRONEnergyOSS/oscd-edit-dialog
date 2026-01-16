@@ -10,6 +10,7 @@ import { MdFilledSelect } from '@scopedelement/material-web/select/MdFilledSelec
 import { MdFilledTextField } from '@scopedelement/material-web/textfield/MdFilledTextField.js';
 import { MdIcon } from '@scopedelement/material-web/icon/MdIcon.js';
 import { MdIconButton } from '@scopedelement/material-web/iconbutton/MdIconButton.js';
+import { MdFilledButton } from '@scopedelement/material-web/button/MdFilledButton.js';
 import { MdList } from '@scopedelement/material-web/list/MdList.js';
 import { MdListItem } from '@scopedelement/material-web/list/MdListItem.js';
 import { MdSelectOption } from '@scopedelement/material-web/select/MdSelectOption.js';
@@ -30,6 +31,7 @@ export default class OscdEditDialog extends OscdEditDialog_base {
     static scopedElements: {
         'md-dialog': typeof MdDialog;
         'md-text-button': typeof MdTextButton;
+        'md-filled-button': typeof MdFilledButton;
         'scl-checkbox': typeof SclCheckbox;
         'scl-text-field': typeof SclTextField;
         'scl-select': typeof SclSelect;
